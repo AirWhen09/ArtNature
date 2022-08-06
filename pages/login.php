@@ -10,7 +10,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center">
                     <h4>Welcome</h4>
                     <img 
-                        src="http://www.rpghairwigs.com/skin/frontend/rwd/default/images/logo.png" 
+                        src="../img/logo.png" 
                         alt="logo"
                         class="img-fluid"
                         >
