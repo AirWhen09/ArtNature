@@ -1,4 +1,5 @@
 .login-container{
+    border: var(--primary-custom-blue) 4px solid;
     background-color: var(--primary-white);
     border-radius: 20px;
 }
@@ -9,5 +10,19 @@
 
 .login-input{
     height: 60px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    border: var(--primary-custom-blue) 2px solid;
+    
+    &:focus {
+        outline: none;
+        box-shadow: 5px 10px var(--primary-light-blue);
+      }
+}
+
+.login-label{
+    font-size: larger;
+}
+
+*{
+    outline: red;
 }

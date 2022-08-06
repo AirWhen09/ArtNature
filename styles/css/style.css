@@ -15,7 +15,18 @@ body {
   --primary-gray: #d1d5db;
 }
 
+.primary-btn {
+  color: var(--primary-white);
+  background-color: var(--primary-dark-blue);
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-white);
+  color: var(--primary-dark-blue);
+}
+
 .login-container {
+  border: var(--primary-custom-blue) 4px solid;
   background-color: var(--primary-white);
   border-radius: 20px;
 }
@@ -26,7 +37,20 @@ body {
 
 .login-input {
   height: 60px;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  border: var(--primary-custom-blue) 2px solid;
+}
+.login-input:focus {
+  outline: none;
+  box-shadow: 5px 10px var(--primary-light-blue);
+}
+
+.login-label {
+  font-size: larger;
+}
+
+* {
+  outline: red;
 }
 
 #overlayer {
