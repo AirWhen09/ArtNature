@@ -1,16 +1,13 @@
 
-<div class="container login-section">
-    <div class="card login-container shadow-lg p-5">
-        <div class="card-title">
-            <h2>ArtNature: Libmanan Production Management</h2>
-        </div>
+<div class="container-fluid login-section mb-5">
+    <div class="container p-5">
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                    <h4>Welcome</h4>
+                    <h4>Welcome to <b class="wig-logo">Art<span>Nature<span>.</span></span></b></h4>
                     <img 
-                        src="../img/logo.png" 
+                        src="../img/logo2.png" 
                         alt="logo"
                         class="img-fluid"
                         >
@@ -19,7 +16,7 @@
                 </div>
                 <div class="col-lg-7 ">
                     <div class="container p-4">
-                        <form action="" class="pt-2 needs-validation p3" novalidate>
+                        <form action="../action/login.php" method="POST" class="pt-2 needs-validation p3">
                             <div class="mb-3">
                                 <label for="username" class="form-label login-label">Username</label>
                                 <input 

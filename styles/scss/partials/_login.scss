@@ -1,11 +1,19 @@
-.login-container{
-    border: var(--primary-custom-blue) 4px solid;
-    background-color: var(--primary-white);
-    border-radius: 20px;
+.wig-logo{
+    font-weight: bolder;
+    color: var(--primary-custom-blue);
+    span{
+        color: var(--primary-dark-blue);
+        span{
+            font-weight: 300px;
+            color: var(--primary-very-dark-blue);
+        }
+    }
 }
-
 .login-section{
     margin-top: 8rem;
+    border-top: var(--primary-custom-blue) 10px solid;
+    border-bottom: var(--primary-custom-blue) 10px solid;
+    background-color: var(--primary-white);
 }
 
 .login-input{
