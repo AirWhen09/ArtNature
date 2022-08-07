@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--primary-off-white);
+  background-image: url("../../../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 :root {
@@ -25,6 +28,29 @@ body {
   color: var(--primary-dark-blue);
 }
 
+.login-content {
+  height: 100vh;
+  background-color: var(--primary-white);
+  display: flex;
+}
+
+.login-left {
+  background-color: var(--primary-light-blue);
+  height: 100vh;
+  width: 110vh;
+}
+
+.login-right {
+  background-color: var(--primary-white);
+  height: 100vh;
+  width: 30vh;
+}
+.login-right div {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
 .wig-logo {
   font-weight: bolder;
   color: var(--primary-custom-blue);
@@ -38,10 +64,10 @@ body {
 }
 
 .login-section {
-  margin-top: 8rem;
-  border-top: var(--primary-custom-blue) 10px solid;
-  border-bottom: var(--primary-custom-blue) 10px solid;
-  background-color: var(--primary-white);
+  margin-top: 5rem;
+  border: var(--primary-custom-blue) 5px solid;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5019607843);
 }
 
 .login-input {
@@ -63,8 +89,10 @@ body {
   font-size: 1.5rem;
   border: var(--primary-custom-blue) 2px solid;
   color: var(--primary-dark-blue);
+  background-color: var(--primary-white);
 }
 .login-btn:hover {
+  background-color: var(--primary-white);
   color: var(--primary-dark-blue);
   border: var(--primary-custom-blue) 2px solid;
   box-shadow: 5px 10px var(--primary-light-blue);
