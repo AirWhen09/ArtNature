@@ -17,12 +17,25 @@
         outline: none;
         box-shadow: 5px 10px var(--primary-light-blue);
       }
+    
+      &:hover {
+        outline: none;
+        box-shadow: 5px 10px var(--primary-light-blue);
+      }
+}
+
+.login-btn{
+    height: 60px;
+    font-size: 1.5rem;
+    border: var(--primary-custom-blue) 2px solid;
+    color: var(--primary-dark-blue);
+    &:hover {
+        color: var(--primary-dark-blue);
+        border: var(--primary-custom-blue) 2px solid;
+        box-shadow: 5px 10px var(--primary-light-blue);
+      }
 }
 
 .login-label{
     font-size: larger;
-}
-
-*{
-    outline: red;
 }

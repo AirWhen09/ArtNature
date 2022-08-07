@@ -49,12 +49,12 @@
                                 type="submit" 
                                 name="login" 
                                 id="login" 
-                                class="btn login-input primary-btn"
+                                class="btn login-btn"
                                 >Login</button>
                             </div>
                             <div class="d-flex flex-column justify-content-center item-content-center mt-2">
                                 <p class="text-center">or</p>
-                                <p class="text-center">Don't have an account yet? Sign up instead</p>
+                                <p class="text-center">Don't have an account yet? <a href="#">Sign up instead</a></p>
                             </div>
                         </form>
                     </div>
