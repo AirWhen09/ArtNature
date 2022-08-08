@@ -3,7 +3,7 @@
 require 'action/signup.php';
 ?>
 <!-- Start Sign UP Content -->
-<div class="container signup-section mb-5 col-lg-6 shadow-lg">
+<div class="container signup-section mb-5 col-lg-6 shadow-lg animate__animated animate__tada animate__delay-3s">
     <div class="container p-2">
         <div class="card-body">
         <div class="col-6 mx-auto">
@@ -148,6 +148,8 @@ require 'action/signup.php';
                     class="btn primary-btn"
                     >Signup</button>
                 </div>
+
+                <p class="text-center fw-bold">Already have an account? Click <a href="?login">here</a> to log in!</p>
             </form>
         </div>
     </div>
