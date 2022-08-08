@@ -1,4 +1,8 @@
-
+<?php 
+// require 'session/session.php';
+require 'action/login.php';
+?>
+<!-- Start Login Content -->
 <div class="container login-section mb-5 shadow-lg">
     <div class="container p-5">
         <div class="card-body">
@@ -16,7 +20,10 @@
                 </div>
                 <div class="col-lg-7 ">
                     <div class="container p-4">
-                        <form action="../admin/dashboard/index.html" method="GET" class="pt-2 needs-validation p3">
+                    <!-- Error Message -->
+                    <?php include 'helpers/errorMessage.php'; ?>
+                    <!-- End -->
+                    <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" class="pt-2 needs-validation" novalidate>
                             <div class="mb-3">
                                 <label for="username" class="form-label login-label">Username</label>
                                 <input 
@@ -26,8 +33,8 @@
                                 id="username" 
                                 aria-describedby="usernameId" 
                                 placeholder="Type here..."
-                                required>
-                                <small id="usernameId" class="form-text text-muted"></small>
+                                required
+                                >
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label login-label">Password</label>
@@ -38,20 +45,20 @@
                                 id="password" 
                                 aria-describedby="passwordId" 
                                 placeholder="Type here..."
-                                required>
-                                <small id="passwordId" class="form-text text-muted"></small>
+                                required
+                                >  
                             </div>
                             <div class="d-grid gap-2">
                                 <button 
                                 type="submit" 
                                 name="login" 
                                 id="login" 
-                                class="btn login-btn"
+                                class="btn primary-btn"
                                 >Login</button>
                             </div>
                             <div class="d-flex flex-column justify-content-center item-content-center mt-2">
                                 <p class="text-center fw-bold">or</p>
-                                <p class="text-center fw-bold">Don't have an account yet? <a href="#">Sign up instead</a></p>
+                                <p class="text-center fw-bold">No account yet? Click <a href="?signup">here</a> to sign up!</p>
                             </div>
                         </form>
                     </div>
@@ -60,3 +67,5 @@
         </div>
     </div>
 </div>
+
+<script src="../js/formValidation.js"></script>

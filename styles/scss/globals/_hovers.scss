@@ -1,8 +1,39 @@
 .primary-btn{
+    height: 60px;
+    font-size: 1.5rem;
     color: var(--primary-white);
     background-color: var(--primary-dark-blue);
+    &:hover {
+        background-color: var(--primary-white);
+        color: var(--primary-dark-blue);
+        border: var(--primary-custom-blue) 2px solid;
+        box-shadow: 1px 10px #72ffff6e;
+      }
+      &:focus {
+        color: var(--primary-white);
+        background-color: var(--primary-dark-blue);
+      }
 }
-.primary-btn:hover{
-    background-color: var(--primary-white);
-    color: var(--primary-dark-blue);
+
+.error404{
+    background-image: url("http://i.annihil.us/u/prod/marvel/html_blocks_assets/ironman404/IM-rain.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    div{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .sheesh1{
+            font-size: 150px;
+        }
+        .sheesh2{
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: #72ffff6e;
+        }
+    }
 }

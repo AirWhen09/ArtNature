@@ -1,0 +1,26 @@
+.signup-section{
+    margin-top: 5rem;
+    border: var(--primary-custom-blue) 5px solid;
+    border-radius: 20px;
+    background-color: #ffffff80;
+}
+
+.signup-input{
+    height: 45px;
+    font-size: 1rem;
+    border: var(--primary-custom-blue) 2px solid;
+    &:focus {
+        outline: none;
+        box-shadow: 1px 10px #72ffff6e;
+      }
+    
+      &:hover {
+        outline: none;
+        box-shadow: 1px 10px #72ffff6e;
+      }
+}
+
+
+.signup-label{
+    font-weight: bold;
+}

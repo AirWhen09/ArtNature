@@ -19,31 +19,67 @@ body {
 }
 
 .primary-btn {
+  height: 60px;
+  font-size: 1.5rem;
+  color: var(--primary-white);
+  background-color: var(--primary-dark-blue);
+}
+.primary-btn:hover {
+  background-color: var(--primary-white);
+  color: var(--primary-dark-blue);
+  border: var(--primary-custom-blue) 2px solid;
+  box-shadow: 1px 10px rgba(114, 255, 255, 0.431372549);
+}
+.primary-btn:focus {
   color: var(--primary-white);
   background-color: var(--primary-dark-blue);
 }
 
-.primary-btn:hover {
-  background-color: var(--primary-white);
-  color: var(--primary-dark-blue);
+.error404 {
+  background-image: url("http://i.annihil.us/u/prod/marvel/html_blocks_assets/ironman404/IM-rain.gif");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.error404 div {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.error404 div .sheesh1 {
+  font-size: 150px;
+}
+.error404 div .sheesh2 {
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: rgba(114, 255, 255, 0.431372549);
 }
 
 .login-content {
   height: 100vh;
-  background-color: var(--primary-white);
   display: flex;
 }
 
 .login-left {
-  background-color: var(--primary-light-blue);
   height: 100vh;
-  width: 110vh;
+  width: 90vh;
+}
+.login-left div {
+  font-size: 3rem;
+}
+.login-left div .text-sub {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .login-right {
-  background-color: var(--primary-white);
+  background-color: #ffffff;
   height: 100vh;
-  width: 30vh;
+  width: 40vh;
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
+  flex-grow: 1;
 }
 .login-right div {
   border-radius: 50%;
@@ -77,29 +113,15 @@ body {
 }
 .login-input:focus {
   outline: none;
-  box-shadow: 5px 10px var(--primary-light-blue);
+  box-shadow: 1px 10px rgba(114, 255, 255, 0.431372549);
 }
 .login-input:hover {
   outline: none;
-  box-shadow: 5px 10px var(--primary-light-blue);
-}
-
-.login-btn {
-  height: 60px;
-  font-size: 1.5rem;
-  border: var(--primary-custom-blue) 2px solid;
-  color: var(--primary-dark-blue);
-  background-color: var(--primary-white);
-}
-.login-btn:hover {
-  background-color: var(--primary-white);
-  color: var(--primary-dark-blue);
-  border: var(--primary-custom-blue) 2px solid;
-  box-shadow: 5px 10px var(--primary-light-blue);
+  box-shadow: 1px 10px rgba(114, 255, 255, 0.431372549);
 }
 
 .login-label {
-  font-size: larger;
+  font-weight: bold;
 }
 
 #overlayer {
@@ -215,4 +237,28 @@ body {
   100% {
     height: 0%;
   }
+}
+.signup-section {
+  margin-top: 5rem;
+  border: var(--primary-custom-blue) 5px solid;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.5019607843);
+}
+
+.signup-input {
+  height: 45px;
+  font-size: 1rem;
+  border: var(--primary-custom-blue) 2px solid;
+}
+.signup-input:focus {
+  outline: none;
+  box-shadow: 1px 10px rgba(114, 255, 255, 0.431372549);
+}
+.signup-input:hover {
+  outline: none;
+  box-shadow: 1px 10px rgba(114, 255, 255, 0.431372549);
+}
+
+.signup-label {
+  font-weight: bold;
 }

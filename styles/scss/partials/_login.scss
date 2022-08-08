@@ -1,20 +1,29 @@
 .login-content{
     height: 100vh;
-    background-color: var(--primary-white);
     display: flex;
 }
 
 .login-left{
-    background-color: var(--primary-light-blue);
     height: 100vh;
-    width: 110vh;
-    
+    width: 90vh;
+
+    div{
+        font-size: 3rem;
+
+        .text-sub{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
 }
 
 .login-right{
-    background-color: var(--primary-white);
+    background-color: #ffffff;
     height: 100vh;
-    width: 30vh;
+    width: 40vh;
+    border-top-left-radius: 100%;
+    border-bottom-left-radius: 100%;
+    flex-grow: 1;
     div{
         border-radius: 50%;
         height: 100px;
@@ -45,30 +54,18 @@
     border: var(--primary-custom-blue) 2px solid;
     &:focus {
         outline: none;
-        box-shadow: 5px 10px var(--primary-light-blue);
+        box-shadow: 1px 10px #72ffff6e;
       }
     
       &:hover {
         outline: none;
-        box-shadow: 5px 10px var(--primary-light-blue);
+        box-shadow: 1px 10px #72ffff6e;
       }
 }
 
-.login-btn{
-    height: 60px;
-    font-size: 1.5rem;
-    border: var(--primary-custom-blue) 2px solid;
-    color: var(--primary-dark-blue);
-    background-color: var(--primary-white);
-    &:hover {
-        background-color: var(--primary-white);
-        color: var(--primary-dark-blue);
-        border: var(--primary-custom-blue) 2px solid;
-        box-shadow: 5px 10px var(--primary-light-blue);
-      }
-}
+
 
 .login-label{
-    font-size: larger;
+    font-weight: bold;
 }
 
