@@ -9,13 +9,22 @@
 	<!-- PAGE TITLE HERE -->
 	<link rel="shortcut icon" href="../../img/logo3.png" type="image/x-icon">
     <title>ArtNature: Libmanan Production Management</title>
-	 <!-- Bootstrap CSS v5.2.0-beta1 -->
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-     -->
+
+	
+	
 	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+	
 	<!-- Style css -->
     <link href="css/style.css" rel="stylesheet">
+	<!-- Calendar -->
+	<link href='vendor/calendar/lib/main.css' rel='stylesheet' />
+	
+	<link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/DataTables/datatables.min.css"
+    />
 	
 </head>
 <body>

@@ -7,8 +7,14 @@
     require __DIR__ . '/boilerPlate/sideNav.php';
 
     // content
-    // require __DIR__ . '/pages/dashboard.php';
-    require __DIR__ . '/pages/employeeList.php';
+    if(isset($_GET['dashboard'])){
+        include __DIR__ . '/pages/dashboard.php';
+    }elseif(isset($_GET['employeeList'])){
+        include __DIR__ . '/pages/employeeList.php';
+    }else{
+        include __DIR__ . '/pages/404.php';
+    }
+    
     // end content
 
     // modals
