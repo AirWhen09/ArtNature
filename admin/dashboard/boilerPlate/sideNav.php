@@ -8,6 +8,8 @@
         $email = "HACKER@HACKER.com";
         $image = "images/ion/man (1).png";
     }
+
+    
 ?>
         <!--**********************************
             Sidebar start
@@ -25,39 +27,39 @@
 						</a>
 						
 					</li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?dashboard" aria-expanded="false" >
 							<i class="flaticon-025-dashboard"></i>
-							<span class="nav-text">Dashboard</span>
+							<span class="nav-text <?php if(isset($_GET['dashboard'])) echo "text-primary"; ?>">Dashboard</span>
 						</a>
                     </li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?employeeList" aria-expanded="false">
 						<i class="flaticon-050-info"></i>
-							<span class="nav-text">Employee List</span>
+							<span class="nav-text <?php if(isset($_GET['employeeList'])) echo "text-primary"; ?>">Employee List</span>
 						</a>
                     </li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?manageTask" aria-expanded="false">
 							<i class="flaticon-041-graph"></i>
-							<span class="nav-text">Manage Task</span>
+							<span class="nav-text <?php if(isset($_GET['manageTask'])) echo "text-primary"; ?>">Manage Task</span>
 						</a>
                     </li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?chat" aria-expanded="false">
 							<i class="flaticon-093-waving"></i>
-							<span class="nav-text">Chats</span>
+							<span class="nav-text <?php if(isset($_GET['chat'])) echo "text-primary"; ?>">Chats</span>
 						</a>
                     </li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?progressReport" aria-expanded="false">
 							<i class="flaticon-018-clock"></i>
-							<span class="nav-text">Progress Report</span>
+							<span class="nav-text <?php if(isset($_GET['progressReport'])) echo "text-primary"; ?>">Progress Report</span>
 						</a>
                     </li>
-                    <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
+                    <li><a href="?delivery" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-013-checkmark"></i>
-							<span class="nav-text">Delivery</span>
+							<span class="nav-text <?php if(isset($_GET['delivery'])) echo "text-primary"; ?>">Delivery</span>
 						</a>
 					</li>
-                    <li><a href="javascript:void()" aria-expanded="false">
+                    <li><a href="?setting" aria-expanded="false">
 							<i class="flaticon-042-menu"></i>
-							<span class="nav-text">Setting</span>
+							<span class="nav-text <?php if(isset($_GET['setting'])) echo "text-primary"; ?>">Setting</span>
 						</a>
                     </li>
                     <li><a href="javascript:void()" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#modelId">
