@@ -16,7 +16,6 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     $inputs['username'] = $username;
 
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-    $inputs['password'] = $password;
 
     // check to see the username and password has a value
     if($username){
@@ -45,6 +44,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             $_SESSION['user_role'] = $row['user_role'];
             $_SESSION['status'] = "valid";
             $_SESSION['firstName'] = $row['first_name'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['image'] = $row['image'];
         }else{
             array_push($errors, CREDENTIAL_INVALID);
         }
@@ -53,7 +54,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     }
     
     if(count($errors) === 0){
-        header("location: admin/dashboard/");
+        header("location: admin/dashboard/index.php?dashboard");
     }
 }
+
 ?>

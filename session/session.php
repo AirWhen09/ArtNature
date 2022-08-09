@@ -1,8 +1,10 @@
 <?php
 session_start();
 
-if($_SESSION['status'] === 'valid'){
-    header("location: ../admin/dashboard/");
+if(isset($_SESSION['status'])){
+    if($_SESSION['status'] === 'valid'){
+        header("location: ../admin/dashboard/index.php?dashboard");
+    }
 }
 
 ?>

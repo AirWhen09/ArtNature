@@ -13,12 +13,12 @@
 			  series: [
 				{
 					name: 'Income',
-					data: [50, 18, 70, 40],
+					data: [100, 18, 70, 40],
 					//radius: 12,	
 				}, 
 				{
 				  name: 'Outcome',
-				  data: [80, 40, 55, 20]
+				  data: [100, 40, 55, 20]
 				}, 
 				
 			],
