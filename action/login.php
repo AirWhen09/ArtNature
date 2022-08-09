@@ -1,4 +1,6 @@
 <?php
+require 'connection/connection.php';
+
 const USERNAME_REQUIRE = "Please enter your username";
 const PASSWORD_REQUIRE = "Please enter your password";
 const CREDENTIAL_INVALID = "Username or password is incorrect";
@@ -35,11 +37,23 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         array_push($errors, PASSWORD_REQUIRE);
     }
 
-
+    $selectUser = $conn->query("SELECT * from users where username = '$username'");
+    if($selectUser->num_rows > 0){
+        $row = $selectUser->fetch_assoc();
+        if(password_verify($password, $row['password'])){
+            session_start();
+            $_SESSION['user_role'] = $row['user_role'];
+            $_SESSION['status'] = "valid";
+            $_SESSION['firstName'] = $row['first_name'];
+        }else{
+            array_push($errors, CREDENTIAL_INVALID);
+        }
+    }else{
+        array_push($errors, CREDENTIAL_INVALID);
+    }
+    
     if(count($errors) === 0){
-
-        echo "Thank you <b>$password</b> for subscribing. <br>";
-
+        header("location: admin/dashboard/");
     }
 }
 ?>

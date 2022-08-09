@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/boilerPlate/header.php';
 
+// sessions
+require __DIR__ . '/session/session.php';
+
 
 // content
 require __DIR__ . '/pages/preloader.php';
