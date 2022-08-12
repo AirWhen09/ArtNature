@@ -14,6 +14,7 @@ const PASSWORD_REQUIRE = "Please enter your password";
 
 $errors = [];
 $inputs = [];
+$success = [];
 
 if(isset($_POST['signup'])){
 
@@ -188,8 +189,7 @@ if(isset($_POST['signup'])){
             )";
 
         if($conn->query($sql)){
-            session_start();
-            $_SESSION['success'] = "Thank you for register, you may now login";
+            array_push($success, "Thank you for register, you may now login");
             header("location: landing.php?login");
         }else{
             array_push($errors, "Something Wrong!: ".$conn->error);

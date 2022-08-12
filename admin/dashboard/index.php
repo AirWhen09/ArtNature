@@ -1,24 +1,34 @@
 <?php
-    require __DIR__ . '/boilerPlate/header.php';
-    // session
+    /////////////  connection  /////////////////////
+    include '../../connection/connection.php';
+    /////////////////  end  ////////////////////////
+    
+    //////////////  session  //////////////////////
     require __DIR__ . '/session/session.php';
-
+    /////////////////  end  ////////////////////////
+    
+    require __DIR__ . '/boilerPlate/header.php';
     require __DIR__ . '/boilerPlate/topNav.php';
     require __DIR__ . '/boilerPlate/sideNav.php';
 
-    // content
+
+    ///////////////  content  //////////////////////
     if(isset($_GET['dashboard'])){
         include __DIR__ . '/pages/dashboard.php';
     }elseif(isset($_GET['employeeList'])){
         include __DIR__ . '/pages/employeeList.php';
+    }elseif(isset($_GET['manageTask'])){
+        include __DIR__ . '/pages/manageTask.php';
     }else{
         include __DIR__ . '/pages/404.php';
     }
+    /////////////////  end  ////////////////////////
     
-    // end content
 
-    // modals
+    ///////////////// modal ////////////////////////
     require __DIR__ . '/boilerPlate/modal.php';
+    /////////////////  end  ////////////////////////
+    
 
     require __DIR__ . '/boilerPlate/footer.php';
 ?>

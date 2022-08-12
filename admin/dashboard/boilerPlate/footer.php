@@ -30,16 +30,23 @@
 	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	
     <script type="text/javascript" src="vendor/DataTables/datatables.min.js"></script>
-        <script>
-            $(document).ready( function () {
-                $('#myTable').DataTable();
-            } );
-        </script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable1').DataTable();
+            $('#myTable2').DataTable();
+            $('#myTable3').DataTable();
+            $('#myTable4').DataTable();
+            $('#myTable5').DataTable();
+            $('#myTable6').DataTable();
+            $('#myTable7').DataTable();
+        } );
+    </script>
 
     <script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
 	<script src="js/demo.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <script src="../../js/formValidation.js"></script>
 
        
 	

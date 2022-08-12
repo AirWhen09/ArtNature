@@ -3,7 +3,7 @@
 include 'action/signup.php';
 ?>
 <!-- Start Sign UP Content -->
-<div class="container signup-section mb-5 col-md-10 shadow-lg animate__animated animate__tada animate__delay-3s">
+<div class="container signup-section mb-5 col-md-10 shadow-lg animate__animated animate__bounceInUp animate__delay-3s">
     <div class="container p-2">
         <div class="card-body">
         <div class=" mx-auto">

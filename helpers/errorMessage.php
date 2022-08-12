@@ -9,3 +9,13 @@
     </div>
 <?php } ?>
 
+<?php if(count($success) > 0){ ?>
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <?php
+            foreach($success as $succes){
+                echo "<li> $succes.</li>";
+            }
+        ?>
+    </div>
+<?php } ?>

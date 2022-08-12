@@ -37,6 +37,18 @@
   --font-family-title: Roboto, sans-serif;
   --title: #000; }
 
+  .wig-logo {
+    font-weight: bolder;
+    color: #00D7FF;
+  }
+  .wig-logo span {
+    color: #0096FF;
+  }
+  .wig-logo span span {
+    font-weight: 300px;
+    color:  #5800FF;
+  }
+
 .gradient_one {
   background-image: linear-gradient(to right, rgba(186, 1, 181, 0.85) 0%, rgba(103, 25, 255, 0.85) 100%); }
 

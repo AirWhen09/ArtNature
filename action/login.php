@@ -7,6 +7,7 @@ const CREDENTIAL_INVALID = "Username or password is incorrect";
 
 
 $errors = [];
+$success = [];
 $inputs = [];
 
 if(isset($_POST['username']) && isset($_POST['password'])){

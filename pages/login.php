@@ -3,7 +3,7 @@
 require 'action/login.php';
 ?>
 <!-- Start Login Content -->
-<div class="container login-section mb-5 shadow-lg col-lg-5 animate__animated animate__tada animate__delay-3s">
+<div class="container login-section mb-5 shadow-lg col-lg-5 animate__animated animate__bounceInUp animate__delay-3s">
     <div class="container p-3">
         <div class="col-lg-5 mx-auto">
             <img 
