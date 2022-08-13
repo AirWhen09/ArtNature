@@ -61,6 +61,7 @@
             if($insertTask){
                 array_push($success, "New task added sucessfully");
                 unset($inputs);
+                echo "<script>window.location.href = 'index.php?manageTask'</script>";
             }else{
                 array_push($errors, "Something's wrong: ".$conn->error);
             }

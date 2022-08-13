@@ -19,6 +19,8 @@
         include __DIR__ . '/pages/employeeList.php';
     }elseif(isset($_GET['manageTask'])){
         include __DIR__ . '/pages/manageTask.php';
+    }elseif(isset($_GET['chat'])){
+        include __DIR__ . '/pages/chat.php';
     }else{
         include __DIR__ . '/pages/404.php';
     }

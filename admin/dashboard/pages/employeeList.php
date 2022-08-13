@@ -26,9 +26,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" href="#workFromHome" role="tab">Work-From-Home</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" href="#addEmp" role="tab">Add Employee</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -64,13 +64,14 @@
                                                     <td><?php echo $result['userStatus'] ?></td>
                                                     <td><?php echo $result['userRole'] ?></td>
                                                     <td>
-                                                        
-                                                        <button class="btn btn-secondary btn-sm"><i class="flaticon-008-check" title="View"></i></button>
-                                                        <button class="btn btn-warning btn-sm"><i class="flaticon-062-pencil" title="Edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm"><i class="flaticon-089-trash" title="Move To Archive"></i></button>
+                                                        <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#allEmp<?php echo $no ?>">
+                                                            <i class="flaticon-062-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"><i class="flaticon-089-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                include 'pages/component/allEmpModal.php';
                                             }
                                             ?>
                                         </tbody>
@@ -197,9 +198,9 @@
                                                     <td><?php echo $result['userRole'] ?></td>
                                                     <td>
                                                         
-                                                        <button class="btn btn-secondary btn-sm"><i class="flaticon-008-check" title="View"></i></button>
-                                                        <button class="btn btn-warning btn-sm"><i class="flaticon-062-pencil" title="Edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm"><i class="flaticon-089-trash" title="Move To Archive"></i></button>
+                                                        <button class="btn btn-secondary btn-sm" title="View"><i class="flaticon-008-check" ></i></button>
+                                                        <button class="btn btn-warning btn-sm" title="Edit"><i class="flaticon-062-pencil"></i></button>
+                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"><i class="flaticon-089-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -209,9 +210,9 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="addEmp" role="tabpanel">
+                            <!-- <div class="tab-pane" id="addEmp" role="tabpanel">
 
-                            </div>
+                            </div> -->
                         </div>
                         
                         

@@ -43,6 +43,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         if(password_verify($password, $row['password'])){
             session_start();
             $_SESSION['user_role'] = $row['user_role'];
+            $_SESSION['userId'] = $row['user_id'];
             $_SESSION['status'] = "valid";
             $_SESSION['firstName'] = $row['first_name'];
             $_SESSION['email'] = $row['email'];

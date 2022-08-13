@@ -181,11 +181,12 @@ if(isset($_POST['signup'])){
             email,
             username,
             password,
-            image)
+            image, 
+            status)
             values (
                 '$firstName', '$middleName', '$lastname' , '$gender' , '$dateOfBirth' , 
                 '$contact', '$employee', '$address', '$email', '$username', '$password',
-                '$filepath'
+                '$filepath', 'ustts1'
             )";
 
         if($conn->query($sql)){

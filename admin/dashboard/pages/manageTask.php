@@ -1,5 +1,6 @@
 <?php include 'action/pages/manageTask.php'; ?>
 <?php include 'action/addNewTask.php'; ?>
+<?php include 'action/assignEmployee.php'; ?>
 <!--**********************************
             Content body start
         ***********************************-->
@@ -38,7 +39,7 @@
                                             <tr>
                                                 <th>Order Number</th>
                                                 <th>Employee Name</th>
-                                                <th>Wig</th>
+                                                <th>Wig Model</th>
                                                 <th>Status</th>
                                                 <th>Process</th>
                                                 <th>Start Date</th>
@@ -50,12 +51,17 @@
 
                                             <?php
                                             while($result = $getTask->fetch_assoc()){
+                                                if($result['imagePath'] == ''){
+                                                    $imagePath = "img/profile/avatar.png";
+                                                }else{
+                                                    $imagePath = $result['imagePath'];
+                                                }
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $result['order_no'] ?></td>
                                                     <td>
                                                         <div class="user-bx">
-                                                            <img src="images/ion/man (1).png" alt="">
+                                                            <img src="../../<?php echo $imagePath ?>" alt="">
                                                             <div>
                                                                 <h6 class="user-name">
                                                                     <?php
@@ -90,7 +96,7 @@
                                                             if($result['start_date'] == ''){
                                                                 echo "N/A";
                                                             }else{
-                                                                echo $result['start_date'].'%';
+                                                                echo $result['start_date'];
                                                             }
                                                         ?>
                                                     </td>
@@ -99,7 +105,7 @@
                                                             if($result['end_date'] == ''){
                                                                 echo "N/A";
                                                             }else{
-                                                                echo $result['end_date'].'%';
+                                                                echo $result['end_date'];
                                                             }
                                                         ?>
                                                     </td>
@@ -119,7 +125,6 @@
                             </div>
                             <div class="tab-pane" id="addTask" role="tabpanel">
                                 <div class="container">
-                                   
                                     <div class="row">
                                         <div class="col-sm-7 mx-auto">
                                             <h4 class="text-center">Add New Task</h4>
@@ -217,16 +222,15 @@
                                     <div class="col-sm-6">
                                         <div class="container">
                                             <h4 class="text-center">Assigning Employee</h4>
-                                            <form action="" method="post">
-
+                                            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  class="needs-validation" novalidate>
                                                 <div class="mb-3">
                                                     <label for="employee" class="fw-bold">Employee</label>
-                                                    <select class="form-select" name="employee" id="employee">
-                                                    <option>Select Employee</option>
+                                                    <select class="form-select" name="employee" id="employee" required>
+                                                    <option value="">Select Employee</option>
                                                     <?php
                                                     while($employee = $getEmployee->fetch_assoc()){
                                                         ?>
-                                                            <option><?php echo $employee['fullname']; ?></option>
+                                                            <option value="<?php echo $employee['user_id']; ?>"><?php echo $employee['fullname']; ?></option>
                                                         <?php
                                                     }
                                                     ?>
@@ -234,13 +238,13 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="employee" class="fw-bold">Select Task</label>
-                                                    <select class="form-select" name="employee" id="employee">
-                                                    <option>Select Order #</option>
+                                                    <label for="orderNo" class="fw-bold">Select Task</label>
+                                                    <select class="form-select" name="orderNo" id="orderNo" required>
+                                                    <option value="">Select Order #</option>
                                                     <?php
                                                     while($newTask = $getNewTask->fetch_assoc()){
                                                         ?>
-                                                            <option><?php echo $newTask['order_no']; ?></option>
+                                                            <option value="<?php echo $newTask['order_no']; ?>"><?php echo $newTask['order_no']; ?></option>
                                                         <?php
                                                     }
                                                     ?>
@@ -249,19 +253,19 @@
 
                                                 <div class="mb-3">
                                                     <label for="startDate" class="fw-bold">Start Date</label>
-                                                    <input type="date"
-                                                    class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here...">
+                                                    <input type="date" min="<?php echo date('Y-m-d');?>"
+                                                    class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="endDate" class="fw-bold">End Date</label>
-                                                    <input type="date"
-                                                    class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here...">
+                                                    <input type="date" min="<?php echo date('Y-m-d');?>"
+                                                    class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="message" class="fw-bold">Message</label>
-                                                    <textarea class="form-control" name="message" id="message" placeholder="type here..." rows="3"></textarea>
+                                                    <textarea class="form-control" name="message" id="message" placeholder="type here..." rows="3" required></textarea>
                                                 </div>
                                                 
                                                 <div class="d-grid gap-2 mb-4">

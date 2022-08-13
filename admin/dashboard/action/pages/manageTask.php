@@ -3,6 +3,7 @@
     $allTask = "SELECT *, b.name as taskStatus , 
                           c.first_name as firstName, 
                           c.last_name as lastName,
+                          c.image as imagePath,
                           e.name as wigModel,
                           f.name as wigSize,
                           g.name as userRole
@@ -36,7 +37,7 @@
     $getWigSize = $conn->query($allWigSize);
 
     //get employee : work-from-home and on-site
-    $allEmployee = "SELECT concat(first_name, ' ', last_name) as fullname from users where user_role in ('ur2','ur3')";
+    $allEmployee = "SELECT concat(first_name, ' ', last_name) as fullname, user_id from users where user_role in ('ur2','ur3')";
     $getEmployee = $conn->query($allEmployee);
 
     //get all new task

@@ -4,9 +4,12 @@
             $role = "ADMIN";
         }elseif($_SESSION['user_role'] === "ur4"){
             $role = "DRIVER";
-        }else{
-            $role = "EMPLOYEE";
+        }elseif($_SESSION['user_role'] === "ur2"){
+            $role = "ON-SITE";
+        }elseif($_SESSION['user_role'] === "ur3"){
+            $role = "WFH";
         }
+        $isLoginUserId = $_SESSION['userId'];
     }else{
         $role = "HACKER";
     }
@@ -15,7 +18,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="?dashboard" class="brand-logo">
 				<img src="../../img/logo3.png" alt="" class="img-fluid" style="width:30%; height:auto">
                 
 				<p class="brand-title" width="124px" height="33px"  style="font-size: 30px;"><?php echo $role?></p>
@@ -41,7 +44,8 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar ">
-                                <span class="wig-logo"> Art<span>Nature<span>.</span></span></span>
+                                <span class="wig-logo"> Art<span>Nature<span>.</span></span></span> 
+                                <span class="fs-20">Manufacturer Phil. Inc.</span>
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
