@@ -15,10 +15,12 @@
     ///////////////  content  //////////////////////
     if(isset($_GET['dashboard'])){
         include __DIR__ . '/pages/dashboard.php';
-    }elseif(isset($_GET['employeeList'])){
+    }elseif(isset($_GET['employeeList']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/employeeList.php';
-    }elseif(isset($_GET['manageTask'])){
+    }elseif(isset($_GET['manageTask']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/manageTask.php';
+    }elseif(isset($_GET['myTask']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){
+        include __DIR__ . '/pages/myTask.php';
     }elseif(isset($_GET['chat'])){
         include __DIR__ . '/pages/chat.php';
     }else{

@@ -67,7 +67,9 @@
                                                         <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#allEmp<?php echo $no ?>">
                                                             <i class="flaticon-062-pencil"></i>
                                                         </button>
-                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"><i class="flaticon-089-trash"></i></button>
+                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#archiveEmp<?php echo $no ?>">
+                                                            <i class="flaticon-089-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -109,13 +111,16 @@
                                                         <td><?php echo $result['userStatus'] ?></td>
                                                         <td><?php echo $result['userRole'] ?></td>
                                                         <td>
-                                                            
-                                                            <button class="btn btn-secondary btn-sm"><i class="flaticon-008-check" title="View"></i></button>
-                                                            <button class="btn btn-warning btn-sm"><i class="flaticon-062-pencil" title="Edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm"><i class="flaticon-089-trash" title="Move To Archive"></i></button>
+                                                            <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#driverEmp<?php echo $no ?>">
+                                                                <i class="flaticon-062-pencil"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#archiveDriverEmp<?php echo $no ?>">
+                                                                <i class="flaticon-089-trash"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                     <?php
+                                                    include 'pages/component/driverEmpModal.php';
                                                 }
                                                 ?>
                                             </tbody>
@@ -153,13 +158,16 @@
                                                     <td><?php echo $result['userStatus'] ?></td>
                                                     <td><?php echo $result['userRole'] ?></td>
                                                     <td>
-                                                        
-                                                        <button class="btn btn-secondary btn-sm"><i class="flaticon-008-check" title="View"></i></button>
-                                                        <button class="btn btn-warning btn-sm"><i class="flaticon-062-pencil" title="Edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm"><i class="flaticon-089-trash" title="Move To Archive"></i></button>
+                                                        <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#onSiteEmp<?php echo $no ?>">
+                                                            <i class="flaticon-062-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#archiveOnSiteEmp<?php echo $no ?>">
+                                                            <i class="flaticon-089-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                include 'pages/component/onSiteEmpModal.php';
                                             }
                                             ?>
                                         </tbody>
@@ -197,13 +205,16 @@
                                                     <td><?php echo $result['userStatus'] ?></td>
                                                     <td><?php echo $result['userRole'] ?></td>
                                                     <td>
-                                                        
-                                                        <button class="btn btn-secondary btn-sm" title="View"><i class="flaticon-008-check" ></i></button>
-                                                        <button class="btn btn-warning btn-sm" title="Edit"><i class="flaticon-062-pencil"></i></button>
-                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"><i class="flaticon-089-trash"></i></button>
+                                                        <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#wfhEmp<?php echo $no ?>">
+                                                            <i class="flaticon-062-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#archiveWfhEmp<?php echo $no ?>">
+                                                            <i class="flaticon-089-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                include 'pages/component/wfhEmpModal.php';
                                             }
                                             ?>
                                         </tbody>

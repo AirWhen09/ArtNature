@@ -253,16 +253,15 @@
 
                                                 <div class="mb-3">
                                                     <label for="startDate" class="fw-bold">Start Date</label>
-                                                    <input type="date" min="<?php echo date('Y-m-d');?>"
+                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00"
                                                     class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="endDate" class="fw-bold">End Date</label>
-                                                    <input type="date" min="<?php echo date('Y-m-d');?>"
+                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00"
                                                     class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <label for="message" class="fw-bold">Message</label>
                                                     <textarea class="form-control" name="message" id="message" placeholder="type here..." rows="3" required></textarea>

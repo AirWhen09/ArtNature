@@ -11,7 +11,7 @@
             if($message == ''){
                 array_push($errors, "Message is required");
             }
-            if($msgTo == ''){
+            if($msgTo == '' || $msgTo == 0){
                 array_push($errors, "Please select user");
             }
         }else{

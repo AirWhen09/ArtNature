@@ -21,7 +21,7 @@
             <a href="?dashboard" class="brand-logo">
 				<img src="../../img/logo3.png" alt="" class="img-fluid" style="width:30%; height:auto">
                 
-				<p class="brand-title" width="124px" height="33px"  style="font-size: 30px;"><?php echo $role?></p>
+				<p class="brand-title" width="124px" height="33px"  style="font-size: 25px;"><?php echo $role?></p>
             </a>
             <div class="nav-control">
                 <div class="hamburger">

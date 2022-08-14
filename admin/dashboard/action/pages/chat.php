@@ -13,13 +13,21 @@
 
     //get user info
     if(isset($_GET['user'])){
-        $username = $_GET['user'];
+        $username = mysqli_real_escape_string($conn, $_GET['user']);
         $userInfo = "SELECT first_name, last_name , email, user_id, image from users where username = '$username'";
         $getUserInfo = $conn->query($userInfo)->fetch_assoc();
-        $name = $getUserInfo['first_name'].' '.$getUserInfo['last_name'];
-        $email = $getUserInfo['email'];
-        $chatUserId = $getUserInfo['user_id'];
-        $image = $getUserInfo['image'];
+        if($getUserInfo){
+            $name = $getUserInfo['first_name'].' '.$getUserInfo['last_name'];
+            $email = $getUserInfo['email'];
+            $chatUserId = $getUserInfo['user_id'];
+            $image = $getUserInfo['image'];
+        }else{
+            $name = "No User";
+            $email = "No User";
+            $image = "img/profile/avatar.png";
+            $chatUserId = 0;
+        }
+        
     }else{
         $name = "No User";
         $email = "No User";
