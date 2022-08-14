@@ -109,14 +109,17 @@
                                                             }
                                                         ?>
                                                     </td>
-                                                    <td>
-                                                        
-                                                        <button class="btn btn-secondary btn-sm"><i class="flaticon-008-check" title="View"></i></button>
-                                                        <button class="btn btn-warning btn-sm"><i class="flaticon-062-pencil" title="Edit"></i></button>
-                                                        <button class="btn btn-danger btn-sm"><i class="flaticon-089-trash" title="Move To Archive"></i></button>
+                                                    <td>  
+                                                        <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
+                                                            <i class="flaticon-062-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm"  title="Move To Archive">
+                                                            <i class="flaticon-089-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                include 'pages/component/taskModal.php';
                                             }
                                             ?>
                                         </tbody>

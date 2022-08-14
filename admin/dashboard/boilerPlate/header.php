@@ -10,7 +10,12 @@
 	<link rel="shortcut icon" href="../../img/logo3.png" type="image/x-icon">
     <title>ArtNature: Libmanan Production Management</title>
 
-	
+	<script>
+        console.warn(
+        "%c\n\nHi My friend\n\nI'm under the water.\n\nPlease Help Me!🤣.\n\n Sheeeesh!!!",
+        "color: red !important, padding-left: 2%; font-size: x-large; text-align: center;"
+        )
+    </script>
 	
 	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">

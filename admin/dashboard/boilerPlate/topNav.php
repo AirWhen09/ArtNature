@@ -9,7 +9,7 @@
         }elseif($_SESSION['user_role'] === "ur3"){
             $role = "WFH";
         }
-        $isLoginUserId = $_SESSION['userId'];
+        $isLoginUserId = $_SESSION['userId']; //for chat
     }else{
         $role = "HACKER";
     }

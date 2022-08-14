@@ -5,7 +5,7 @@
         <div class="content-body">
             <!-- row -->
 			<div class="container-fluid">
-            <div class="col-xl-12 col-xxl-12">
+                <div class="col-xl-12 col-xxl-12">
                     <div class="card">
                         <div class="card-header d-block d-sm-flex border-0">
                             <div class="me-3">
@@ -225,8 +225,6 @@
 
                             </div> -->
                         </div>
-                        
-                        
                         
                     </div>
                 </div>

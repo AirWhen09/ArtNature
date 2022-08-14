@@ -40,7 +40,22 @@
             $('#myTable6').DataTable();
             $('#myTable7').DataTable();
         } );
-    </script>
+
+        function myProcess1(x){
+            let process = "processStatus1"+x.id;
+            document.getElementById(process).innerText = x.value;
+        }
+
+        function myProcess2(x){
+            let process = "processStatus2"+x.id;
+            document.getElementById(process).innerText = x.value;
+        }
+
+        function myProcess3(x){
+            let process = "processStatus3"+x.id;
+            document.getElementById(process).innerText = x.value;
+        }
+</script>
 
     <script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>

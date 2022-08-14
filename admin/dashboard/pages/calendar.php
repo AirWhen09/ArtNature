@@ -1,8 +1,25 @@
 <script src='vendor/calendar/lib/main.js'></script>
 <script>
 
+<?php
+$calendars = "";
+$calendars .= "[";
+  $getTasksDate = $conn->query("SELECT * from tasks");
+  while($calendar = $getTasksDate->fetch_assoc()){
+    $calendars .= '
+    {
+      title: "'.$calendar['wig_model'].'",
+      start: "'.date('Y-m-d', strtotime($calendar['start_date'])).'",
+      end: "'.date('Y-m-d', strtotime($calendar['end_date'])).'",
+    },
+    ';
+    
+}$calendars .= ']';
+?>
+
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+    var calen = <?php echo $calendars?>;
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
@@ -13,17 +30,9 @@
       editable: false,
       height: 650,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2022-08-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2022-08-07',
-          end: '2022-08-10'
-        }
-      ]
+      events: calen
+       
+      
     });
 
     calendar.render();

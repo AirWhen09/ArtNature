@@ -43,4 +43,14 @@
     //get all new task
     $allNewTask = "SELECT * from tasks where status = 'tstts1'";
     $getNewTask = $conn->query($allNewTask); 
+
+    if(isset($_POST['myTask'])){
+        $process = $_POST['process'];
+        $orderNo = $_POST['orderNo'];
+        $sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
+        $updateTask = $conn->query($sql);
+        if($updateTask){
+            echo "<script>window.location.href = 'index.php?manageTask'</script>";
+        }
+    }
 ?>
