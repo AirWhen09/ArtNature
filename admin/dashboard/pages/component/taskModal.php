@@ -32,3 +32,29 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="arcTask<?php echo $result['order_no'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title">Move to archived?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                        <p class="text-center">Order Number</p>
+                        <h3 class="text-center"><?php echo $result['order_no'] ?></h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                 <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" >
+                     <input type="hidden" name="orderNo" value="<?php echo $result['order_no'] ?>">
+                    <button type="submit" name="taskArchive" class="btn btn-primary">Confirm</button>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>

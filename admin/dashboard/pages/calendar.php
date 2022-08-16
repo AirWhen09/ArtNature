@@ -41,6 +41,9 @@ $calendars .= "[";
 </script>
 
 <div class="card p-1">
+<div class="d-flex justify-content-between p-4">
 <h2 class="text-center">Calendar</h2>
-    <div id='calendar'></div>
+<a href="calendars.php" target="_BLANK" class="" title="Full Screen">[ ]</a>
+</div>
+<div id='calendar'></div>
 </div>

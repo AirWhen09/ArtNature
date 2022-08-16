@@ -57,7 +57,29 @@ if(isset($_POST['myTask'])){
 	$sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
 	$updateTask = $conn->query($sql);
 	if($updateTask){
-		echo "<script>window.location.href = 'index.php?myTask'</script>";
+                $filetemp = $_FILES['image']['tmp_name'];
+                $filename = $_FILES['image']['name'];
+                $filetype = $_FILES['image']['type'];
+                $filepath = "img/history/".$filename;
+                $filepaths = "../../img/history/".$filename;
+
+                $imageType = array("image/jpeg", "image/png", "image/gif", "image/tiff");
+                if (!in_array( $filetype, $imageType)) { //check if image only
+                        echo "<script> alert('Image Only (.jpeg, .png, .gif, .tif)')</script>";
+                }else{
+                        if(move_uploaded_file($filetemp, $filepaths)){ //upload image
+                                $addHistory = "INSERT INTO task_progress_history (image, task_id, progress) VALUES('$filepath','$orderNo','$process')";
+                                $newHistory = $conn->query($addHistory);
+                                if($newHistory){
+		                        echo "<script>window.location.href = 'index.php?myTask'</script>";
+                                }else{
+                                        echo "<script> alert('Image Cant Uploads')</script>";
+                                }
+                        }else{
+                                echo "<script> alert('Image Cant Upload');</script>";
+                        }
+                }
+
 	}
 }
 ?>

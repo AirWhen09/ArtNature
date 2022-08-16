@@ -44,12 +44,23 @@
     $allNewTask = "SELECT * from tasks where status = 'tstts1'";
     $getNewTask = $conn->query($allNewTask); 
 
+    //get all batch name
+    $getAllBatch = $conn->query("SELECT * from task_batch");
+
     if(isset($_POST['myTask'])){
         $process = $_POST['process'];
         $orderNo = $_POST['orderNo'];
         $sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
         $updateTask = $conn->query($sql);
         if($updateTask){
+            echo "<script>window.location.href = 'index.php?manageTask'</script>";
+        }
+    }
+
+    if(isset($_POST['taskArchive'])){
+        $order_no = $_POST['orderNo'];
+        $archiveTask = $conn->query("UPDATE tasks set status = 'tstts4' where order_no = '$order_no'");
+        if($archiveTask){
             echo "<script>window.location.href = 'index.php?manageTask'</script>";
         }
     }

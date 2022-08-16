@@ -41,7 +41,7 @@
                                                 <th>Employee Name</th>
                                                 <th>Wig Model</th>
                                                 <th>Status</th>
-                                                <th>Process</th>
+                                                <th>Progress</th>
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
                                                 <th>Action</th>
@@ -81,7 +81,18 @@
                                                         <h6 class="fs-16 text-black font-w600 mb-0"><?php echo $result['wigModel'] ?></h6>
 														<span class="fs-14">Size: <?php echo $result['wigSize'] ?></span>
                                                     </td>
-                                                    <td><?php echo $result['taskStatus'] ?></td>
+                                                    <?php 
+                                                        if($result['taskStatus'] == 'New'){
+                                                            $badge = "badge badge-warning";
+                                                        }elseif($result['taskStatus'] == 'Production'){
+                                                            $badge = "badge badge-danger";
+                                                        }elseif($result['taskStatus'] == 'Done'){
+                                                            $badge = "badge badge-success";
+                                                        }elseif($result['taskStatus'] == 'Archived'){
+                                                            $badge = "badge badge-secondary";
+                                                        }
+                                                    ?>
+                                                    <td><span class="<?php echo $badge ?>"><?php echo $result['taskStatus'] ?></span></td>
                                                     <td>
                                                         <?php
                                                             if($result['process'] == ''){
@@ -113,7 +124,7 @@
                                                         <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
                                                             <i class="flaticon-062-pencil"></i>
                                                         </button>
-                                                        <button class="btn btn-danger btn-sm"  title="Move To Archive">
+                                                        <button class="btn btn-danger btn-sm"  title="Move To Archive" data-bs-toggle="modal" data-bs-target="#arcTask<?php echo $result['order_no'] ?>">
                                                             <i class="flaticon-089-trash"></i>
                                                         </button>
                                                     </td>
@@ -129,9 +140,30 @@
                             <div class="tab-pane" id="addTask" role="tabpanel">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-sm-7 mx-auto">
+                                        <div class="col-sm-7 mx-auto mb-5">
                                             <h4 class="text-center">Add New Task</h4>
                                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  class="needs-validation" novalidate>
+
+                                                <div class="mb-3">
+                                                  <label for="batchName" class="fw-bold">Batch Name</label>
+                                                  <select name="batchName" id="batchName" class="form-select" onChange="taskBatchName(this)" required>
+                                                    <option value="">Select Batch</option>
+                                                    <?php
+                                                    while($batch = $getAllBatch->fetch_assoc()){
+                                                        ?>
+                                                            <option value="<?php echo $batch['batch_id']; ?>"><?php echo $batch['name']; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <option value="new">Add new</option>
+                                                  </select>
+                                                </div>
+
+                                                <div class="mb-3 collapse" id="addBatch">
+                                                  <label for="addNewBatch" class="fw-bold">Add Batch</label>
+                                                  <input type="text" value="<?php echo !empty($inputs['addNewBatch']) ? $inputs['addNewBatch'] : ""?>" 
+                                                  class="form-control" name="addNewBatch" id="addNewBatch" aria-describedby="helpId" placeholder="type here..." >
+                                                </div>
 
                                                 <div class="mb-3">
                                                   <label for="orderNumber" class="fw-bold">Order Number</label>
@@ -191,7 +223,7 @@
                                     <div class="col-sm-6">
                                         <div class="table-responsive container">
                                             <h4 class="text-center">List of new task</h4>
-                                            <table class="table">
+                                            <table class="table" id="myTable1">
                                                 <thead>
                                                     <tr>
                                                         <th>Order #</th>
@@ -212,7 +244,10 @@
                                                                 <span class="fs-14">Size: <?php echo $result['wigSize'] ?></span>
                                                             </td>
                                                             <td><?php echo $result['date_created'] ?></td>
-                                                            <td><?php echo $result['taskStatus'] ?></td>
+                                                            <td>
+                                                            
+                                                            <span class="badge badge-success"><?php echo $result['taskStatus'] ?></span>
+                                                            </td>
                                                             
                                                         </tr>
                                                         <?php
@@ -290,4 +325,18 @@
         <!--**********************************
             Content body end
         ***********************************-->
-       
+       <script>
+        function taskBatchName(x){
+            let batchName = x.value;
+            let newBatch = document.getElementById('addBatch');
+            let newBatchInputBox = document.getElementById('addNewBatch');
+            if(batchName === 'new'){
+                newBatch.classList.remove('collapse');
+                newBatchInputBox.setAttribute('required', '');
+            }else{
+                newBatch.classList.add('collapse');
+                newBatchInputBox.removeAttribute('required');
+            }
+           
+        }
+       </script>

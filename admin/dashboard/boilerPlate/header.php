@@ -40,7 +40,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="waviy">
 		   <span style="--i:1">L</span>
 		   <span style="--i:2">o</span>
@@ -53,7 +53,7 @@
 		   <span style="--i:9">.</span>
 		   <span style="--i:10">.</span>
 		</div>
-    </div>
+    </div> -->
     <!--*******************
         Preloader end
     ********************-->

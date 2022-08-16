@@ -7,263 +7,263 @@
 	
 	var screenWidth = $(window).width();	
 	
-	var chartBar = function(){
+	// var chartBar = function(){
 		
-		var options = {
-			  series: [
-				{
-					name: 'Income',
-					data: [100, 18, 70, 40],
-					//radius: 12,	
-				}, 
-				{
-				  name: 'Outcome',
-				  data: [100, 40, 55, 20]
-				}, 
+	// 	var options = {
+	// 		  series: [
+	// 			{
+	// 				name: 'Income',
+	// 				data: [100, 18, 70, 40],
+	// 				//radius: 12,	
+	// 			}, 
+	// 			{
+	// 			  name: 'Outcome',
+	// 			  data: [100, 40, 55, 20]
+	// 			}, 
 				
-			],
-				chart: {
-				type: 'bar',
-				height: 200,
+	// 		],
+	// 			chart: {
+	// 			type: 'bar',
+	// 			height: 200,
 				
-				toolbar: {
-					show: false,
-				},
+	// 			toolbar: {
+	// 				show: false,
+	// 			},
 				
-			},
-			plotOptions: {
-			  bar: {
-				horizontal: false,
-				columnWidth: '57%',
-				borderRadius:12
-			  },
+	// 		},
+	// 		plotOptions: {
+	// 		  bar: {
+	// 			horizontal: false,
+	// 			columnWidth: '57%',
+	// 			borderRadius:12
+	// 		  },
 			  
-			},
-			states: {
-			  hover: {
-				filter: 'none',
-			  }
-			},
-			colors:['#80ec67', '#fe7d65'],
-			dataLabels: {
-			  enabled: false,
-			},
-			markers: {
-		shape: "circle",
-		},
+	// 		},
+	// 		states: {
+	// 		  hover: {
+	// 			filter: 'none',
+	// 		  }
+	// 		},
+	// 		colors:['#80ec67', '#fe7d65'],
+	// 		dataLabels: {
+	// 		  enabled: false,
+	// 		},
+	// 		markers: {
+	// 	shape: "circle",
+	// 	},
 		
 		
-			legend: {
-				position: 'top',
-				horizontalAlign: 'right', 
-				show: false,
-				fontSize: '12px',
-				labels: {
-					colors: '#000000',
+	// 		legend: {
+	// 			position: 'top',
+	// 			horizontalAlign: 'right', 
+	// 			show: false,
+	// 			fontSize: '12px',
+	// 			labels: {
+	// 				colors: '#000000',
 					
-					},
-				markers: {
-				width: 18,
-				height: 18,
-				strokeWidth: 0,
-				strokeColor: '#fff',
-				fillColors: undefined,
-				radius: 12,	
-				}
-			},
-			stroke: {
-			  show: true,
-			  width: 4,
-			  colors: ['transparent']
-			},
-			grid: {
-				borderColor: '#eee',
-			},
-			xaxis: {
+	// 				},
+	// 			markers: {
+	// 			width: 18,
+	// 			height: 18,
+	// 			strokeWidth: 0,
+	// 			strokeColor: '#fff',
+	// 			fillColors: undefined,
+	// 			radius: 12,	
+	// 			}
+	// 		},
+	// 		stroke: {
+	// 		  show: true,
+	// 		  width: 4,
+	// 		  colors: ['transparent']
+	// 		},
+	// 		grid: {
+	// 			borderColor: '#eee',
+	// 		},
+	// 		xaxis: {
 				
-			  categories: ['Sun', 'Mon', 'Tue', 'Wed'],
-			  labels: {
-			   style: {
-				  colors: '#3e4954',
-				  fontSize: '13px',
-				  fontFamily: 'poppins',
-				  fontWeight: 400,
-				  cssClass: 'apexcharts-xaxis-label',
-				},
-			  },
-			  crosshairs: {
-			  show: false,
-			  }
-			},
-			yaxis: {
-				labels: {
-					offsetX:-16,
-				   style: {
-					  colors: '#3e4954',
-					  fontSize: '13px',
-					   fontFamily: 'poppins',
-					  fontWeight: 400,
-					  cssClass: 'apexcharts-xaxis-label',
-				  },
-			  },
-			},
-			fill: {
-			  opacity: 1,
-			  colors:['#80ec67', '#fe7d65'],
-			},
-			tooltip: {
-			  y: {
-				formatter: function (val) {
-				  return "$ " + val + " thousands"
-				}
-			  }
-			},
-			responsive: [{
-				breakpoint: 1600,
-				options: {
-					chart: {
-						height: 400,
-					}
-				},
-			},
-			{
-				breakpoint: 575,
-				options: {
-					chart: {
-						height: 250,
-					}
-				},
-			}]
-			};
+	// 		  categories: ['Sun', 'Mon', 'Tue', 'Wed'],
+	// 		  labels: {
+	// 		   style: {
+	// 			  colors: '#3e4954',
+	// 			  fontSize: '13px',
+	// 			  fontFamily: 'poppins',
+	// 			  fontWeight: 400,
+	// 			  cssClass: 'apexcharts-xaxis-label',
+	// 			},
+	// 		  },
+	// 		  crosshairs: {
+	// 		  show: false,
+	// 		  }
+	// 		},
+	// 		yaxis: {
+	// 			labels: {
+	// 				offsetX:-16,
+	// 			   style: {
+	// 				  colors: '#3e4954',
+	// 				  fontSize: '13px',
+	// 				   fontFamily: 'poppins',
+	// 				  fontWeight: 400,
+	// 				  cssClass: 'apexcharts-xaxis-label',
+	// 			  },
+	// 		  },
+	// 		},
+	// 		fill: {
+	// 		  opacity: 1,
+	// 		  colors:['#80ec67', '#fe7d65'],
+	// 		},
+	// 		tooltip: {
+	// 		  y: {
+	// 			formatter: function (val) {
+	// 			  return "$ " + val + " thousands"
+	// 			}
+	// 		  }
+	// 		},
+	// 		responsive: [{
+	// 			breakpoint: 1600,
+	// 			options: {
+	// 				chart: {
+	// 					height: 400,
+	// 				}
+	// 			},
+	// 		},
+	// 		{
+	// 			breakpoint: 575,
+	// 			options: {
+	// 				chart: {
+	// 					height: 250,
+	// 				}
+	// 			},
+	// 		}]
+	// 		};
 
-			var chartBar1 = new ApexCharts(document.querySelector("#chartBar"), options);
-			chartBar1.render();
-	}	
+	// 		var chartBar1 = new ApexCharts(document.querySelector("#chartBar"), options);
+	// 		chartBar1.render();
+	// }	
 	
-	var chartBar2 = function(){
+	// var chartBar2 = function(){
 		
-		var options = {
-			  series: [
-				{
-					name: 'Income',
-					data: [50, 18, 70, 40, 90, 50],
-					//radius: 12,	
-				}, 
-				{
-				  name: 'Outcome',
-				  data: [80, 40, 55, 20, 50, 70]
-				}, 
+	// 	var options = {
+	// 		  series: [
+	// 			{
+	// 				name: 'Income',
+	// 				data: [50, 18, 70, 40, 90, 50],
+	// 				//radius: 12,	
+	// 			}, 
+	// 			{
+	// 			  name: 'Outcome',
+	// 			  data: [80, 40, 55, 20, 50, 70]
+	// 			}, 
 				
-			],
-				chart: {
-				type: 'bar',
-				height: 400,
+	// 		],
+	// 			chart: {
+	// 			type: 'bar',
+	// 			height: 400,
 				
-				toolbar: {
-					show: false,
-				},
+	// 			toolbar: {
+	// 				show: false,
+	// 			},
 				
-			},
-			plotOptions: {
-			  bar: {
-				horizontal: false,
-				columnWidth: '70%',
-				borderRadius:10
-			  },
+	// 		},
+	// 		plotOptions: {
+	// 		  bar: {
+	// 			horizontal: false,
+	// 			columnWidth: '70%',
+	// 			borderRadius:10
+	// 		  },
 			  
-			},
-			states: {
-			  hover: {
-				filter: 'none',
-			  }
-			},
-			colors:['#80ec67', '#fe7d65'],
-			dataLabels: {
-			  enabled: false,
-			},
-			markers: {
-		shape: "circle",
-		},
+	// 		},
+	// 		states: {
+	// 		  hover: {
+	// 			filter: 'none',
+	// 		  }
+	// 		},
+	// 		colors:['#80ec67', '#fe7d65'],
+	// 		dataLabels: {
+	// 		  enabled: false,
+	// 		},
+	// 		markers: {
+	// 	shape: "circle",
+	// 	},
 		
 		
-			legend: {
-				position: 'top',
-				horizontalAlign: 'right', 
-				show: false,
-				fontSize: '12px',
-				labels: {
-					colors: '#000000',
+	// 		legend: {
+	// 			position: 'top',
+	// 			horizontalAlign: 'right', 
+	// 			show: false,
+	// 			fontSize: '12px',
+	// 			labels: {
+	// 				colors: '#000000',
 					
-					},
-				markers: {
-				width: 18,
-				height: 18,
-				strokeWidth: 0,
-				strokeColor: '#fff',
-				fillColors: undefined,
-				radius: 12,	
-				}
-			},
-			stroke: {
-			  show: true,
-			  width: 5,
-			  colors: ['transparent']
-			},
-			grid: {
-				borderColor: '#eee',
-			},
-			xaxis: {
+	// 				},
+	// 			markers: {
+	// 			width: 18,
+	// 			height: 18,
+	// 			strokeWidth: 0,
+	// 			strokeColor: '#fff',
+	// 			fillColors: undefined,
+	// 			radius: 12,	
+	// 			}
+	// 		},
+	// 		stroke: {
+	// 		  show: true,
+	// 		  width: 5,
+	// 		  colors: ['transparent']
+	// 		},
+	// 		grid: {
+	// 			borderColor: '#eee',
+	// 		},
+	// 		xaxis: {
 				
-			  categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-			  labels: {
-			   style: {
-				  colors: '#3e4954',
-				  fontSize: '13px',
-				  fontFamily: 'poppins',
-				  fontWeight: 400,
-				  cssClass: 'apexcharts-xaxis-label',
-				},
-			  },
-			  crosshairs: {
-			  show: false,
-			  }
-			},
-			yaxis: {
-				labels: {
-					offsetX:-16,
-				   style: {
-					  colors: '#3e4954',
-					  fontSize: '13px',
-					   fontFamily: 'poppins',
-					  fontWeight: 400,
-					  cssClass: 'apexcharts-xaxis-label',
-				  },
-			  },
-			},
-			fill: {
-			  opacity: 1,
-			  colors:['#80ec67', '#fe7d65'],
-			},
-			tooltip: {
-			  y: {
-				formatter: function (val) {
-				  return "$ " + val + " thousands"
-				}
-			  }
-			},
-			responsive: [{
-				breakpoint: 575,
-				options: {
-					chart: {
-						height: 250,
-					}
-				},
-			}]
-			};
+	// 		  categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+	// 		  labels: {
+	// 		   style: {
+	// 			  colors: '#3e4954',
+	// 			  fontSize: '13px',
+	// 			  fontFamily: 'poppins',
+	// 			  fontWeight: 400,
+	// 			  cssClass: 'apexcharts-xaxis-label',
+	// 			},
+	// 		  },
+	// 		  crosshairs: {
+	// 		  show: false,
+	// 		  }
+	// 		},
+	// 		yaxis: {
+	// 			labels: {
+	// 				offsetX:-16,
+	// 			   style: {
+	// 				  colors: '#3e4954',
+	// 				  fontSize: '13px',
+	// 				   fontFamily: 'poppins',
+	// 				  fontWeight: 400,
+	// 				  cssClass: 'apexcharts-xaxis-label',
+	// 			  },
+	// 		  },
+	// 		},
+	// 		fill: {
+	// 		  opacity: 1,
+	// 		  colors:['#80ec67', '#fe7d65'],
+	// 		},
+	// 		tooltip: {
+	// 		  y: {
+	// 			formatter: function (val) {
+	// 			  return "$ " + val + " thousands"
+	// 			}
+	// 		  }
+	// 		},
+	// 		responsive: [{
+	// 			breakpoint: 575,
+	// 			options: {
+	// 				chart: {
+	// 					height: 250,
+	// 				}
+	// 			},
+	// 		}]
+	// 		};
 
-			var chartBar1 = new ApexCharts(document.querySelector("#chartBar2"), options);
-			chartBar1.render();
-	}
+	// 		var chartBar1 = new ApexCharts(document.querySelector("#chartBar2"), options);
+	// 		chartBar1.render();
+	// }
 
 	var polarChart = function(){
 		 var ctx = document.getElementById("polarChart").getContext('2d');
@@ -271,28 +271,28 @@
 			var myChart = new Chart(ctx, {
 				type: 'polarArea',
 				data: {
-					labels: ["Mon", "Tue", "Wed", "Thu"],
+					labels: ["Archived", "New", "Done", "Production"],
 					datasets: [{
 						backgroundColor: [
-							"#496ecc",
-							"#68e365",
-							"#ffa755",
-							"#c8c8c8"
+							"#c8c8c8",
+							"#38bfb3",
+							"#5800FF",
+							"#0096FF"
 						],
-						data: [40, 35, 30, 20]
+						data: [5, 10, 15, 20]
 					}]
 				},
 				options: {
 					maintainAspectRatio: false,
 					scale: {
-						scaleShowLine:false,
+						scaleShowLine:true,
 						display:false,
 						 pointLabels:{
-							fontSize: 0       
+							fontSize: 10       
 						 },
 					},
 					tooltips:{
-						enabled:false,
+						enabled:true,
 					}
 				}
 			});
@@ -360,10 +360,10 @@
 			
 			load:function(){
 				
-				chartBar();
-				chartBar2();
+				// chartBar();
+				// chartBar2();
 				polarChart();
-				handleCard();
+				// handleCard();
 			},
 			
 			resize:function(){

@@ -1,3 +1,6 @@
+<?php
+require 'session/session.php'; // sessions
+?>
 <!doctype html>
 <html lang="en">
   <head>

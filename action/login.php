@@ -1,6 +1,7 @@
 <?php
 require 'connection/connection.php';
 
+//use for error message
 const USERNAME_REQUIRE = "Please enter your username";
 const PASSWORD_REQUIRE = "Please enter your password";
 const CREDENTIAL_INVALID = "Username or password is incorrect";
@@ -8,13 +9,12 @@ const CREDENTIAL_INVALID = "Username or password is incorrect";
 
 $errors = [];
 $success = [];
-$inputs = [];
+
 
 if(isset($_POST['username']) && isset($_POST['password'])){
 
     // filter_input
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-    $inputs['username'] = $username;
 
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 

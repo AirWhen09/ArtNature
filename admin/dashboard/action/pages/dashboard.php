@@ -16,4 +16,12 @@
                 where a.status in ('tstts2')
                 ";
     $getTask = $conn->query($allTask);
+
+    //get all batch
+    $allBatch = "SELECT * from task_batch order by date_created";
+    $getBatch = $conn->query($allBatch);
+
+    //get total Ave
+    $aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
+    $getAve = $conn->query($aveProcess)->fetch_assoc();
 ?>
