@@ -18,7 +18,7 @@
     $getTask = $conn->query($allTask);
 
     //get all batch
-    $allBatch = "SELECT * from task_batch order by date_created";
+    $allBatch = "SELECT * from task_batch";
     $getBatch = $conn->query($allBatch);
 
     //get total Ave

@@ -58,7 +58,9 @@
                                                 }
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $result['order_no'] ?></td>
+                                                    <td>
+                                                        <a href="index.php?taskHistory&or=<?php echo $result['order_no'] ?>"><?php echo $result['order_no'] ?></a>
+                                                    </td>
                                                     <td>
                                                         <div class="user-bx">
                                                             <img src="../../<?php echo $imagePath ?>" alt="">
