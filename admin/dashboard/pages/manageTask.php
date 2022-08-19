@@ -59,7 +59,7 @@
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <a href="index.php?taskHistory&or=<?php echo $result['order_no'] ?>"><?php echo $result['order_no'] ?></a>
+                                                        <a class="text-success" href="index.php?taskHistory&or=<?php echo $result['order_no'] ?>"><?php echo $result['order_no'] ?></a>
                                                     </td>
                                                     <td>
                                                         <div class="user-bx">
