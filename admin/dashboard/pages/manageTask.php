@@ -293,13 +293,13 @@
 
                                                 <div class="mb-3">
                                                     <label for="startDate" class="fw-bold">Start Date</label>
-                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00"
+                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00" onchange="setEndDateMin(this)"
                                                     class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="endDate" class="fw-bold">End Date</label>
-                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00"
+                                                    <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00" disabled
                                                     class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
                                                 </div>
                                                 <div class="mb-3">
@@ -340,5 +340,12 @@
                 newBatchInputBox.removeAttribute('required');
             }
            
+        }
+
+        function setEndDateMin(me){
+            let min = me.value;
+            let newBatch = document.getElementById('endDate');
+            newBatch.removeAttribute('disabled');
+            newBatch.setAttribute('min', min);
         }
        </script>
