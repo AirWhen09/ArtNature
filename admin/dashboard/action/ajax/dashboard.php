@@ -94,6 +94,7 @@ if(isset($_POST['batchName'])){
                             <span class="text-white fs-18 fw-bold">'.$task["firstName"].' '.$task["lastName"].'</span>
                             
                             <span class="text-white fs-10">'.$task["userRole"].'</span>
+                            <span class="text-white fs-10">or #: <b>'.$task["order_no"].'</b></span>
                         </div>
                     </div>
                     <div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
