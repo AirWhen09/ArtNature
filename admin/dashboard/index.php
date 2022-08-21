@@ -19,6 +19,8 @@
         include __DIR__ . '/pages/employeeList.php';
     }elseif(isset($_GET['manageTask']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/manageTask.php';
+    }elseif(isset($_GET['location']) && $_SESSION['user_role'] === 'ur4'){
+        include __DIR__ . '/pages/location.php';
     }elseif(isset($_GET['myTask']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){
         include __DIR__ . '/pages/myTask.php';
     }elseif(isset($_GET['taskHistory'])){
