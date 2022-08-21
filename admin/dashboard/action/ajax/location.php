@@ -1,25 +1,30 @@
 <?php
 include '../../../../connection/connection.php';
-
+session_start();
 if(isset($_POST['locationId'])){
     $id = $_POST['locationId'];
+    $isLoginUserId = $_SESSION['userId'];
     $output = "";
     $conn->query("UPDATE location set status = 0");
-    $upLocation = $conn->query("UPDATE location set status = 1 where location_id = '$id'");
+    $upLocation = $conn->query("UPDATE location set status = 1, driver_id = '$isLoginUserId' where location_id = '$id'");
 
     if($upLocation){
         $getLocation = $conn->query("SELECT * from location");
             while($location = $getLocation->fetch_assoc()){
                 if($location['status'] == 1){
+                    $userId = $location['driver_id'];
+                    $getDriver = $conn->query("SELECT CONCAT(first_name, ' ', last_name) as fullName from users where user_id = '$userId'")->fetch_assoc();
                     $stat = "ACTIVE";
                     $color = "success";
                     $dis = "disabled";
                     $dateTime = $location['date_updated'];
+                    $driverName = $getDriver['fullName'];
                 }else{
                     $stat = "UPDATE";
                     $color = "danger";
                     $dis = "";
                     $dateTime = "";
+                    $driverName = "";
                 }
             $output .= '
                 <div class="col-xl-3 col-xxl-3 col-sm-6">
@@ -39,6 +44,7 @@ if(isset($_POST['locationId'])){
                               
                                     $output .= '<span class="text-white fs-10">You arrived at <b>'.date('F d, Y h:mA', strtotime($dateTime)).'</b></span>';
                                     
+                                    $output .= '<span class="text-white fs-10">Driver Name: <b>'.$driverName.'</b></span>';
                                 }
                               
                                 $output .= '    

@@ -10,15 +10,19 @@
             <?php
             while($location = $getLocation->fetch_assoc()){
                 if($location['status'] == 1){
+                    $userId = $location['driver_id'];
+                    $getDriver = $conn->query("SELECT CONCAT(first_name, ' ', last_name) as fullName from users where user_id = '$userId'")->fetch_assoc();
                     $stat = "ACTIVE";
                     $color = "success";
                     $dis = "disabled";
                     $dateTime = $location['date_updated'];
+                    $driverName = $getDriver['fullName'];
                 }else{
                     $stat = "UPDATE";
                     $color = "danger";
                     $dis = "";
                     $dateTime = "";
+                    $driverName = "";
                 }
             ?>
                 <div class="col-xl-3 col-xxl-3 col-sm-6">
@@ -37,6 +41,7 @@
                                 if($stat == "ACTIVE"){
                                     ?>
                                         <span class="text-white fs-10">You arrived at <b><?php echo date('F d, Y h:mA', strtotime($dateTime))?></b></span>
+                                        <span class="text-white fs-10">Driver Name: <b><?php echo $driverName?></b></span>
                                     <?php
                                 }
                                 ?>
