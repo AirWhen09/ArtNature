@@ -27,6 +27,8 @@
         include __DIR__ . '/pages/myTask.php';
     }elseif(isset($_GET['taskHistory'])){
         include __DIR__ . '/pages/taskHistory.php';
+    }elseif(isset($_GET['chat'])){
+        include __DIR__ . '/pages/chat.php';
     }else{
         include __DIR__ . '/pages/404.php';
     }

@@ -146,7 +146,7 @@
                             <input type="text" name="message" class="form-control" placeholder="type here..." required>
                             <input type="hidden" name="from" value="<?php echo $isLoginUserId ?>">
                             <input type="hidden" name="to" value="<?php echo $chatUserId ?>">
-                            <button type="submit" name="chatMe" class="btn btn-secondary btn-sm">Send</button>
+                            <button type="submit" name="chatMe" <?php echo $dis ?> class="btn btn-secondary btn-sm">Send</button>
                         </div>
                       </form>
                     </div>

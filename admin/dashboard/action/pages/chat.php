@@ -1,14 +1,14 @@
 <?php
     //get admin contact 
-    $adminCon = "SELECT * from users where user_role = 'ur1' order by first_name";
+    $adminCon = "SELECT * from users where user_role = 'ur1' and user_id != '$isLoginUserId' order by first_name";
     $getAdminCon = $conn->query($adminCon);
 
     //get employee contact 
-    $empCon = "SELECT * from users where user_role in ('ur2', 'ur3') order by first_name";
+    $empCon = "SELECT * from users where user_role in ('ur2', 'ur3') and user_id != '$isLoginUserId' order by first_name";
     $getEmpCon = $conn->query($empCon);
 
     //get driver contact 
-    $driverCon = "SELECT * from users where user_role = 'ur4' order by first_name";
+    $driverCon = "SELECT * from users where user_role = 'ur4' and user_id != '$isLoginUserId' order by first_name";
     $getDriverCon = $conn->query($driverCon);
 
     //get user info
@@ -21,11 +21,14 @@
             $email = $getUserInfo['email'];
             $chatUserId = $getUserInfo['user_id'];
             $image = $getUserInfo['image'];
+            $dis = "";
+
         }else{
             $name = "No User";
             $email = "No User";
             $image = "img/profile/avatar.png";
             $chatUserId = 0;
+            $dis = "disabled";
         }
         
     }else{
@@ -33,6 +36,7 @@
         $email = "No User";
         $image = "img/profile/avatar.png";
         $chatUserId = 0;
+        $dis = "disabled";
     }
 
     // get all chat 
