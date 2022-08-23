@@ -80,10 +80,10 @@
 								<h4 class="card-title">Task Overview</h4>
 								<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit psu olor</span>
 								<ul class="card-list mt-4">
-									<li><span class="circle" style="background-color: #0096FF;"></span>Production<span>20</span></li>
-									<li><span class="circle" style="background-color: #5800FF;"></span>Done<span>15</span></li>
-									<li><span class="circle" style="background-color: #38bfb3;"></span>New<span>10</span></li>
-									<li><span class="circle" style="background-color: #c8c8c8;"></span>Archived<span>5</span></li>
+									<li><span class="circle" style="background-color: #0096FF;"></span>Production<span><?php echo $getProduction['production']?></span></li>
+									<li><span class="circle" style="background-color: #5800FF;"></span>Done<span><?php echo $getDone['done']?></span></li>
+									<li><span class="circle" style="background-color: #38bfb3;"></span>New<span><?php echo $getNew['new']?></span></li>
+									<li><span class="circle" style="background-color: #c8c8c8;"></span>Archived<span><?php echo $getArchive['arc']?></span></li>
 								</ul>
 							</div>
 							<div class="col-md-6">
@@ -137,7 +137,7 @@
 							"#5800FF",
 							"#0096FF"
 						],
-						data: [5, 10, 15, 20]
+						data: <?php echo $taskOverview ?>
 					}]
 				},
 				options: {

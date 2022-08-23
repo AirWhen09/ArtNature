@@ -24,4 +24,21 @@
     //get total Ave
     $aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
     $getAve = $conn->query($aveProcess)->fetch_assoc();
+
+    //get task overview
+    $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts4'";
+    $newSQL = "SELECT count(*) as new from tasks where status = 'tstts1'";
+    $doneSQL = "SELECT count(*) as done from tasks where status = 'tstts3'";
+    $productionSQL = "SELECT count(*) as production from tasks where status = 'tstts2'";
+
+    $getArchive = $conn->query($archiveSQL)->fetch_assoc();
+    $getNew = $conn->query($newSQL)->fetch_assoc();
+    $getDone = $conn->query($doneSQL)->fetch_assoc();
+    $getProduction = $conn->query($productionSQL)->fetch_assoc();
+
+    if($getArchive && $getNew && $getDone && $getProduction){
+        $taskOverview = '['.$getArchive['arc'].','.$getNew['new'].','.$getDone['done'].','.$getProduction['production'].']';
+    }else{
+        $taskOverview = "0,0,0,0";
+    }
 ?>
