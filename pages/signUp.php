@@ -46,6 +46,12 @@ include 'action/signup.php';
                                 required
                                 value="<?php echo !empty($inputs['firstName']) ? $inputs['firstName'] : ""?>"
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input first name.
+                                </div>
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="middleName" class="form-label signup-label">Middle Name</label>

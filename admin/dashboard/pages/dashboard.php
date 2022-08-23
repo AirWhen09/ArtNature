@@ -111,9 +111,135 @@
 		<script src="vendor/wnumb/wNumb.js"></script>
 		
 		<!-- Dashboard 1 -->
-		<script src="js/dashboard/dashboard-1.js"></script>
+		<!-- <script src="js/dashboard/dashboard-1.js"></script> -->
 
 		<script>
+			
+
+(function($) {
+    /* "use strict" */
+	
+ var dlabChartlist = function(){
+	
+	var screenWidth = $(window).width();	
+
+	var polarChart = function(){
+		 var ctx = document.getElementById("polarChart").getContext('2d');
+			Chart.defaults.global.legend.display = false;
+			var myChart = new Chart(ctx, {
+				type: 'polarArea',
+				data: {
+					labels: ["Archived", "New", "Done", "Production"],
+					datasets: [{
+						backgroundColor: [
+							"#c8c8c8",
+							"#38bfb3",
+							"#5800FF",
+							"#0096FF"
+						],
+						data: [5, 10, 15, 20]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					scale: {
+						scaleShowLine:true,
+						display:false,
+						 pointLabels:{
+							fontSize: 10       
+						 },
+					},
+					tooltips:{
+						enabled:true,
+					}
+				}
+			});
+	}	
+	
+	var handleCard = function(){
+		
+		// Vars
+		var reloadButton  = document.querySelector( '.change-btn' );
+		var reloadIcon     = document.querySelector( '.reload' );
+		var reloadEnabled = true;
+		var rotation      = 0;
+		// Events
+		reloadButton.addEventListener('click', function() { reloadClick() });
+		// Functions
+		function reloadClick() {
+		  reloadEnabled = false;
+		  rotation += 360;
+		  // Eh, this works.
+		  reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+		  reloadIcon.style.MozTransform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+		  reloadIcon.style.transform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+		}
+		// Show button.
+		setTimeout(function() {
+		  reloadButton.classList.add('active');
+		}, 1);
+		
+		//Number formatting
+		var sliderFormat = document.getElementById('slider-format');
+		noUiSlider.create(sliderFormat, {
+			start: [20000],
+			step: 1000,
+			connect: [true, false],
+			range: {
+				'min': [20000],
+				'max': [80000]
+			},
+			ariaFormat: wNumb({
+				decimals: 3
+			}),
+			format: wNumb({
+				decimals: 3,
+				thousand: '.',
+				//suffix: ' (US $)'
+			})
+		});
+
+		var inputFormat = document.getElementById('input-format');
+		sliderFormat.noUiSlider.on('update', function (values, handle) {
+			inputFormat.value = values[handle];
+		});
+
+		inputFormat.addEventListener('change', function () {
+			sliderFormat.noUiSlider.set(this.value);
+		});
+		//Number formatting ^
+	}
+ 
+	/* Function ============ */
+		return {
+			init:function(){
+			},
+			
+			
+			load:function(){
+				
+				polarChart();
+			},
+			
+			resize:function(){
+			}
+		}
+	
+	}();
+
+	
+		
+	jQuery(window).on('load',function(){
+		setTimeout(function(){
+			dlabChartlist.load();
+		}, 1000); 
+		
+	});
+
+     
+
+})(jQuery);
+
 			$('#batchName').on('change',function(){
 				let batchName = $(this).val();
 				$.ajax({
