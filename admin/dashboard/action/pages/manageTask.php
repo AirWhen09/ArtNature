@@ -50,7 +50,11 @@
     if(isset($_POST['myTask'])){
         $process = $_POST['process'];
         $orderNo = $_POST['orderNo'];
-        $sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
+        if($process == 100){
+            $sql = "UPDATE tasks set process = '$process', status = 'tstts3' where order_no = '$orderNo'";
+        }else{
+            $sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
+        }
         $updateTask = $conn->query($sql);
         if($updateTask){
             echo "<script>window.location.href = 'index.php?manageTask'</script>";

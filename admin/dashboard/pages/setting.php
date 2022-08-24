@@ -137,6 +137,8 @@
                             <select class="form-select" name="addSelect" id="addSelect" required>
                                 <option value="">Select</option>
                                 <?php
+                                 $groupName = "SELECT DISTINCT group_name, description from reference_code";
+                                 $getGroupName = $conn->query($groupName);
                                     while($groupName = $getGroupName->fetch_assoc()){
                                         ?>
                                         <option value="<?php echo $groupName['group_name']?>"><?php echo $groupName['description']?></option>

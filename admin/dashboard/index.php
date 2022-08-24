@@ -23,6 +23,8 @@
         include __DIR__ . '/pages/setting.php';
     }elseif(isset($_GET['delivery']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/delivery.php';
+    }elseif(isset($_GET['progressReport']) && $_SESSION['user_role'] === 'ur1'){
+        include __DIR__ . '/pages/progressReport.php';
     }elseif(isset($_GET['location']) && $_SESSION['user_role'] === 'ur4'){
         include __DIR__ . '/pages/location.php';
     }elseif(isset($_GET['myTask']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){
