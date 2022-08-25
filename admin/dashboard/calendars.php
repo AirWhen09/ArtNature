@@ -24,7 +24,7 @@
       while($calendar = $getTasksDate->fetch_assoc()){
         $calendars .= '
         {
-          title: "'.$calendar['wig_model'].'",
+          title: "'.$calendar['order_no'].'",
           start: "'.date('Y-m-d', strtotime($calendar['start_date'])).'",
           end: "'.date('Y-m-d', strtotime($calendar['end_date'])).'",
         },

@@ -7,7 +7,7 @@ require 'action/login.php';
     <div class="container p-3">
         <div class="col-lg-5 mx-auto">
             <img 
-                src="../img/logo2.png" 
+                src="img/logo2.png" 
                 alt="logo"
                 class="img-fluid"
                 >
@@ -29,6 +29,12 @@ require 'action/login.php';
                     placeholder="Type here..."
                     required
                     >
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please input username.
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label for="password" class="form-label login-label">Password</label>
@@ -41,6 +47,12 @@ require 'action/login.php';
                     placeholder="Type here..."
                     required
                     >  
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please input password.
+                    </div>
                 </div>
                 <div class="d-grid gap-2">
                     <button 

@@ -25,3 +25,4 @@ require 'session/session.php'; // sessions
 
   </head>
   <body>
+  <!-- <body style="background-image: url('img/bg.jpg');"> -->

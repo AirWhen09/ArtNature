@@ -159,18 +159,36 @@
                                                     ?>
                                                     <option value="new">Add new</option>
                                                   </select>
+                                                  <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please select batch.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3 collapse" id="addBatch">
                                                   <label for="addNewBatch" class="fw-bold">Add Batch</label>
                                                   <input type="text" value="<?php echo !empty($inputs['addNewBatch']) ? $inputs['addNewBatch'] : ""?>" 
                                                   class="form-control" name="addNewBatch" id="addNewBatch" aria-describedby="helpId" placeholder="type here..." >
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input batch name.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3">
                                                   <label for="orderNumber" class="fw-bold">Order Number</label>
                                                   <input type="text" value="<?php echo !empty($inputs['orderNumber']) ? $inputs['orderNumber'] : ""?>"
                                                     class="form-control" name="orderNumber" id="orderNumber" aria-describedby="helpId" placeholder="type here..." required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input order number.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3">
@@ -187,6 +205,12 @@
                                                             }
                                                             ?>
                                                         </select>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            Please select wig model.
+                                                        </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label for="wigSize" class="fw-bold">Wig Size</label>
@@ -200,6 +224,12 @@
                                                             }
                                                             ?>
                                                         </select>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            Please select wig size.
+                                                        </div>
                                                     </div>
                                                   </div>
                                                   
@@ -209,6 +239,12 @@
                                                   <label for="description" class="fw-bold">Description</label>
                                                   <textarea class="form-control" name="description" id="description" placeholder="type here..." rows="3" 
                                                    required><?php echo !empty($inputs['description']) ? $inputs['description'] : ""?></textarea>
+                                                   <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input description.
+                                                    </div>
                                                 </div>
 
                                                 <div class="d-grid gap-2 mb-4">
@@ -275,6 +311,12 @@
                                                     }
                                                     ?>
                                                     </select>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please select employee.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3">
@@ -289,22 +331,46 @@
                                                     }
                                                     ?>
                                                     </select>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please select order number.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="startDate" class="fw-bold">Start Date</label>
                                                     <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00" onchange="setEndDateMin(this)"
                                                     class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input start date.
+                                                    </div>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="endDate" class="fw-bold">End Date</label>
                                                     <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00" disabled
                                                     class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input end date.
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="message" class="fw-bold">Message</label>
                                                     <textarea class="form-control" name="message" id="message" placeholder="type here..." rows="3" required></textarea>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please input message.
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="d-grid gap-2 mb-4">

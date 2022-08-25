@@ -22,7 +22,7 @@ include 'action/signup.php';
                     <div class="col-lg-4">
                         <div class="col-lg-6 mx-auto">
                             <img 
-                            src="../img/avatar.png" 
+                            src="img/avatar.png" 
                             alt="avatar"
                             class="img-fluid"
                             id="imagess"
@@ -64,6 +64,7 @@ include 'action/signup.php';
                                 placeholder="Type here..."
                                 value="<?php echo !empty($inputs['middleName']) ? $inputs['middleName'] : ""?>"
                                 >
+
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="lastName" class="form-label signup-label">Last Name</label>
@@ -77,6 +78,12 @@ include 'action/signup.php';
                                 required
                                 value="<?php echo !empty($inputs['lastName']) ? $inputs['lastName'] : ""?>"
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input last name.
+                                </div>
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="gender" class="form-label signup-label">Gender</label>
@@ -85,6 +92,12 @@ include 'action/signup.php';
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
+                                    <div class="valid-feedback">
+                                    Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please select gender.
+                                    </div>
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="dateOfBirth" class="form-label signup-label">Date of Birth</label>
@@ -98,6 +111,12 @@ include 'action/signup.php';
                                 required
                                 value="<?php echo !empty($inputs['dateOfBirth']) ? $inputs['dateOfBirth'] : ""?>"
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input date of birth.
+                                </div>
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="contact" class="form-label signup-label">Contact #</label>
@@ -111,6 +130,12 @@ include 'action/signup.php';
                                 required
                                 value="<?php echo !empty($inputs['contact']) ? $inputs['contact'] : ""?>"
                                 >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please input contact number.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,6 +156,12 @@ include 'action/signup.php';
                             }
                             ?>    
                         </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please select employee.
+                        </div>
                     </div>
 
                     <div class="col-lg-4 mb-3">
@@ -145,6 +176,12 @@ include 'action/signup.php';
                         required
                         value="<?php echo !empty($inputs['address']) ? $inputs['address'] : ""?>"
                         >
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input address.
+                        </div>
                     </div>
 
                     <div class="col-lg-4 mb-3">
@@ -159,6 +196,12 @@ include 'action/signup.php';
                         required
                         value="<?php echo !empty($inputs['email']) ? $inputs['email'] : ""?>"
                         >
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input email.
+                        </div>
                     </div>
                 </div>
 
@@ -175,6 +218,12 @@ include 'action/signup.php';
                         required
                                 value="<?php echo !empty($inputs['username']) ? $inputs['username'] : ""?>"
                         >
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input username.
+                        </div>
                     </div>
 
                     <div class="col-lg-6 mb-3">
@@ -188,6 +237,12 @@ include 'action/signup.php';
                         placeholder="Type here..."
                         required
                         >
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input password.
+                        </div>
                     </div>
                 </div>
 
