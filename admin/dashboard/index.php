@@ -33,6 +33,8 @@
         include __DIR__ . '/pages/taskHistory.php';
     }elseif(isset($_GET['chat'])){
         include __DIR__ . '/pages/chat.php';
+    }elseif(isset($_GET['account'])){
+        include __DIR__ . '/pages/account.php';
     }else{
         include __DIR__ . '/pages/404.php';
     }
