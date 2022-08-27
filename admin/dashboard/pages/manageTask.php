@@ -40,6 +40,7 @@
                                                 <th>Order Number</th>
                                                 <th>Employee Name</th>
                                                 <th>Wig Model</th>
+                                                <th>Batch</th>
                                                 <th>Status</th>
                                                 <th>Progress</th>
                                                 <th>Start Date</th>
@@ -84,16 +85,17 @@
 														<span class="fs-14">Size: <?php echo $result['wigSize'] ?></span>
                                                     </td>
                                                     <?php 
-                                                        if($result['taskStatus'] == 'New'){
+                                                        if($result['taskStat'] == 'tstts1'){
                                                             $badge = "badge badge-warning";
-                                                        }elseif($result['taskStatus'] == 'Production'){
+                                                        }elseif($result['taskStat'] == 'tstts2'){
                                                             $badge = "badge badge-danger";
-                                                        }elseif($result['taskStatus'] == 'Done'){
+                                                        }elseif($result['taskStat'] == 'tstts3'){
                                                             $badge = "badge badge-success";
-                                                        }elseif($result['taskStatus'] == 'Archived'){
+                                                        }elseif($result['taskStat'] == 'tstts4'){
                                                             $badge = "badge badge-secondary";
                                                         }
                                                     ?>
+                                                    <td><?php echo $result['batchName'] ?></td>
                                                     <td><span class="<?php echo $badge ?>"><?php echo $result['taskStatus'] ?></span></td>
                                                     <td>
                                                         <?php
@@ -109,7 +111,7 @@
                                                             if($result['start_date'] == ''){
                                                                 echo "N/A";
                                                             }else{
-                                                                echo $result['start_date'];
+                                                                echo date('F d, Y', strtotime($result['start_date']));
                                                             }
                                                         ?>
                                                     </td>
@@ -118,7 +120,7 @@
                                                             if($result['end_date'] == ''){
                                                                 echo "N/A";
                                                             }else{
-                                                                echo $result['end_date'];
+                                                                echo date('F d, Y', strtotime($result['end_date']));
                                                             }
                                                         ?>
                                                     </td>

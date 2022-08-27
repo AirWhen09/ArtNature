@@ -20,6 +20,18 @@
                         ";
     $getProgress = $conn->query($todayProgress);
 
+    //get all batch
+    $allBatch = "SELECT a.name as batchName, 
+                        count(b.order_no) as numOfTask,
+                        a.status as batchStatus,
+                        a.date_created as dateCreated,
+                        a.batch_id as batchId,
+                        a.progress as batchProgress
+                    from task_batch as a 
+                    join tasks as b on a.batch_id = b.batch
+                    where a.status != 'bstts4' group by a.batch_id";
+    $getAllBatch = $conn->query($allBatch);
+
     if(isset($_POST['myTask'])){
         $process = $_POST['process'];
         $orderNo = $_POST['orderNo'];
@@ -30,7 +42,11 @@
         }
         $updateTask = $conn->query($sql);
         if($updateTask){
-            echo "<script>window.location.href = 'index.php?progressReport'</script>";
+            $addHistory = "INSERT INTO task_progress_history (image, task_id, progress) VALUES('img/nopic.png','$orderNo','$process')";
+            $newHistory = $conn->query($addHistory);
+            if($newHistory){
+                echo "<script>window.location.href = 'index.php?manageTask'</script>";
+            }
         }
     }
 

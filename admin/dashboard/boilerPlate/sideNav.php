@@ -71,7 +71,7 @@
 					<?php if($_SESSION['user_role'] === "ur1"){ ?>
                     <li><a href="index.php?progressReport" aria-expanded="false">
 							<i class="flaticon-018-clock"></i>
-							<span class="nav-text <?php if(isset($_GET['progressReport'])) echo "text-primary"; ?>">Progress Report</span>
+							<span class="nav-text <?php if(isset($_GET['progressReport']) || isset($_GET['batch'])) echo "text-primary"; ?>">Progress Report</span>
 						</a>
                     </li>
                     <li><a href="index.php?delivery" class="ai-icon" aria-expanded="false">

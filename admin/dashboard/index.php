@@ -2,7 +2,7 @@
     /////////////  connection  /////////////////////
     include '../../connection/connection.php';
     /////////////////  end  ////////////////////////
-    
+    date_default_timezone_set('Asia/Manila');
     //////////////  session  //////////////////////
     require __DIR__ . '/session/session.php';
     /////////////////  end  ////////////////////////
@@ -25,6 +25,8 @@
         include __DIR__ . '/pages/delivery.php';
     }elseif(isset($_GET['progressReport']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/progressReport.php';
+    }elseif(isset($_GET['batch']) && $_SESSION['user_role'] === 'ur1'){
+        include __DIR__ . '/pages/taskBatch.php';
     }elseif(isset($_GET['location']) && $_SESSION['user_role'] === 'ur4'){
         include __DIR__ . '/pages/location.php';
     }elseif(isset($_GET['myTask']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){

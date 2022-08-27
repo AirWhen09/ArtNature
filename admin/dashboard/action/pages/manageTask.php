@@ -6,13 +6,16 @@
                           c.image as imagePath,
                           e.name as wigModel,
                           f.name as wigSize,
-                          g.name as userRole
+                          g.name as userRole,
+                          a.status as taskStat,
+                          h.name as batchName
                 from tasks as a
                 left join reference_code as b on a.status = b.ref_id
                 left join users as c on a.user_id = c.user_id
                 left join reference_code as e on a.wig_model = e.ref_id
                 left join reference_code as f on a.wig_size = f.ref_id
                 left join reference_code as g on c.user_role = g.ref_id
+                left join task_batch as h on a.batch = h.batch_id
                 ";
     $getTask = $conn->query($allTask);
 
@@ -57,7 +60,12 @@
         }
         $updateTask = $conn->query($sql);
         if($updateTask){
-            echo "<script>window.location.href = 'index.php?manageTask'</script>";
+            $addHistory = "INSERT INTO task_progress_history (image, task_id, progress) VALUES('img/nopic.png','$orderNo','$process')";
+            $newHistory = $conn->query($addHistory);
+            if($newHistory){
+                echo "<script>window.location.href = 'index.php?manageTask'</script>";
+            }
+            
         }
     }
 
