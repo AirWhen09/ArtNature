@@ -68,14 +68,23 @@
         }
 
         if(count($errors) === 0){
-            
+            $startTimeStamp = strtotime($startDate);
+            $endTimeStamp = strtotime($endDate);
+
+            $timeDiff = abs($endTimeStamp - $startTimeStamp);
+
+            $numberDays = $timeDiff/86400;  // 86400 seconds in one day
+
+            // and you might want to convert to integer
+            $numberDays = intval($numberDays);
             //update task
             $updateTaskSql = "UPDATE tasks set 
                             user_id = '$employee',
                             start_date = '$startDate',
                             end_date = '$endDate',
                             process = 0,
-                            status = 'tstts2'
+                            status = 'tstts2',
+                            no_of_days = '$numberDays'
                             where order_no = '$orderNo'";
             $updateTask = $conn->query($updateTaskSql);
             if($updateTask){
