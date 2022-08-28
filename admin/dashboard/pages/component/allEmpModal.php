@@ -92,6 +92,7 @@
                 </div>
                 <input type="hidden" name="empId" value="<?php echo $result['user_id'] ?>">
                 <div class="modal-footer">
+                    <a href="pages/pdf/id.php?id=<?php echo $result['user_id'] ?>" target="_BLANK" class="btn btn-success" >Generate ID</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name="updateEmp">Update</button>
                 </div>
