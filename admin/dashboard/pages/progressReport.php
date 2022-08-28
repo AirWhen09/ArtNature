@@ -115,9 +115,15 @@
                                                 ?>
                                             </td>
                                             <td>  
-                                                <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
-                                                    <i class="flaticon-062-pencil"></i>
-                                                </button>
+                                                 <?php
+                                                    if($result['start_date'] != ''){
+                                                        ?>
+                                                            <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
+                                                                <i class="flaticon-062-pencil"></i>
+                                                            </button>
+                                                        <?php
+                                                    }
+                                                ?>
                                                 <button class="btn btn-danger btn-sm"  title="Move To Archive" data-bs-toggle="modal" data-bs-target="#arcTask<?php echo $result['order_no'] ?>">
                                                     <i class="flaticon-089-trash"></i>
                                                 </button>
@@ -199,13 +205,12 @@
                                                 ?>
                                             </td>
                                             <td>  
-                                                <button class="btn btn-warning"  title="Print" data-bs-toggle="modal" data-bs-target="#task<?php echo $batch['order_no'] ?>">
+                                                <a class="btn btn-warning"  title="Print" href="pages/pdf/batchReport.php?batch=<?php echo $batch['batchId']?>" target="_BLANK">
                                                     <i class="flaticon-381-print"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php
-                                        include 'pages/component/taskModal.php';
                                     }
                                     ?>
                                 </tbody>
