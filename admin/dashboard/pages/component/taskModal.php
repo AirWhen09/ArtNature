@@ -9,6 +9,35 @@
             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" >
                 <div class="modal-body">
                     <div class="container-fluid">
+                    <?php
+                            $days = [];
+                            $today = date('Y-m-d');
+                            $noOfDays = $result['no_of_days'];
+                            $startDate = $result['start_date'];
+                            $estimatedProgress = '';
+                            $i = 0;
+                            while($i < $noOfDays){
+                                array_push($days, date('Y-m-d', strtotime($startDate. ' + '.$i.' day')));
+                                $i++;
+                            }
+
+                            if($today < $days[0]){
+                                $estimatedProgress = 0;
+                            }elseif($today > $days[$noOfDays - 1]){
+                                $estimatedProgress = 100;
+                            }else{
+                                if(in_array($today, $days)){
+                                    $k = array_search($today, $days);
+                                    $progressToday = (100 / $noOfDays) * ($k + 1);
+                                    $estimatedProgress = number_format($progressToday, 0);
+                                }else{
+                                    $estimatedProgress = "something else";
+                                }
+                            }
+
+                        ?>
+                        <h2 class="text-center">Estimated Progress: <span class="fw-bold badge bg-success"><?php echo $estimatedProgress?>%</span></h2>
+                        
                         <div class="row mb-3">
                             <div class="col-6">
                                 <h4 class="text-center">Model: <span class="fw-bold"><?php echo $result['wigModel'] ?></span></h4>

@@ -22,24 +22,46 @@
                 </div>
                 <div class="row">
                         <?php
+                            $days = [];
+                            $today = date('Y-m-d');
                             $noOfDays = $getHistory['noOfDays'];
                             $percent = 100/$noOfDays;
                             $progress = 0;
                             $startDate = $getHistory['startDate'];
                             $i = 0;
                             while($i < $noOfDays){
-                                $i++;
                                 $progress += $percent;
-                                $addDate = date('F d, Y', strtotime($startDate. ' + '.$i.' day'))
+                                $addDate = date('F d, Y', strtotime($startDate. ' + '.$i.' day'));
+                                array_push($days, date('Y-m-d', strtotime($startDate. ' + '.$i.' day')));
                                 ?>
                                     <div class="col-sm-2 mx-auto bg-warning card p-3 text-center">
                                         <h4 class="text-white"><?php echo $addDate ?></h4>
-                                        <h5 class="text-white">Estimated Progress: <span class="fw-bold"><?php echo $progress ?>%</span></h5>
+                                        <h5 class="text-white">Estimated Progress: <span class="fw-bold"><?php echo number_format($progress, 0); ?>%</span></h5>
                                     </div>
                                 <?php
+                                $i++;
                             }
                         ?>
-                        
+                        <div class="col-sm-2 mx-auto bg-warning card p-3 text-center">
+                            <h4 class="text-white"><?php echo $today; ?></h4>
+                            <?php
+                            
+                                if($today < $days[0]){
+                                    echo "to early";
+                                }elseif($today > $days[$noOfDays - 1]){
+                                    echo "to early";
+                                }else{
+                                    if(in_array($today, $days)){
+                                        $k = array_search($today, $days);
+                                        $progressToday = (100 / $noOfDays) * ($k + 1);
+                                        echo number_format($progressToday, 0);
+                                    }else{
+                                        echo "something else";
+                                    }
+                                }
+                            ?>
+                            <h5 class="text-white">Estimated Progress: <span class="fw-bold"><?php echo $days[$noOfDays - 1] ?></span></h5>
+                        </div>
                     </div>
                 <div class="card-body tab-content p-0">  
                     <div class="table-responsive p-3">

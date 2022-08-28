@@ -76,7 +76,7 @@
             $numberDays = $timeDiff/86400;  // 86400 seconds in one day
 
             // and you might want to convert to integer
-            $numberDays = intval($numberDays);
+            $numberDays = intval($numberDays) + 1;
             //update task
             $updateTaskSql = "UPDATE tasks set 
                             user_id = '$employee',
