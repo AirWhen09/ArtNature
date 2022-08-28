@@ -2,9 +2,15 @@
 <script>
 
 <?php
+if($_SESSION['user_role'] === 'ur1'){
+  $getTasksDate = $conn->query("SELECT * from tasks");
+}else{
+  $userId = $_SESSION['userId'];
+  $getTasksDate = $conn->query("SELECT * from tasks where user_id = '$userId'");
+}
 $calendars = "";
 $calendars .= "[";
-  $getTasksDate = $conn->query("SELECT * from tasks");
+  
   while($calendar = $getTasksDate->fetch_assoc()){
     $calendars .= '
     {
@@ -42,7 +48,7 @@ $calendars .= "[";
 
 <div class="card p-1">
 <div class="d-flex justify-content-between p-4">
-<h2 class="text-center">Calendar</h2>
+<h2 class="text-center">My Calendar</h2>
 <a href="calendars.php" target="_BLANK" class="" title="Full Screen">[ ]</a>
 </div>
 <div id='calendar'></div>
