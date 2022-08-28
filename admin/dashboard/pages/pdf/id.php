@@ -1,6 +1,6 @@
 <?php
 require('pdf/fpdf.php');
-if(isset($_GET['batch'])){
+if(isset($_GET['id'])){
 
 }
 $print_date = date("M. d, Y");

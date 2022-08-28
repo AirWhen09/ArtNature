@@ -15,10 +15,32 @@
                     </div>
                     <div class="me-3">
                         <h2 class="card-title mb-2 ">Batch Name: <span class="fw-bold"><?php echo $getHistory['batchName']?></span></h2>
-                        <h2 class="card-title mb-2 ">Date Created: <span class="fw-bold"><?php echo $getHistory['dateCreated']?></span></h2>
+                        <h2 class="card-title mb-2 ">Date Created: <span class="fw-bold"><?php echo date('F d, Y h:mA', strtotime($getHistory['dateCreated']))?></span></h2>
                         <h2 class="card-title mb-2 ">Status: <span class="fw-bold"><?php echo $getHistory['wigStatus']?></span></h2>
                     </div>
+                   
                 </div>
+                <div class="row">
+                        <?php
+                            $noOfDays = $getHistory['noOfDays'];
+                            $percent = 100/$noOfDays;
+                            $progress = 0;
+                            $startDate = $getHistory['startDate'];
+                            $i = 0;
+                            while($i < $noOfDays){
+                                $i++;
+                                $progress += $percent;
+                                $addDate = date('F d, Y', strtotime($startDate. ' + '.$i.' day'))
+                                ?>
+                                    <div class="col-sm-2 mx-auto bg-warning card p-3 text-center">
+                                        <h4 class="text-white"><?php echo $addDate ?></h4>
+                                        <h5 class="text-white">Estimated Progress: <span class="fw-bold"><?php echo $progress ?>%</span></h5>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                        
+                    </div>
                 <div class="card-body tab-content p-0">  
                     <div class="table-responsive p-3">
                         <table class="table table-responsive-lg" id="myTable3">
@@ -36,7 +58,7 @@
                                     
                                     ?>
                                     <tr>
-                                        <td><?php echo $result['historyDate'] ?></td>
+                                        <td><?php echo date('F d, Y h:mA', strtotime($result['historyDate'])) ?></td>
                                         <td>
                                             <img src="../../<?php echo $result['wigImage'] ?>" class="img-fluid" width="300" alt="">
                                         </td>

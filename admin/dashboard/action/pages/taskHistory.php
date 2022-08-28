@@ -3,6 +3,8 @@ if(isset($_GET['or'])){
     $orNo = $_GET['or'];
     $allHistory = "SELECT b.order_no as orderNumber,
                           b.date_created as dateCreated,
+                          b.no_of_days as noOfDays,
+                          b.start_date as startDate,
                           c.name as batchName,
                           d.name as wigSize,
                           e.name as wigModel,
@@ -33,6 +35,8 @@ if(isset($_GET['or'])){
                     ";
     $getHistory = $conn->query($allHistory)->fetch_assoc();
     $getHistorys = $conn->query($allHistorys);
+
+    //get estimated progress
 }
     
 ?>
