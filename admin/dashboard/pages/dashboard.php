@@ -11,6 +11,16 @@
 						<option value="">Select Batch</option>
 						<?php
 						while($batch = $getBatch->fetch_assoc()){
+							$batchId = $batch['batch_id'];
+							$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4' and batch = '$batchId'";
+    						$getAve = $conn->query($aveProcess)->fetch_assoc();
+							if($getAve['totalAve'] == 100){
+								$update = $conn->query("UPDATE task_batch set status = 'bstts3' where batch_id = '$batchId'");
+							}elseif($getAve['totalAve'] == '' || $getAve['totalAve'] == 0){
+								$update = $conn->query("UPDATE task_batch set status = 'bstts1' where batch_id = '$batchId'");
+							}else{
+								$update = $conn->query("UPDATE task_batch set status = 'bstts2' where batch_id = '$batchId'");
+							}
 						?>
 						<option value="<?php echo $batch['batch_id']?>"><?php echo $batch['name']?></option>
 						<?php		
@@ -40,6 +50,14 @@
 								
 							<?php
 							while($task = $getTask->fetch_assoc()){
+								$orderNo = $task['order_no'];
+								if($task['process'] == 100){
+									$update = $conn->query("UPDATE tasks set status = 'tstts3' where order_no = '$orderNo'");
+								}elseif($task['process'] == '' || $task['process'] == 0){
+									$update = $conn->query("UPDATE tasks set status = 'tstts1' where order_no = '$orderNo'");
+								}else{
+									$update = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orderNo'");
+								}
 							?>
 							<div class="col-xl-4 col-xxl-4 col-sm-6">
 								<div class="bg-warning invoice-card shadow-lg rounded mb-2">

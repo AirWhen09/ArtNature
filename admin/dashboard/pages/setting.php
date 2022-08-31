@@ -38,11 +38,11 @@
                             <table class="table table-responsive-lg" id="myTable1">
                                 <thead>
                                     <tr>
-                                        <th>Reference Code</th>
+                                        <!-- <th>Reference Code</th> -->
                                         <th>Name</th>
                                         <th>Ranking</th>
                                         <th>Description</th>
-                                        <th>Group Name</th>
+                                        <!-- <th>Group Name</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -54,18 +54,18 @@
                                     while($reference = $getReference->fetch_assoc()){
                                         ?>
                                         <tr>
-                                            <td><?php echo $reference['ref_id'] ?></td>
+                                            <!-- <td><?php //echo $reference['ref_id'] ?></td> -->
                                             <td><?php echo $reference['name'] ?></td>
                                             <td><?php echo $reference['ranking'] ?></td>
                                             <td><?php echo $reference['description'] ?></td>
-                                            <td><?php echo $reference['group_name'] ?></td>
+                                            <!-- <td><?php //echo $reference['group_name'] ?></td> -->
                                             <td>
                                                 <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#ref<?php echo $reference['ref_id'] ?>">
                                                     <i class="flaticon-062-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#deleteRef<?php echo $reference['ref_id'] ?>">
+                                                <!-- <button class="btn btn-danger btn-sm" title="Move To Archive"  data-bs-toggle="modal" data-bs-target="#deleteRef<?php echo $reference['ref_id'] ?>">
                                                     <i class="flaticon-089-trash"></i>
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
                                         <?php

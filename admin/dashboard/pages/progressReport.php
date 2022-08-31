@@ -192,6 +192,7 @@
                                                             echo '0%';
                                                         }else{
                                                             echo $getAve['totalAve'].'%';
+                                                            
                                                         }
                                                         
                                                   
