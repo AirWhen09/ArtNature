@@ -39,6 +39,11 @@
 												
 											</div>
 										</div>
+										<?php
+										//get total Ave
+											$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status != 'tstts4'";
+											$getAve = $conn->query($aveProcess)->fetch_assoc();
+										?>
 										<div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
 											<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getAve['totalAve']?>%; height:20px;" role="progressbar">
 												<span><?php echo $getAve['totalAve']?>% Complete</span>
@@ -53,7 +58,7 @@
 								$orderNo = $task['order_no'];
 								if($task['process'] == 100){
 									$update = $conn->query("UPDATE tasks set status = 'tstts3' where order_no = '$orderNo'");
-								}elseif($task['process'] == '' || $task['process'] == 0){
+								}elseif($task['userId'] == '' || $task['userId'] == NULL){
 									$update = $conn->query("UPDATE tasks set status = 'tstts1' where order_no = '$orderNo'");
 								}else{
 									$update = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orderNo'");
