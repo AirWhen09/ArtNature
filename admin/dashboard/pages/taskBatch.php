@@ -106,9 +106,15 @@
                                             ?>
                                         </td>
                                         <td>  
-                                            <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
-                                                <i class="flaticon-062-pencil"></i>
-                                            </button>
+                                            <?php
+                                                if($result['start_date'] != ''){
+                                                    ?>
+                                                        <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
+                                                            <i class="flaticon-062-pencil"></i>
+                                                        </button>
+                                                    <?php
+                                                }
+                                            ?>
                                             <button class="btn btn-danger btn-sm"  title="Move To Archive" data-bs-toggle="modal" data-bs-target="#arcTask<?php echo $result['order_no'] ?>">
                                                 <i class="flaticon-089-trash"></i>
                                             </button>
