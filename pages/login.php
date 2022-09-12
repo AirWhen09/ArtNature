@@ -71,4 +71,4 @@ require 'action/login.php';
     </div>
 </div>
 
-<script src="../js/formValidation.js"></script>
+<script src="js/formValidation.js"></script>

@@ -6,6 +6,7 @@
                           c.image as imagePath,
                           e.name as wigModel,
                           f.name as wigSize,
+                          a.user_id as userId,
                           g.name as userRole
                 from tasks as a
                 left join reference_code as b on a.status = b.ref_id
@@ -21,10 +22,7 @@
     $allBatch = "SELECT * from task_batch";
     $getBatch = $conn->query($allBatch);
 
-    //get total Ave
-    $aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
-    $getAve = $conn->query($aveProcess)->fetch_assoc();
-
+    
     //get task overview
     $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts4'";
     $newSQL = "SELECT count(*) as new from tasks where status = 'tstts1'";

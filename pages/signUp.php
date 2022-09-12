@@ -8,7 +8,7 @@ include 'action/signup.php';
         <div class="card-body">
         <div class=" mx-auto">
             <!-- <img 
-                src="../img/logo2.png" 
+                src="img/logo2.png" 
                 alt="logo"
                 class="img-fluid"
                 > -->
@@ -262,7 +262,7 @@ include 'action/signup.php';
     </div>
 </div>
 
-<script src="../js/formValidation.js"></script>
+<script src="js/formValidation.js"></script>
 <script>
     function loadfile(event){
 				var output=document.getElementById('imagess');

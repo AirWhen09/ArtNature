@@ -40,8 +40,6 @@
 											</div>
 										</div>
 										<?php
-										
-										//get total Ave
 										$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
 										$getAve = $conn->query($aveProcess)->fetch_assoc();
 
@@ -61,7 +59,7 @@
 								$orderNo = $task['order_no'];
 								if($task['process'] == 100){
 									$update = $conn->query("UPDATE tasks set status = 'tstts3' where order_no = '$orderNo'");
-								}elseif($task['process'] == '' || $task['process'] == NULL){
+								}elseif($task['userId'] == '' || $task['userId'] == NULL){
 									$update = $conn->query("UPDATE tasks set status = 'tstts1' where order_no = '$orderNo'");
 								}else{
 									$update = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orderNo'");

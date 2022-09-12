@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="d-flex flex-column justify-content-center align-items-center">
                 <img 
-                    src="../img/logo2.png" 
+                    src="img/logo2.png" 
                     alt="logo"
                     class="img-fluid"
                     >
