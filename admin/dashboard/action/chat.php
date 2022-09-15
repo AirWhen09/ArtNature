@@ -19,8 +19,8 @@
         }
         
         if(count($errors) === 0){
-            $sql = "INSERT INTO messages(msg_to, msg_from, message)
-                                values('$msgTo', '$msgFrom', '$message')";
+            $sql = "INSERT INTO messages(msg_to, msg_from, message, status)
+                                values('$msgTo', '$msgFrom', '$message', 0)";
             $insertMsg = $conn->query($sql);
             if($insertMsg){
                 echo "<script>window.location.href = 'index.php?chat&user=$user'</script>";

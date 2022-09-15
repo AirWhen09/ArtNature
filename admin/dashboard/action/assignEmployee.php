@@ -89,12 +89,20 @@
             $updateTask = $conn->query($updateTaskSql);
             if($updateTask){
 
-                $sql = "INSERT INTO messages(msg_to, msg_from, message)
-                                values('$employee', '$isLoginUserId', '$message')";
+                $sql = "INSERT INTO messages(msg_to, msg_from, message, status)
+                                values('$employee', '$isLoginUserId', '$message', 0)";
                 $insertMsg = $conn->query($sql);
                 if($insertMsg){
-                    array_push($success, "Updated");
-                    echo "<script>window.location.href = 'index.php?manageTask'</script>";
+
+                    $addNewNotif = "INSERT INTO notification(description, user_id, status) VAlUES('Sample Notif', '$employee', 0)";
+                    $insertNewNotif = $conn->query($addNewNotif);
+
+                    if($insertNewNotif){
+                        array_push($success, "Updated");
+                        echo "<script>window.location.href = 'index.php?manageTask'</script>";
+                    }else{
+                        array_push($errors, "Something's wrong: ".$conn->error);
+                    }
                 }
             }else{
                 array_push($errors, $conn->error);
