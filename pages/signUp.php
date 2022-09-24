@@ -143,7 +143,7 @@ include 'action/signup.php';
 
                 <div class="mb-3 row px-4">
                     <div class="col-lg-4 mb-3">
-                        <label for="employee" class="form-label signup-label">Employee</label>
+                        <label for="employee" class="form-label signup-label">User Type</label>
                         <select name="employee" id="employee" class="form-select signup-input" required>
                             <option value="">Select</option>
                             <?php 

@@ -127,6 +127,7 @@
                                                     <td>  
                                                         <?php
                                                             if($result['start_date'] != ''){
+                                                                // if($result['start_date'] != '' && $result['process'] != 100){
                                                                 ?>
                                                                     <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
                                                                         <i class="flaticon-062-pencil"></i>

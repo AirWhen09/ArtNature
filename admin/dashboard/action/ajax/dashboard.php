@@ -35,6 +35,7 @@ if(isset($_POST['batchName'])){
     
             $output .= '
                     <div class="invoice-card-row mb-3 p-2">
+						
                         <div class="bg-warning invoice-card shadow-lg rounded">
                             <div class="p-3">
                                 <div class="d-flex">
@@ -84,6 +85,7 @@ if(isset($_POST['batchName'])){
     while($task = $getTask->fetch_assoc()){
         $output .= '
         <div class="col-xl-4 col-xxl-4 col-sm-6">
+            <a href="index.php?taskHistory&or='.$task['order_no'].'">
             <div class="bg-warning invoice-card shadow-lg rounded mb-2">
                 <div class="p-3">
                     <div class="d-flex">
@@ -109,6 +111,7 @@ if(isset($_POST['batchName'])){
                     
                 </div>
             </div>
+            </a>
         </div> ';
 
         }

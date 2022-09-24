@@ -66,31 +66,33 @@
 								}
 							?>
 							<div class="col-xl-4 col-xxl-4 col-sm-6">
-								<div class="bg-warning invoice-card shadow-lg rounded mb-2">
-									<div class="p-3">
-										<div class="d-flex">
-											<div class="icon me-3">
-												<img src="../../<?php echo $task['imagePath']?>" alt="image" class="img-fluid rounded-circle border-3 border border-white">
-											</div> 
-											<div class="d-flex flex-column">
-												<span class="text-white fs-18 fw-bold"><?php echo $task['firstName'].' '.$task['lastName']?></span>
-												
-												<span class="text-white fs-10"><?php echo $task['userRole']?></span>
-												<span class="text-white fs-10">or #: <b><?php echo $task['order_no']?></b></span>
+								<a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
+									<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+										<div class="p-3">
+											<div class="d-flex">
+												<div class="icon me-3">
+													<img src="../../<?php echo $task['imagePath']?>" alt="image" class="img-fluid rounded-circle border-3 border border-white">
+												</div> 
+												<div class="d-flex flex-column">
+													<span class="text-white fs-18 fw-bold"><?php echo $task['firstName'].' '.$task['lastName']?></span>
+													
+													<span class="text-white fs-10"><?php echo $task['userRole']?></span>
+													<span class="text-white fs-10">or #: <b><?php echo $task['order_no']?></b></span>
+												</div>
 											</div>
-										</div>
-										<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
-											<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $task['process']?>%; height:20px;" role="progressbar">
-												<span><?php echo $task['process']?>%</span>
+											<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
+												<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $task['process']?>%; height:20px;" role="progressbar">
+													<span><?php echo $task['process']?>%</span>
+												</div>
 											</div>
+											<div class="d-flex justify-content-evenly">
+												<span class="text-white fs-18">Model: <b><?php echo $task['wigModel']?></b></span>
+												<span class="text-white fs-18">Size: <b><?php echo $task['wigSize']?></b></span>
+											</div>
+											
 										</div>
-										<div class="d-flex justify-content-evenly">
-											<span class="text-white fs-18">Model: <b><?php echo $task['wigModel']?></b></span>
-											<span class="text-white fs-18">Size: <b><?php echo $task['wigSize']?></b></span>
-										</div>
-										
 									</div>
-								</div>
+								</a>
 							</div>
 							<?php
 							}

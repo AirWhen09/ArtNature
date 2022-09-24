@@ -88,7 +88,15 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myTask<?php echo $result['order_no'] ?>">Update</button>
+                                                <?php
+                                                    if($result['start_date'] != '' && $result['process'] != 100){
+                                                ?>
+                                                    <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myTask<?php echo $result['order_no'] ?>">Update</button>
+                                                <?php 
+                                                    }else{
+                                                    ?>
+                                                    <button class="btn btn-success btn-sm">Done</button>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php
