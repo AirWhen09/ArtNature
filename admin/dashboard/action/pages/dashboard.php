@@ -24,7 +24,7 @@
 
     
     //get task overview
-    $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts4'";
+    $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts1'";
     $newSQL = "SELECT count(*) as new from tasks where status = 'tstts1'";
     $doneSQL = "SELECT count(*) as done from tasks where status = 'tstts3'";
     $productionSQL = "SELECT count(*) as production from tasks where status = 'tstts2'";
@@ -56,11 +56,7 @@
 
                 if($today > $dueDate){
                     $updateLapse = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo'");
-                    if($updateLapse){
-                        echo "<script>console.log('$orderNo')</script>";
-            echo "<script>console.log('$today')</script>";
-            echo "<script>console.log('$dueDate')</script>";
-                    }   
+                    
                 }
             
         }

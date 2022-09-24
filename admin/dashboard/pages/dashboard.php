@@ -109,7 +109,7 @@
 									<li><span class="circle" style="background-color: #0096FF;"></span>Production<span><?php echo $getProduction['production']?></span></li>
 									<li><span class="circle" style="background-color: #5800FF;"></span>Done<span><?php echo $getDone['done']?></span></li>
 									<li><span class="circle" style="background-color: #38bfb3;"></span>New<span><?php echo $getNew['new']?></span></li>
-									<li><span class="circle" style="background-color: #c8c8c8;"></span>Archived<span><?php echo $getArchive['arc']?></span></li>
+									<li><span class="circle" style="background-color: #c8c8c8;"></span>Unassigned<span><?php echo $getArchive['arc']?></span></li>
 								</ul>
 							</div>
 							<div class="col-md-6">

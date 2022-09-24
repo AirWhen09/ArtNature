@@ -36,7 +36,7 @@
                                         aria-describedby="firstNameId" 
                                         placeholder="Type here..."
                                         required
-                                        value="<?php echo !empty($getAccount['first_name']) ? $getAccount['last_name'] : ""?>"
+                                        value="<?php echo !empty($getAccount['first_name']) ? $getAccount['first_name'] : ""?>"
                                         >
                                         <div class="valid-feedback">
                                             Looks good!
