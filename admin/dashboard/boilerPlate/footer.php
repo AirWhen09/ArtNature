@@ -55,6 +55,11 @@
             let process = "processStatus3"+x.id;
             document.getElementById(process).innerText = x.value;
         }
+
+        function myProcess3(x){
+            let process = "processStatus4"+x.id;
+            document.getElementById(process).innerText = x.value;
+        }
 </script>
 
     <script src="js/custom.min.js"></script>

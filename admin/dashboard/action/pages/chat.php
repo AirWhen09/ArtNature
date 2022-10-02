@@ -43,4 +43,6 @@
     $allChat = "SELECT * from messages where (msg_from = '$chatUserId' and msg_to = '$isLoginUserId') or 
                                             (msg_from = '$isLoginUserId' and msg_to = '$chatUserId') order by date_created";
     $getAllChat = $conn->query($allChat);
+
+    $allChatAdmin = $conn->query("SELECT COUNT(*) as noAdmin from messages join users on users.user_id = messages.msg_from where users.user_role = 'ur1' and messages.msg_to = '$isLoginUserId'")->fetch_assoc();
 ?>

@@ -86,18 +86,29 @@
         }
 
         if(count($errors) === 0){
-            
-            //Insert new task
-            $addTask = "INSERT INTO tasks(order_no, wig_model, wig_size, status, description, batch)
-                                    VALUES('$orderNumber', '$wigModel', '$wigSize', 'tstts1', '$description', '$batch')";
-            $insertTask = $conn->query($addTask);
-            if($insertTask){
+
+            //Insert wig
+            $addWig = $conn->query("INSERT INTO wig() values()");
+
+            if($addWig){
+                 //Insert new task
+                $wigId = $conn->insert_id;
+                $addTask = "INSERT INTO tasks(order_no, wig_model, wig_size, status, description, batch, wig_id)
+                VALUES('$orderNumber', '$wigModel', '$wigSize', 'tstts1', '$description', '$batch', '$wigId')";
+                $insertTask = $conn->query($addTask);
+                if($insertTask){
                 array_push($success, "New task added sucessfully");
                 unset($inputs);
                 echo "<script>window.location.href = 'index.php?manageTask'</script>";
+                }else{
+                array_push($errors, "Something's wrong: ".$conn->error);
+                }
             }else{
+                echo "<script>alert(".$conn->error.")</script>";
                 array_push($errors, "Something's wrong: ".$conn->error);
             }
+            
+           
          }
     }
 ?>

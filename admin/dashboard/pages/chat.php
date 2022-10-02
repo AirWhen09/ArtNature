@@ -17,7 +17,7 @@
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="adminCon">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adminContacts" aria-expanded="true" aria-controls="adminContacts">
-                            ADMIN
+                            ADMIN  &nbsp; &nbsp;<span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $allChatAdmin['noAdmin']?></span>
                           </button>
                         </h2>
                         <div id="adminContacts" class="accordion-collapse collapse" aria-labelledby="adminCon" data-bs-parent="#adminContact">
