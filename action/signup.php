@@ -149,9 +149,7 @@ if(isset($_POST['signup'])){
     $filepath = "img/profile/".$filename;
     $filepaths = "img/profile/".$filename;
 
-    if(empty($filetemp)){
-        $filepath = "image/profile/avatar.png";
-    }else{
+    if($filetemp){
         $imageType = array("image/jpeg", "image/png", "image/gif", "image/tiff");
         if (!in_array( $filetype, $imageType)) { //check if image only
             array_push($errors, "Image Only (.jpeg, .png, .gif, .tif)");
@@ -162,6 +160,9 @@ if(isset($_POST['signup'])){
                 array_push($errors, "Image Can't Upload");
             }
         }
+    }else{
+        $filepath = "image/profile/avatar.png";
+        
         
     }
 
@@ -190,7 +191,7 @@ if(isset($_POST['signup'])){
             )";
 
         if($conn->query($sql)){
-            array_push($success, "Thank you for register, you may now login");
+            echo "<script>alert('You Have Created an Account Successfully!')</script>";
             header("location: landing.php?login");
         }else{
             array_push($errors, "Something Wrong!: ".$conn->error);
