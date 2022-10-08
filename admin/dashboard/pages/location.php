@@ -72,6 +72,7 @@
             data  : {locationId : locationId},
             success : function(data){
                 $('#location').html(data);
+                alert("Location Updated!");
             }
         });
     }

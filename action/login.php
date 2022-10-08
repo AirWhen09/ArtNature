@@ -56,7 +56,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     }
     
     if(count($errors) === 0){
-        header("location: admin/dashboard/index.php?dashboard");
+        echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
+        echo "<script>window.location.href = 'admin/dashboard/index.php?dashboard'</script>";
     }
 }
 

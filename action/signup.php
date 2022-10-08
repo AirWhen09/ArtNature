@@ -191,8 +191,8 @@ if(isset($_POST['signup'])){
             )";
 
         if($conn->query($sql)){
-            echo "<script>alert('You Have Created an Account Successfully!')</script>";
-            header("location: landing.php?login");
+            echo "<script>swal('Welcome!', 'You Have Created an Account Successfully!', 'success');</script>";
+            echo "<script>window.location.href = 'landing.php?login'</script>";
         }else{
             array_push($errors, "Something Wrong!: ".$conn->error);
         }

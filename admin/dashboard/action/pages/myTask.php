@@ -173,6 +173,7 @@ if(isset($_POST['myTask'])){
                 $updateProcess = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
                 
                 if($updateProcess){
+                        echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
                         echo "<script> alert('Task Updated');</script>";
                         echo "<script>window.location.href = 'index.php?myTask'</script>";
                 }
