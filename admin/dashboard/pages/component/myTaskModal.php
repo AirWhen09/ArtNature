@@ -6,7 +6,7 @@
                         <h3 class="modal-title">Order Number: <?php echo $result['order_no'] ?></h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation">
+            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="container-fluid">
                     <?php
@@ -41,6 +41,12 @@
                             $area2 = $getArea['area_ii'];
                             $area3 = $getArea['area_iii'];
                             $area4 = $getArea['area_iv'];
+                            $area1Pic = $getArea['area_i_pic'];
+                            $area2Pic = $getArea['area_ii_pic'];
+                            $area3Pic = $getArea['area_iii_pic'];
+                            $area4Pic = $getArea['area_iv_pic'];
+                            
+                            
                         ?>
                         <div class="row mb-3">
                             <div class="col-6">
@@ -52,7 +58,7 @@
                         </div>
                         <h3 class="text-center">as of <?php echo date('F d, Y', strtotime($today)) ?> estimated progress: <br> <span class="fw-bold badge bg-success"><?php echo $estimatedProgress?>%</span></h3>
                         <div class="row mb-4">
-                            <h1 class="text-center text-primary">Total Progress: <span id="processStatus2<?php echo $result['order_no'] ?>"><?php echo $result['process']?></span>%</h1>
+                            <h1 class="text-center text-primary">Total Progress: <span id="processStatus<?php echo $result['order_no'] ?>"><?php echo $result['process']?></span>%</h1>
                             <!-- <input type="range" name="process" id="<?php //echo $result['order_no'] ?>" onchange="myProcess2(this)" class="form-range myProcess" max="100" value="<?php //echo $result['process']?>" > -->
                         </div>
                         
@@ -63,21 +69,23 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             
                                             <h4 class="text-center">Area 1</h4>
-                                            <label for="img1<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic()" onmouseout="hideUpdatePic()" style="cursor: pointer">
-                                            <div class="text-center mt-5 mx-3 bg-primary d-none" id="showMe" style="position:absolute; cursor: pointer">
-                                                <h2 class="text-center " style="position:absolute;"> Update Picture </h2>
+                                            <h4 class="text-center" ><span id="areaProcess1<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
+                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range">
+                                            <label for="img1<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe1')" onmouseout="hideUpdatePic('showMe1')" style="cursor: pointer">
+                                            <div class="text-center bg-white d-none" id="showMe1" style="position:absolute; cursor: pointer; background-color: white">
+                                                <h4 class="text-center mt-2 p-2" > Update Picture </h4>
                                             </div>
                                                 <img 
-                                                src="../../img/noData.jpg" 
+                                                src="<?php echo $area1Pic != NULL ? '../../'.$area1Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
                                                 class="img-fluid"
                                                 id="img1<?php echo $result['order_no'] ?>s1"
                                                 >
-                                                <input type="file" name="image" id="img1<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile1(event)" class="form-control p-3 d-none" >
-                                                
+                                                <input type="file" name="image1" id="img1<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile1(event)" class="form-control p-3" style="opacity: 0;">
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
                                             </label>
-                                            <h4 class="text-center" ><span id="areaProcess1<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range">
                                             
                                         </div>
                                     </div>
@@ -87,18 +95,21 @@
                                     <div class="flex flex-column justify-content-center gap-5">
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 2</h4>
-                                            <label for="img2<?php echo $result['order_no'] ?>">
+                                            <h4 class="text-center" ><span id="areaProcess2<?php echo $result['order_no'] ?>"><?php echo $area2 != NULL ? $area2 : 0;?></span>% complete</h4>
+                                            <input value="<?php echo $area2 != NULL ? $area2 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range">
+                                            <label for="img2<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe2')" onmouseout="hideUpdatePic('showMe2')" style="cursor: pointer">
+                                            <div class="text-center bg-white d-none" id="showMe2" style="position:absolute; cursor: pointer; background-color: white">
+                                                <h4 class="text-center mt-2 p-2" > Update Picture </h4>
+                                            </div>
                                                 <img 
-                                                src="../../img/noData.jpg" 
+                                                src="<?php echo $area2Pic != NULL ? '../../'.$area2Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
                                                 class="img-fluid"
                                                 id="img2<?php echo $result['order_no'] ?>s2"
                                                 >
-                                                <input type="file" name="image" id="img2<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile2(event)" class="form-control p-3 d-none" >
                                             </label>
-                                            <h4 class="text-center" ><span id="areaProcess2<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range">
-                                        </div>
+                                            <input type="file" name="image2" id="img2<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile2(event)" class="form-control p-3"  style="opacity: 0;">
+                                            </div>
                                     </div>
                                     
                                 </div>
@@ -106,39 +117,43 @@
                                     <div class="flex flex-column justify-content-center gap-5">
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 3</h4>
-                                            <label for="img3<?php echo $result['order_no'] ?>">
+                                            <h4 class="text-center" ><span id="areaProcess3<?php echo $result['order_no'] ?>"><?php echo $area3 != NULL ? $area3 : 0;?></span>% complete</h4>
+                                            <input value="<?php echo $area3 != NULL ? $area3 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range">
+                                            <label for="img3<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe3')" onmouseout="hideUpdatePic('showMe3')" style="cursor: pointer">
+                                            <div class="text-center bg-white d-none" id="showMe3" style="position:absolute; cursor: pointer; background-color: white">
+                                                <h4 class="text-center mt-2 p-2" > Update Picture </h4>
+                                            </div>
                                                 <img 
-                                                src="../../img/noData.jpg" 
+                                                src="<?php echo $area3Pic != NULL ? '../../'.$area3Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
                                                 class="img-fluid"
                                                 id="img3<?php echo $result['order_no'] ?>s3"
                                                 >
-                                                <input type="file" name="image" id="img3<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile3(event)" class="form-control p-3 d-none" >
                                             </label>
-                                            <h4 class="text-center" ><span id="areaProcess3<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range">
-                                        </div>
+                                            <input type="file" name="image3" id="img3<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile3(event)" class="form-control p-3" style="opacity: 0;">
+                                            </div>
                                     </div>
-                                    
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="flex flex-column justify-content-center gap-5">
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 4</h4>
-                                            <label for="img4<?php echo $result['order_no'] ?>">
+                                            <h4 class="text-center" ><span id="areaProcess4<?php echo $result['order_no'] ?>"><?php echo $area4 != NULL ? $area4 : 0;?></span>% complete</h4>
+                                            <input value="<?php echo $area4 != NULL ? $area4 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range">
+                                            <label for="img4<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe4')" onmouseout="hideUpdatePic('showMe4')" style="cursor: pointer">
+                                            <div class="text-center bg-white d-none" id="showMe4" style="position:absolute; cursor: pointer; background-color: white">
+                                                <h4 class="text-center mt-2 p-2" > Update Picture </h4>
+                                            </div>
                                                 <img 
-                                                src="../../img/noData.jpg" 
+                                                src="<?php echo $area4Pic != NULL ? '../../'.$area4Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
                                                 class="img-fluid"
                                                 id="img4<?php echo $result['order_no'] ?>s4"
                                                 >
-                                                <input type="file" name="image" id="img4<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile4(event)" class="form-control p-3 d-none" >
                                             </label>
-                                            <h4 class="text-center" ><span id="areaProcess4<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range">
-                                        </div>
+                                            <input type="file" name="image4" id="img4<?php echo $result['order_no'] ?>" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile4(event)" class="form-control p-3"  style="opacity: 0;">
+                                            </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -146,6 +161,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="orderNo" value="<?php echo $result['order_no'] ?>">
+                    <input type="hidden" name="wigId" value="<?php echo $result['wig_id'] ?>">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name="myTask">Save</button>
                 </div>
@@ -155,6 +171,24 @@
 </div>
 
 <script>
+    function processStatus(){
+        let id = "processStatus<?php echo $result['order_no'] ?>";
+        let area1 = document.getElementsByName("area1");
+        let area2 = document.getElementsByName("area2");
+        let area3 = document.getElementsByName("area3");
+        let area4 = document.getElementsByName("area4");
+
+        let area1Val = area1[0].value,
+            area2Val = area2[0].value,
+            area3Val = area3[0].value,
+            area4Val = area4[0].value;
+
+        let total = (parseInt(area1Val) + parseInt(area2Val) + parseInt(area3Val) + parseInt(area4Val)) / 4;
+        
+        let totalStatus = document.getElementById(id);
+        totalStatus.innerText = total;
+    }
+
     function loadfile1(event){
         let imgId = event.target.id + 's1';
         var output=document.getElementById(imgId);
@@ -178,18 +212,29 @@
 
     function areaProcess1(x){
         let process = "areaProcess1"+x.id;
-        let img = document.getElementById();
+        let imgs = document.getElementById("img1"+x.id);
+        imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
+
+        processStatus();
     }
 
     function areaProcess2(x){
         let process = "areaProcess2"+x.id;
+        let imgs = document.getElementById("img2"+x.id);
+        imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
+
+        processStatus();
     }
 
     function areaProcess3(x){
         let process = "areaProcess3"+x.id;
+        let imgs = document.getElementById("img3"+x.id);
+        imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
+
+        processStatus();
     }
 
     function areaProcess4(x){
@@ -197,13 +242,15 @@
         let imgs = document.getElementById("img4"+x.id);
         imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
+
+        processStatus();
     }
 
-    function showUpdatePic() {
-        document.getElementById("showMe").classList.remove("d-none");
+    function showUpdatePic(x) {
+        document.getElementById(x).classList.remove("d-none");
     }
 
-    function hideUpdatePic() {
-        document.getElementById("showMe").classList.add("d-none");
+    function hideUpdatePic(x) {
+        document.getElementById(x).classList.add("d-none");
     }
 </script>

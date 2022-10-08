@@ -5,6 +5,7 @@ if(isset($_GET['or'])){
                           b.date_created as dateCreated,
                           b.no_of_days as noOfDays,
                           b.start_date as startDate,
+                          b.description as descriptions,
                           c.name as batchName,
                           d.name as wigSize,
                           e.name as wigModel,
@@ -18,6 +19,7 @@ if(isset($_GET['or'])){
                     ";
     $allHistorys = "SELECT a.date_created as historyDate,
                         a.image as wigImage,
+                        a.area_no as areaNo,
                         a.progress as taskProgress,
                         b.order_no as orderNumber,
                         b.date_created as dateCreated,

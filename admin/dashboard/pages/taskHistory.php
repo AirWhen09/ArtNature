@@ -18,9 +18,11 @@
                         <h2 class="card-title mb-2 ">Date Created: <span class="fw-bold"><?php echo date('F d, Y h:mA', strtotime($getHistory['dateCreated']))?></span></h2>
                         <h2 class="card-title mb-2 ">Status: <span class="fw-bold"><?php echo $getHistory['wigStatus']?></span></h2>
                     </div>
-                   
                 </div>
-                <div class="row">
+                <div class="row my-2 mx-2">
+                        <h2 class="card-title mb-2 ">Description: <span class="fw-bold"><?php echo $getHistory['descriptions']?></span></h2>
+                    </div>
+                <div class="row mx-3">
                         <?php
                             $days = [];
                             $today = date('Y-m-d');
@@ -43,7 +45,7 @@
                             }
                         ?>
                       
-                    </div>
+                </div>
                 <div class="card-body tab-content p-0">  
                     <div class="table-responsive p-3">
                         <table class="table table-responsive-lg" id="myTable3">
@@ -51,6 +53,7 @@
                                 <tr>
                                     <th>Date Created</th>
                                     <th>Image</th>
+                                    <th>Area</th>
                                     <th>Progress</th>
                                 </tr>
                             </thead>
@@ -65,6 +68,7 @@
                                         <td>
                                             <img src="../../<?php echo $result['wigImage'] ?>" class="img-fluid" width="300" alt="">
                                         </td>
+                                        <td><?php echo $result['areaNo'] ?></td>
                                         <td><?php echo $result['taskProgress'] ?>%</td>
                                     </tr>
                                     <?php
