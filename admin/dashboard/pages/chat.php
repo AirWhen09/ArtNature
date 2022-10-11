@@ -147,6 +147,8 @@
 
                         <?php
                             while($chats = $getAllChat->fetch_assoc()){
+                              $updateChat = $conn->query("UPDATE messages set status = 1 where msg_from = '$chatUserId' and msg_to = '$isLoginUserId'");
+
                                 if($chats['msg_from'] == $isLoginUserId){
                                 ?>
                                 <!-- right -->

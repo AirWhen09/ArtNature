@@ -7,9 +7,9 @@ if ($conn->connect_error) {
 }
 
 // $dbhost = "localhost";
-// $dbuser = "id19412467_artnature";
+// $dbuser = "id19412467_myartnature";
 // $dbpass = "123!@#Qwerty";
-// $dbname = "id19412467_artnaturedb";
+// $dbname = "id19412467_myartnaturedb";
 
 // if(!$conn = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
 // {

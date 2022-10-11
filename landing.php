@@ -5,7 +5,7 @@ require __DIR__ . '/boilerPlate/header.php';
 require __DIR__ . '/pages/preloader.php';
 
 if(isset($_GET['signup'])){
-    include __DIR__ . '/pages/signup.php';
+    include __DIR__ . '/pages/signUp.php';
 }else if(isset($_GET['login'])){
     include __DIR__ . '/pages/login.php';
 }else{
