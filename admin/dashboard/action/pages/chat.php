@@ -45,4 +45,6 @@
     $getAllChat = $conn->query($allChat);
 
     $allChatAdmin = $conn->query("SELECT COUNT(*) as noAdmin from messages join users on users.user_id = messages.msg_from where users.user_role = 'ur1' and messages.msg_to = '$isLoginUserId'")->fetch_assoc();
+    $allChatEmp = $conn->query("SELECT COUNT(*) as noEmp from messages join users on users.user_id = messages.msg_from where users.user_role in('ur2', 'ur3') and messages.msg_to = '$isLoginUserId'")->fetch_assoc();
+    $allChatDriver = $conn->query("SELECT COUNT(*) as noDriver from messages join users on users.user_id = messages.msg_from where users.user_role = 'ur4' and messages.msg_to = '$isLoginUserId'")->fetch_assoc();
 ?>

@@ -17,7 +17,12 @@
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="adminCon">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adminContacts" aria-expanded="true" aria-controls="adminContacts">
-                            ADMIN  &nbsp; &nbsp;<span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $allChatAdmin['noAdmin']?></span>
+                            ADMIN  &nbsp; &nbsp;
+                            <?php 
+                              if($allChatAdmin['noAdmin'] != 0 && $allChatAdmin['noAdmin'] != null){
+                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $allChatAdmin['noAdmin']?></span> <?php
+                              }
+                            ?>
                           </button>
                         </h2>
                         <div id="adminContacts" class="accordion-collapse collapse" aria-labelledby="adminCon" data-bs-parent="#adminContact">
@@ -25,11 +30,18 @@
                             <ul>
                                 <?php
                                     while($admin = $getAdminCon->fetch_assoc()){
+                                      $adminId = $admin['user_id'];
+                                      $selCountAdmin = $conn->query("SELECT count(*) as myMsg from messages where status = 0 and msg_from = '$adminId' and msg_to = '$isLoginUserId'")->fetch_assoc();
                                         ?>
                                         <li class="mb-2">
                                             <a href="?chat&user=<?php echo $admin['username']?>" aria-expanded="false" class="mx-3 d-flex gap-2 align-items-center">
                                                 <img src="../../<?php echo $admin['image']?>" width="30" alt="" class="rounded-circle"/>
                                                 <span class="nav-text fw-bold"><?php echo $admin['first_name'].' '.$admin['last_name']?></span>
+                                              <?php
+                                              if($selCountAdmin['myMsg'] != 0 && $selCountAdmin['myMsg'] != null){
+                                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $selCountAdmin['myMsg']?></span> <?php
+                                              }
+                                              ?>
                                             </a>
                                         </li>
                                         <?php
@@ -45,7 +57,12 @@
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="empCon">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#empContacts" aria-expanded="true" aria-controls="empContacts">
-                            EMPLOYEE
+                            EMPLOYEE &nbsp; &nbsp;
+                            <?php 
+                              if($allChatEmp['noEmp'] != 0 && $allChatEmp['noEmp'] != null){
+                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $allChatEmp['noEmp']?></span> <?php
+                              }
+                            ?>
                           </button>
                         </h2>
                         <div id="empContacts" class="accordion-collapse collapse show" aria-labelledby="empCon" data-bs-parent="#empContact">
@@ -53,11 +70,18 @@
                             <ul>
                                 <?php
                                     while($employee = $getEmpCon->fetch_assoc()){
+                                      $empId = $employee['user_id'];
+                                      $selCountEmp = $conn->query("SELECT count(*) as myMsg from messages where status = 0 and msg_from = '$empId' and msg_to = '$isLoginUserId'")->fetch_assoc();
                                         ?>
                                         <li class="mb-2 header-profile">
                                             <a href="?chat&user=<?php echo $employee['username']?>" aria-expanded="false" class="mx-3 d-flex gap-2 align-items-center">
                                                 <img src="../../<?php echo $employee['image']?>" width="30" alt="" class="rounded-circle" />
                                                 <span class="nav-text fw-bold"><?php echo $employee['first_name'].' '.$employee['last_name']?></span>
+                                                <?php
+                                              if($selCountEmp['myMsg'] != 0 && $selCountEmp['myMsg'] != null){
+                                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $selCountEmp['myMsg']?></span> <?php
+                                              }
+                                              ?>
                                             </a>
                                         </li>
                                         <?php
@@ -73,7 +97,12 @@
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="driverCon">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#driverContacts" aria-expanded="true" aria-controls="driverContacts">
-                            Driver
+                            Driver &nbsp; &nbsp;
+                            <?php 
+                              if($allChatDriver['noDriver'] != 0 && $allChatDriver['noDriver'] != null){
+                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $allChatDriver['noDriver']?></span> <?php
+                              }
+                            ?>
                           </button>
                         </h2>
                         <div id="driverContacts" class="accordion-collapse collapse" aria-labelledby="driverCon" data-bs-parent="#driverContact">
@@ -81,11 +110,18 @@
                             <ul>
                                 <?php
                                     while($driver = $getDriverCon->fetch_assoc()){
+                                      $driverId = $driver['user_id'];
+                                      $selCountDriver= $conn->query("SELECT count(*) as myMsg from messages where status = 0 and msg_from = '$driverId' and msg_to = '$isLoginUserId'")->fetch_assoc();
                                         ?>
                                         <li class="mb-2">
                                             <a href="?chat&user=<?php echo $driver['username']?>" aria-expanded="false" class="mx-3 d-flex gap-2 align-items-center">
                                                 <img src="../../<?php echo $driver['image']?>" width="30" alt="" class="rounded-circle" />
                                                 <span class="nav-text fw-bold"><?php echo $driver['first_name'].' '.$driver['last_name']?></span>
+                                                <?php
+                                              if($selCountDriver['myMsg'] != 0 && $selCountDriver['myMsg'] != null){
+                                                ?> <span class="badge light text-white bg-primary rounded-circle float-end"><?php echo $selCountDriver['myMsg']?></span> <?php
+                                              }
+                                              ?>
                                             </a>
                                         </li>
                                         <?php
