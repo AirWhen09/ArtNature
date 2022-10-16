@@ -97,10 +97,23 @@
                         }
     
                     $totalProcess = ($area1 + $area2 + $area3 + $area4) / 4;
-    
+                    date_default_timezone_set('Asia/Manila');
+                $todays = date('Y-m-d');
                     $updateProcess = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
                     
                     if($updateProcess){
+                        $selDaysProgress = $conn->query("SELECT * from task_days where task_id = '$orderNo' and dates = '$todays'");
+                        if(mysqli_num_rows($selDaysProgress) > 0){
+                                $updateDayProgress = $conn->query("UPDATE task_days set progress = '$totalProcess' where dates = '$todays' and task_id = '$orderNo'");
+                        }else{
+                                $inQueryDays = "INSERT INTO task_days(dates, task_id, days_count, progress) VALUES('$todays', '$orderNo', 0, '$totalProcess')";
+                                $inTaskDays = $conn->query($inQueryDays);
+                                if($inTaskDays){
+                                }else{
+                                        echo "<script> alert('error');</script>";
+                                }
+                        }
+
                             echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
                             echo "<script> alert('Task Updated');</script>";
                             echo "<script>window.location.href = 'index.php?manageTask'</script>";

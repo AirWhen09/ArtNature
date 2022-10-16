@@ -36,24 +36,21 @@ $pdf->cell(30,6, 'Read Date',1,0);
 $pdf->cell(30,6, 'Due Date',1,0);
 $pdf->cell(30,6, 'Issue Vent',1,0);
 $pdf->cell(15,6, 'Days',1,0);
-$pdf->cell(10,6, '1',1,0);
-$pdf->cell(10,6, '2',1,0);
-$pdf->cell(10,6, '3',1,0);
-$pdf->cell(10,6, '4',1,0);
-$pdf->cell(10,6, '5',1,0);
-$pdf->cell(10,6, '6',1,0);
-$pdf->cell(10,6, '7',1,0);
-$pdf->cell(10,6, '8',1,0);
-$pdf->cell(10,6, '9',1,0);
-$pdf->cell(10,6, '10',1,0);
-$pdf->cell(10,6, '11',1,0);
-$pdf->cell(10,6, '12',1,0);
-$pdf->cell(10,6, '13',1,0);
-$pdf->cell(10,6, '14',1,0);
-$pdf->cell(10,6, '15',1,0);
-$pdf->cell(10,6, '16',1,0);
-$pdf->cell(10,6, '17',1,0);
-$pdf->cell(10,6, '18',1,0);
+$pdf->cell(12,6, '1',1,0);
+$pdf->cell(12,6, '2',1,0);
+$pdf->cell(12,6, '3',1,0);
+$pdf->cell(12,6, '4',1,0);
+$pdf->cell(12,6, '5',1,0);
+$pdf->cell(12,6, '6',1,0);
+$pdf->cell(12,6, '7',1,0);
+$pdf->cell(12,6, '8',1,0);
+$pdf->cell(12,6, '9',1,0);
+$pdf->cell(12,6, '10',1,0);
+$pdf->cell(12,6, '11',1,0);
+$pdf->cell(12,6, '12',1,0);
+$pdf->cell(12,6, '13',1,0);
+$pdf->cell(12,6, '14',1,0);
+$pdf->cell(12,6, '15',1,0);
 $pdf->cell(33,6, 'OPERATOR',1,1);
 
 //get all task
@@ -91,12 +88,12 @@ $pdf->cell(15,6, "{$result['noOfDays']}",1,0);
 
 $count = "SELECT count(*) as task from task_days where task_id = '$orderNo'";
 $getCount = $conn->query($count)->fetch_assoc();
-for($i = 0; $i <= 17; ++$i){
+for($i = 0; $i <= 14; ++$i){
     if($i < $getCount['task'] ){
         $progress = $conn->query("SELECT progress from task_days where task_id = '$orderNo' order by dates limit $i,1")->fetch_assoc();
-        $pdf->cell(10,6, "{$progress['progress']}%",1,0);
+        $pdf->cell(12,6, "{$progress['progress']}%",1,0);
     }else{
-        $pdf->cell(10,6, "",1,0);
+        $pdf->cell(12,6, "",1,0);
     }
 }
 

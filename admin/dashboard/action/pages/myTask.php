@@ -181,7 +181,6 @@ if(isset($_POST['myTask'])){
                                 $inQueryDays = "INSERT INTO task_days(dates, task_id, days_count, progress) VALUES('$todays', '$orderNo', 0, '$totalProcess')";
                                 $inTaskDays = $conn->query($inQueryDays);
                                 if($inTaskDays){
-                                        echo "<script> alert('inserted');</script>";
                                 }else{
                                         echo "<script> alert('error');</script>";
                                 }
