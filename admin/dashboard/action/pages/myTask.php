@@ -124,7 +124,7 @@ if(isset($_POST['myTask'])){
                         $filepaths3 = "../../img/history/".$filename3;
 
                         $imageType3 = array("image/jpeg", "image/png", "image/gif", "image/tiff");
-                        if (!in_array( $filetype, $imageType3)) { //check if image only
+                        if (!in_array( $filetype3, $imageType3)) { //check if image only
                                 echo "<script>alert('3Image Only (.jpeg, .png, .gif, .tif)')</script>";
                         }else{
                                 if(move_uploaded_file($filetemp3, $filepaths3)){ //upload image
@@ -150,7 +150,7 @@ if(isset($_POST['myTask'])){
                         $filepaths4 = "../../img/history/".$filename4;
 
                         $imageType4 = array("image/jpeg", "image/png", "image/gif", "image/tiff");
-                        if (!in_array( $filetype4, $imageType)) { //check if image only
+                        if (!in_array( $filetype4, $imageType4)) { //check if image only
                                 echo "<script> alert('4Image Only (.jpeg, .png, .gif, .tif)')</script>";
                         }else{
                                 if(move_uploaded_file($filetemp4, $filepaths4)){ //upload image
@@ -169,10 +169,24 @@ if(isset($_POST['myTask'])){
                 }
 
                 $totalProcess = ($area1 + $area2 + $area3 + $area4) / 4;
-
+                date_default_timezone_set('Asia/Manila');
+                $todays = date('Y-m-d');
                 $updateProcess = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
                 
                 if($updateProcess){
+                        $selDaysProgress = $conn->query("SELECT * from task_days where task_id = '$orderNo' and dates = '$todays'");
+                        if(mysqli_num_rows($selDaysProgress) > 0){
+                                $updateDayProgress = $conn->query("UPDATE task_days set progress = '$totalProcess' where dates = '$todays' and task_id = '$orderNo'");
+                        }else{
+                                $inQueryDays = "INSERT INTO task_days(dates, task_id, days_count, progress) VALUES('$todays', '$orderNo', 0, '$totalProcess')";
+                                $inTaskDays = $conn->query($inQueryDays);
+                                if($inTaskDays){
+                                        echo "<script> alert('inserted');</script>";
+                                }else{
+                                        echo "<script> alert('error');</script>";
+                                }
+                        }
+                        
                         echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
                         echo "<script> alert('Task Updated');</script>";
                         echo "<script>window.location.href = 'index.php?myTask'</script>";

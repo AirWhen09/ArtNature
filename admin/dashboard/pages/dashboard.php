@@ -57,13 +57,7 @@
 							<?php
 							while($task = $getTask->fetch_assoc()){
 								$orderNo = $task['order_no'];
-								if($task['process'] == 100){
-									$update = $conn->query("UPDATE tasks set status = 'tstts3' where order_no = '$orderNo'");
-								}elseif($task['userId'] == '' || $task['userId'] == NULL){
-									$update = $conn->query("UPDATE tasks set status = 'tstts1' where order_no = '$orderNo'");
-								}else{
-									$update = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orderNo'");
-								}
+								
 							?>
 							<div class="col-xl-4 col-xxl-4 col-sm-6">
 								<a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
@@ -123,6 +117,8 @@
 				
             </div>
         </div>
+
+		<?php include 'pages/validation/helpers.php'?>
         <!--**********************************
             Content body end
         ***********************************-->

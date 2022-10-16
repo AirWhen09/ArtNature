@@ -51,22 +51,61 @@
     $getAllBatch = $conn->query("SELECT * from task_batch");
 
     if(isset($_POST['myTask'])){
-        $process = $_POST['process'];
-        $orderNo = $_POST['orderNo'];
-        if($process == 100){
-            $sql = "UPDATE tasks set process = '$process', status = 'tstts3' where order_no = '$orderNo'";
-        }else{
-            $sql = "UPDATE tasks set process = '$process' where order_no = '$orderNo'";
-        }
-        $updateTask = $conn->query($sql);
-        if($updateTask){
-            $addHistory = "INSERT INTO task_progress_history (image, task_id, progress) VALUES('img/nopic.png','$orderNo','$process')";
-            $newHistory = $conn->query($addHistory);
-            if($newHistory){
-                echo "<script>window.location.href = 'index.php?manageTask'</script>";
-            }
-            
-        }
+        $area1 = $_POST['area1'];
+        $area2 = $_POST['area2'];
+        $area3 = $_POST['area3'];
+        $area4 = $_POST['area4'];
+    
+            $wigId = $_POST['wigId'];
+    
+            $orderNo = $_POST['orderNo'];
+                        
+                        $addHistory = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('img/nopic.png','$orderNo','$area1', 1)";
+                        $newHistory = $conn->query($addHistory);
+                        if($newHistory){
+                                $updateArea = $conn->query("UPDATE wig set area_i = '$area1', area_i_pic = 'img/nopic.png' where wig_id = '$wigId'");
+                        }else{
+                                echo "<script> alert('Image Cant update area 1')</script>";
+                                echo "<script> alert('$conn->error')</script>";
+                        }
+    
+                                            
+                        $addHistory2 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('img/nopic.png','$orderNo','$area2',2)";
+                        $newHistory2 = $conn->query($addHistory2);
+                        if($newHistory2){
+                                $updateArea = $conn->query("UPDATE wig set area_ii = '$area2', area_ii_pic = 'img/nopic.png' where wig_id = '$wigId'");
+                        }else{
+                                echo "<script> alert('Image Cant Uploads 22')</script>";
+                        }
+                             
+    
+                        $addHistory3 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('img/nopic.png','$orderNo','$area3',3)";
+                        $newHistory3 = $conn->query($addHistory3);
+                        if($newHistory3){
+                                $updateArea = $conn->query("UPDATE wig set area_iii = '$area3', area_iii_pic = 'img/nopic.png' where wig_id = '$wigId'");
+                        }else{
+                                echo "<script> alert('Image Cant Uploads 3')</script>";
+                        }
+                                    
+    
+                        $addHistory4 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('img/nopic.png','$orderNo','$area4',4)";
+                        $newHistory4 = $conn->query($addHistory4);
+                        if($newHistory4){
+                                $updateArea = $conn->query("UPDATE wig set area_iv = '$area4', area_iv_pic = 'img/nopic.png' where wig_id = '$wigId'");
+                        }else{
+                                echo "<script> alert('Image Cant Uploads 4')</script>";
+                        }
+    
+                    $totalProcess = ($area1 + $area2 + $area3 + $area4) / 4;
+    
+                    $updateProcess = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
+                    
+                    if($updateProcess){
+                            echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
+                            echo "<script> alert('Task Updated');</script>";
+                            echo "<script>window.location.href = 'index.php?manageTask'</script>";
+                    }
+    
     }
 
     if(isset($_POST['taskArchive'])){
