@@ -15,6 +15,8 @@
         $countNotif = "SELECT count(*) as myNotif from notification where user_id = '$isLoginUserId' and status = 0";
         $getCountNotif = $conn->query($countNotif)->fetch_assoc();
 
+        $selAllNotification = $conn->query("SELECT * FROM notification where user_id = '$isLoginUserId'");
+
         //message 
         $countMsg = "SELECT count(*) as myMsg from messages where msg_to = '$isLoginUserId' and status = 0";
         $getCountMsg = $conn->query($countMsg)->fetch_assoc();
@@ -95,9 +97,36 @@
                                     <span class="badge light text-white bg-primary rounded-circle"><?php echo $notifNo ?></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="notifID">
-                                    <a class="dropdown-item" href="#">Action sdfsfsdfsd</a>
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Action</a>
+                                    <?php
+                                        while($myNotif = $selAllNotification->fetch_assoc()){
+                                            ?>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myNotif<?php echo $myNotif['notif_id']?>"><?php echo $myNotif['description']?></a>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myNotif<?php echo $myNotif['notif_id']?>" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                        <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                            <div class="modal-body">
+                                                                <div class="container-fluid">
+                                                                    <?php echo $myNotif['description']?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             
                             </li>

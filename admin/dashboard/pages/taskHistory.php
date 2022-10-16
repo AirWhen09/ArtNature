@@ -25,6 +25,7 @@
                 <div class="row mx-3">
                         <?php
                             $days = [];
+                            date_default_timezone_set('Asia/Manila');
                             $today = date('Y-m-d');
                             $noOfDays = $getHistory['noOfDays'];
                             $percent = 100/$noOfDays;
