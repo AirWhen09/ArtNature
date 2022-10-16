@@ -70,7 +70,7 @@
                                             
                                             <h4 class="text-center">Area 1</h4>
                                             <h4 class="text-center" ><span id="areaProcess1<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range">
+                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range area1<?php echo $result['order_no'] ?>">
                                             <label for="img1<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe1')" onmouseout="hideUpdatePic('showMe1')" style="cursor: pointer">
                                             <div class="text-center bg-white d-none" id="showMe1" style="position:absolute; cursor: pointer; background-color: white">
                                                 <h4 class="text-center mt-2 p-2" > Update Picture </h4>
@@ -96,7 +96,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 2</h4>
                                             <h4 class="text-center" ><span id="areaProcess2<?php echo $result['order_no'] ?>"><?php echo $area2 != NULL ? $area2 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area2 != NULL ? $area2 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range">
+                                            <input value="<?php echo $area2 != NULL ? $area2 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range area2<?php echo $result['order_no'] ?>">
                                             <label for="img2<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe2')" onmouseout="hideUpdatePic('showMe2')" style="cursor: pointer">
                                             <div class="text-center bg-white d-none" id="showMe2" style="position:absolute; cursor: pointer; background-color: white">
                                                 <h4 class="text-center mt-2 p-2" > Update Picture </h4>
@@ -118,7 +118,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 3</h4>
                                             <h4 class="text-center" ><span id="areaProcess3<?php echo $result['order_no'] ?>"><?php echo $area3 != NULL ? $area3 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area3 != NULL ? $area3 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range">
+                                            <input value="<?php echo $area3 != NULL ? $area3 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range area3<?php echo $result['order_no'] ?>">
                                             <label for="img3<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe3')" onmouseout="hideUpdatePic('showMe3')" style="cursor: pointer">
                                             <div class="text-center bg-white d-none" id="showMe3" style="position:absolute; cursor: pointer; background-color: white">
                                                 <h4 class="text-center mt-2 p-2" > Update Picture </h4>
@@ -139,7 +139,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 4</h4>
                                             <h4 class="text-center" ><span id="areaProcess4<?php echo $result['order_no'] ?>"><?php echo $area4 != NULL ? $area4 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area4 != NULL ? $area4 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range">
+                                            <input value="<?php echo $area4 != NULL ? $area4 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range area4<?php echo $result['order_no'] ?>">
                                             <label for="img4<?php echo $result['order_no'] ?>" onmouseover="showUpdatePic('showMe4')" onmouseout="hideUpdatePic('showMe4')" style="cursor: pointer">
                                             <div class="text-center bg-white d-none" id="showMe4" style="position:absolute; cursor: pointer; background-color: white">
                                                 <h4 class="text-center mt-2 p-2" > Update Picture </h4>
@@ -171,12 +171,19 @@
 </div>
 
 <script>
-    function processStatus(){
-        let id = "processStatus<?php echo $result['order_no'] ?>";
-        let area1 = document.getElementsByName("area1");
-        let area2 = document.getElementsByName("area2");
-        let area3 = document.getElementsByName("area3");
-        let area4 = document.getElementsByName("area4");
+    function processStatus(x){
+        let id = "processStatus" + x;
+        let area1id = "area1" + x;
+        let area2id = "area2" + x;
+        let area3id = "area3" + x;
+        let area4id = "area4" + x;
+        let area1 = document.getElementsByClassName(area1id);
+        let area2 = document.getElementsByClassName(area2id);
+        let area3 = document.getElementsByClassName(area3id);
+        let area4 = document.getElementsByClassName(area4id);
+
+        console.log(area1id);
+        console.log(area1);
 
         let area1Val = area1[0].value,
             area2Val = area2[0].value,
@@ -216,7 +223,7 @@
         imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess2(x){
@@ -225,7 +232,7 @@
         imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess3(x){
@@ -234,7 +241,7 @@
         imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess4(x){
@@ -243,7 +250,7 @@
         imgs.setAttribute('required', '');
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function showUpdatePic(x) {

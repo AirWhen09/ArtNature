@@ -70,7 +70,7 @@
                                             
                                             <h4 class="text-center">Area 1</h4>
                                             <h4 class="text-center" ><span id="areaProcess1<?php echo $result['order_no'] ?>"><?php echo $area1 != NULL ? $area1 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range">
+                                            <input value="<?php echo $area1 != NULL ? $area1 : 0;?>" type="range" name="area1" id="<?php echo $result['order_no'] ?>" onchange="areaProcess1(this)" class="form-range area1<?php echo $result['order_no'] ?>">
                                                 <img 
                                                 src="<?php echo $area1Pic != NULL ? '../../'.$area1Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
@@ -90,7 +90,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 2</h4>
                                             <h4 class="text-center" ><span id="areaProcess2<?php echo $result['order_no'] ?>"><?php echo $area2 != NULL ? $area2 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area2 != NULL ? $area2 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range">
+                                            <input value="<?php echo $area2 != NULL ? $area2 : 0;?>" type="range" name="area2" id="<?php echo $result['order_no'] ?>" onchange="areaProcess2(this)" class="form-range area2<?php echo $result['order_no'] ?>">
                                                 <img 
                                                 src="<?php echo $area2Pic != NULL ? '../../'.$area2Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
@@ -107,7 +107,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 3</h4>
                                             <h4 class="text-center" ><span id="areaProcess3<?php echo $result['order_no'] ?>"><?php echo $area3 != NULL ? $area3 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area3 != NULL ? $area3 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range">
+                                            <input value="<?php echo $area3 != NULL ? $area3 : 0;?>" type="range" name="area3" id="<?php echo $result['order_no'] ?>" onchange="areaProcess3(this)" class="form-range area3<?php echo $result['order_no'] ?>">
                                                 <img 
                                                 src="<?php echo $area3Pic != NULL ? '../../'.$area3Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
@@ -123,7 +123,7 @@
                                         <div class="col-lg-6 mx-auto mt-3">
                                             <h4 class="text-center">Area 4</h4>
                                             <h4 class="text-center" ><span id="areaProcess4<?php echo $result['order_no'] ?>"><?php echo $area4 != NULL ? $area4 : 0;?></span>% complete</h4>
-                                            <input value="<?php echo $area4 != NULL ? $area4 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range">
+                                            <input value="<?php echo $area4 != NULL ? $area4 : 0;?>" type="range" name="area4" id="<?php echo $result['order_no'] ?>" onchange="areaProcess4(this)" class="form-range area4<?php echo $result['order_no'] ?>">
                                                 <img 
                                                 src="<?php echo $area4Pic != NULL ? '../../'.$area4Pic : '../../img/noData.jpg';?>" 
                                                 alt="avatar"
@@ -176,17 +176,25 @@
 </div>
 
 <script>
-    function processStatus(){
-        let id = "processStatus<?php echo $result['order_no'] ?>";
-        let area1 = document.getElementsByName("area1");
-        let area2 = document.getElementsByName("area2");
-        let area3 = document.getElementsByName("area3");
-        let area4 = document.getElementsByName("area4");
+    function processStatus(x){
+        let id = "processStatus" + x;
+        let area1id = "area1" + x;
+        let area2id = "area2" + x;
+        let area3id = "area3" + x;
+        let area4id = "area4" + x;
+        let area1 = document.getElementsByClassName(area1id);
+        let area2 = document.getElementsByClassName(area2id);
+        let area3 = document.getElementsByClassName(area3id);
+        let area4 = document.getElementsByClassName(area4id);
+
+        console.log(area1id);
+        console.log(area1);
 
         let area1Val = area1[0].value,
             area2Val = area2[0].value,
             area3Val = area3[0].value,
             area4Val = area4[0].value;
+        
 
         let total = (parseInt(area1Val) + parseInt(area2Val) + parseInt(area3Val) + parseInt(area4Val)) / 4;
         
@@ -219,28 +227,28 @@
         let process = "areaProcess1"+x.id;
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess2(x){
         let process = "areaProcess2"+x.id;
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess3(x){
         let process = "areaProcess3"+x.id;
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function areaProcess4(x){
         let process = "areaProcess4"+x.id;
         document.getElementById(process).innerText = x.value;
 
-        processStatus();
+        processStatus(x.id);
     }
 
     function showUpdatePic(x) {
