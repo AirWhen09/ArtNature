@@ -191,8 +191,9 @@ if(isset($_POST['signup'])){
             )";
 
         if($conn->query($sql)){
+            $_SESSION['email'] = $email;
             echo "<script>swal('Welcome!', 'You Have Created an Account Successfully!', 'success');</script>";
-            echo "<script>window.location.href = 'landing.php?verify&email=$email'</script>";
+            echo "<script>window.location.href = 'landing.php?verify'</script>";
         }else{
             array_push($errors, "Something Wrong!: ".$conn->error);
         }

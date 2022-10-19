@@ -12,4 +12,6 @@ include __DIR__ . '/pages/landingPage.php';
 
 require __DIR__ . '/boilerPlate/footer.php';
 
+
+
 ?>

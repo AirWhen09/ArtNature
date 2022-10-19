@@ -1,3 +1,7 @@
+<?php 
+// require 'session/session.php';
+require 'action/verify.php';
+?>
 <!-- Start Login Content -->
 <div class="container login-section mb-5 shadow-lg col-lg-4">
     <div class="container p-3">
