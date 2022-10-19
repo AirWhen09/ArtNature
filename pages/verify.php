@@ -10,10 +10,10 @@ require 'action/verify.php';
                 <div class="error-content">
                     <h3><i class="fas fa-exclamation-triangle text-warning"></i> Please Check Your Email to verify your Account.</h3>
                         <p>
-                        <a href="verify.php?resend=again">Resend</a>.
+                        <a href="?verify&resend=again">Resend</a>.
                     </p>
                     <p>
-                        <a href="index.php">return to dashboard</a>.
+                        <a href="index.php">return to index</a>.
                     </p>
 
                 </div>

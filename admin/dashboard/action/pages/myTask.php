@@ -186,8 +186,8 @@ if(isset($_POST['myTask'])){
                                 }
                         }
                         
-                        echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
-                        echo "<script> alert('Task Updated');</script>";
+                        echo "<script>swal('Yehey!', 'WELL DONE, YOUR TASK HAS ALREADY BEEN UPDATED!', 'success');</script>";
+                        echo "<script> alert('WELL DONE, YOUR TASK HAS ALREADY BEEN UPDATED');</script>";
                         echo "<script>window.location.href = 'index.php?myTask'</script>";
                 }
 

@@ -94,10 +94,11 @@
                 $insertMsg = $conn->query($sql);
                 if($insertMsg){
 
-                    $addNewNotif = "INSERT INTO notification(description, user_id, status) VAlUES('Assigned task', '$employee', 0)";
+                    $addNewNotif = "INSERT INTO notification(description, user_id, status) VAlUES('Your task has already been assigned by Artnature Admin. Gratitude and Goodluck to you!', '$employee', 0)";
                     $insertNewNotif = $conn->query($addNewNotif);
 
                     if($insertNewNotif){
+                        
                         array_push($success, "Updated");
                         echo "<script>window.location.href = 'index.php?manageTask'</script>";
                     }else{

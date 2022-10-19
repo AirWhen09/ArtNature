@@ -168,6 +168,8 @@ if(isset($_POST['signup'])){
 
     if(count($errors) === 0){
 
+        $code = rand(100000, 999999);
+
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (
@@ -183,15 +185,41 @@ if(isset($_POST['signup'])){
             username,
             password,
             image, 
-            status)
+            status,
+            code)
             values (
                 '$firstName', '$middleName', '$lastname' , '$gender' , '$dateOfBirth' , 
                 '$contact', '$employee', '$address', '$email', '$username', '$password',
-                '$filepath', 'ustts1'
+                '$filepath', 'ustts1', '$code'
             )";
 
         if($conn->query($sql)){
             $_SESSION['email'] = $email;
+            $receiver = $email;
+            $subject = "Email Verification ";
+            $sender = "ARTNATURE";
+                
+            $body .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                            <html xmlns="http://www.w3.org/1999/xhtml">
+                            <head>
+                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                            </head>
+                            <body>
+                        <p>Welcome to Online Research Repository System. Your new account comes with access to CBSUA Unpublished Researches. Please click/copy the link below to verify your account.</p><br>
+                            <a href="https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$code.'" target="_BLANK">https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$code.'</a>
+            </body>
+            </html>';
+
+            $headers = "" .
+                    "Reply-To:" . $sender . "\r\n" .
+                    "X-Mailer: PHP/" . phpversion();
+            $headers .= 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";    
+            $headers .= 'From: ' . $sender . "\r\n";
+            if(mail($receiver, $subject, $body, $headers)){
+            }else{
+            echo "<script>alert('Sorry, failed while sending mail!')</script>";
+            }
             echo "<script>swal('Welcome!', 'You Have Created an Account Successfully!', 'success');</script>";
             echo "<script>window.location.href = 'landing.php?verify'</script>";
         }else{
