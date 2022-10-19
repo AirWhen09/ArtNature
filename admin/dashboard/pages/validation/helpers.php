@@ -5,8 +5,9 @@ $today = date('Y-m-d');
 
 $selAllTasks = $conn->query("SELECT * from tasks");
 $selAllTasks2 = $conn->query("SELECT * from tasks");
+$selAllTasks3 = $conn->query("SELECT * from tasks");
 
-
+// update status
 while($task = $selAllTasks->fetch_assoc()){
   $orderNo = $task['order_no'];
   if($task['process'] == 100){
@@ -18,6 +19,7 @@ while($task = $selAllTasks->fetch_assoc()){
     }
 }
 
+// send notification to employee and admin
 while($notif = $selAllTasks2->fetch_assoc()){
   $noOfDays = $notif['no_of_days'];
 
@@ -33,7 +35,7 @@ while($notif = $selAllTasks2->fetch_assoc()){
       $addDate = date('Y-m-d', strtotime($startDate. ' + '.$i.' day'));
       $i++;
       if($addDate <= $today){
-        if(time() >= strtotime("17:00:00") || time() >= strtotime("17:30:00")){
+        if(time() >= strtotime("17:00:00") && time() <= strtotime("17:30:00")){
           if($progress > $notif['process']){
             // Query here for the notification
             $userId = $notif['user_id'];
@@ -52,7 +54,22 @@ while($notif = $selAllTasks2->fetch_assoc()){
   }
 }
 
-echo $todayWithTime;
+// check for lapsed task
+while($lapsed = $selAllTasks3->fetch_assoc()){
+  $orderNo = $lapsed['order_no'];
+  $endDate = $lapsed['end_date'];
+  $progress = $lapsed['process'];
+  $userId = $notif['user_id'];
+  $selUser = $conn->query("SELECT * from users where user_id = '$userId'")->fetch_assoc();
+  $userName = $selUser['first_name'].' '.$selUser['last_name'];
+  $forAdmin = "$userName LAPSED $orderNo";
+  $forEmployee = "HI $userName LAPSED $orderNo";
 
+  $dates = date('Y-m-d', strtotime($endDate));
+  if($today > $endDate && $progress < 100){
+    $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forAdmin', 2, 0)");
+    $inNotifEmployee = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forEmployee', '$userId', 0)");
+  }
+}
 
 ?>

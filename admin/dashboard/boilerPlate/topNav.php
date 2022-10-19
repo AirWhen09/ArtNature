@@ -39,6 +39,15 @@
         $msgNo = '';
         $role = "HACKER";
     }
+
+    if(isset($_POST['submitNotif'])){
+        $id = $_POST['notifId'];
+
+        $delete = $conn->query("DELETE FROM notification where notif_id = '$id'");
+        if($delete){
+            header("Refresh:0");
+        }
+    }
 ?>
         <!--**********************************
             Nav header start
@@ -100,29 +109,7 @@
                                     <?php
                                         while($myNotif = $selAllNotification->fetch_assoc()){
                                             ?>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myNotif<?php echo $myNotif['notif_id']?>"><?php echo $myNotif['description']?></a>
-                                                
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="myNotif<?php echo $myNotif['notif_id']?>" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                            <div class="modal-body">
-                                                                <div class="container-fluid">
-                                                                    <?php echo $myNotif['description']?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
+                                                <a class="dropdown-item" href="#" data-id="<?php echo $myNotif['notif_id']?>" data-desc="<?php echo $myNotif['description']?>" onclick="showNotif(this)"><?php echo substr($myNotif['description'], 0, 15).'...'?></a>
                                                 
                                             <?php
                                         }
@@ -146,6 +133,61 @@
 				</nav>
 			</div>
 		</div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myNotifs" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <!-- <h5 class="modal-title" id="modalTitleId">Modal title</h5> -->
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <h2 id="myNotification"></h2>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="" method="post">
+                            <input type="hidden" id="notifId" name="notifId">
+                            <button type="submit" name="submitNotif" class="btn btn-primary">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
+
+        <script>
+            function showNotif(x){
+                var galleryModal = new bootstrap.Modal(document.getElementById('myNotifs'), {
+                keyboard: false
+                });
+
+                var desc = x.dataset.desc;
+                var id = x.dataset.id;
+
+                document.getElementById('myNotification').innerText = desc;
+                document.getElementById('notifId').value = id;
+
+                galleryModal.show();
+
+				$.ajax({
+					url   : 'action/ajax/notif.php',
+					type  : 'POST',
+					dataType: "text",
+					data  : {notifId : id},
+					success : function(data){
+                        if(data == 'ok'){
+
+                        }else{
+                            alert(data);
+                        }
+					}
+				});
+            }
+            
+        </script>

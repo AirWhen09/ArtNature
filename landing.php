@@ -8,6 +8,8 @@ if(isset($_GET['signup'])){
     include __DIR__ . '/pages/signUp.php';
 }else if(isset($_GET['login'])){
     include __DIR__ . '/pages/login.php';
+}else if(isset($_GET['verify'])){
+    include __DIR__ . '/pages/verify.php';
 }else{
     include __DIR__ . '/pages/404.php';
 }

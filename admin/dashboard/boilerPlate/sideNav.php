@@ -76,7 +76,7 @@
                     </li>
                     <li><a href="index.php?delivery" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-013-checkmark"></i>
-							<span class="nav-text <?php if(isset($_GET['delivery'])) echo "text-primary"; ?>">Delivery</span>
+							<span class="nav-text <?php if(isset($_GET['delivery'])) echo "text-primary"; ?>">Product Location</span>
 						</a>
 					</li>
                     <li><a href="index.php?setting" aria-expanded="false">
