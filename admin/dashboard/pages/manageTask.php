@@ -93,6 +93,8 @@
                                                             $badge = "badge badge-success";
                                                         }elseif($result['taskStat'] == 'tstts4'){
                                                             $badge = "badge badge-secondary";
+                                                        }elseif($result['taskStat'] == 'tstts5'){
+                                                            $badge = "badge badge-default";
                                                         }
                                                     ?>
                                                     <td><?php echo $result['batchName'] ?></td>

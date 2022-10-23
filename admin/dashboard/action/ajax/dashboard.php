@@ -11,6 +11,7 @@ if(isset($_POST['batchName'])){
                           c.image as imagePath,
                           e.name as wigModel,
                           f.name as wigSize,
+                          h.name as wigStatus,
                           g.name as userRole
                 from tasks as a
                 left join reference_code as b on a.status = b.ref_id
@@ -18,7 +19,8 @@ if(isset($_POST['batchName'])){
                 left join reference_code as e on a.wig_model = e.ref_id
                 left join reference_code as f on a.wig_size = f.ref_id
                 left join reference_code as g on c.user_role = g.ref_id
-                where a.status in ('tstts2','tstts3') and batch like '%$batch%'
+                left join reference_code as h on a.status = h.ref_id
+                where a.status in ('tstts2','tstts3','tstts5') and batch like '%$batch%'
                 ";
 
     //get total Ave
@@ -28,7 +30,7 @@ if(isset($_POST['batchName'])){
     
     if($getAve->num_rows > 0){
         $ave = $getAve->fetch_assoc();
-        $batchNames = $conn->query("SELECT name, date_created from task_batch where batch_id = '$batch'");
+        $batchNames = $conn->query("SELECT a.name as name, a.date_created as date_created, b.name as status from task_batch as a join reference_code as b on a.status = b.ref_id where a.batch_id = '$batch'");
 
         if($batchNames->num_rows > 0){
             $batchName = $batchNames->fetch_assoc();
@@ -42,6 +44,7 @@ if(isset($_POST['batchName'])){
                                     <div class="d-flex flex-column">
                                         <span class="text-white fs-18">Name: <span class="fw-bold">'.$batchName['name'].'</span></span>
                                         <span class="text-white fs-18">Date Created: <span class="fw-bold">'.date('F d, Y h:mA', strtotime($batchName['date_created'])).'</span></span>
+                                        <span class="text-white fs-18">Status: <span class="fw-bold">'.$batchName['status'].'</span></span>
                                     </div>
                                 </div>
                                 <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
@@ -97,6 +100,7 @@ if(isset($_POST['batchName'])){
                             
                             <span class="text-white fs-10">'.$task["userRole"].'</span>
                             <span class="text-white fs-10">or #: <b>'.$task["order_no"].'</b></span>
+                            <span class="text-white fs-10">Status: <b>'.$task["wigStatus"].'</b></span>
                         </div>
                     </div>
                     <div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">

@@ -13,7 +13,7 @@
         left join reference_code as e on a.wig_model = e.ref_id
         left join reference_code as f on a.wig_size = f.ref_id
         left join reference_code as g on c.user_role = g.ref_id
-        where a.user_id = '$isLoginUserId'";
+        where a.user_id = '$isLoginUserId' order by a.date_created DESC";
 $getTask = $conn->query($allTask);
 
 

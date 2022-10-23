@@ -24,7 +24,7 @@
 
     
     //get task overview
-    $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts1'";
+    $archiveSQL = "SELECT count(*) as arc from tasks where status = 'tstts5'";
     $newSQL = "SELECT count(*) as new from tasks where status = 'tstts1'";
     $doneSQL = "SELECT count(*) as done from tasks where status = 'tstts3'";
     $productionSQL = "SELECT count(*) as production from tasks where status = 'tstts2'";

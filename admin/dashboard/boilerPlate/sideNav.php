@@ -46,7 +46,7 @@
 						<li>
 							<a href="index.php?location" aria-expanded="false">
 								<i class="flaticon-041-graph"></i>
-								<span class="nav-text <?php if(isset($_GET['location'])) echo "text-primary"; ?>">Location</span>
+								<span class="nav-text <?php if(isset($_GET['location'])) echo "text-primary"; ?>">Product Location</span>
 							</a>
                    		 </li>
 					<?php } ?>
