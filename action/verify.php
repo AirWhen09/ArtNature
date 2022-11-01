@@ -1,12 +1,21 @@
 <?php
-if(isset($_SESSION['email'])){
+require 'connection/connection.php';
+if(isset($_POST['auth']) && isset($_POST['email']) && isset($_POST['verify'])){
+    $email = $_POST['email'];
+    $auth = $_POST['auth'];
 
-}
-
-if(isset($_GET['auth']) && isset($_GET['email'])){
-    $email = $_GET['email'];
-    $auth = $_GET['auth'];
-
+    $selEmail = $conn->query("SELECT code from users where email = '$email' and code = '$auth'");
+    if($selEmail->num_rows > 0){
+        $updateEmail = $conn->query("UPDATE users set status = 'ustts2' where email = '$email'");
+        if($updateEmail){
+            echo "<script>alert('Thanks.')</script>";
+            echo "<script>window.location.href = 'landing.php?login'</script>";
+        }else{
+            echo "<script>alert('Verify Failed, Please Try Again later.')</script>";
+        }
+    }else{
+        echo "<script>alert('Verify Failed, Please Try Again later 2.')</script>";
+    }
 }
 
 if(isset($_POST['resend']) && isset($_SESSION['email'])){
@@ -23,8 +32,10 @@ if(isset($_POST['resend']) && isset($_SESSION['email'])){
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                     </head>
                     <body>
-                <p>Welcome to Online Research Repository System. Your new account comes with access to CBSUA Unpublished Researches. Please click/copy the link below to verify your account.</p><br>
-                    <a href="https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$getCode.'" target="_BLANK">https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$getCode.'</a>
+                <p>To verify your email address use this security code: '.$getCode.'
+
+                Thanks,
+                The Artnature Admin
     </body>
     </html>';
 

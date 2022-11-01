@@ -31,6 +31,8 @@
         include __DIR__ . '/pages/location.php';
     }elseif(isset($_GET['myTask']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){
         include __DIR__ . '/pages/myTask.php';
+    }elseif(isset($_GET['taskDetail']) && isset($_GET['orderNo']) && ($_SESSION['user_role'] === 'ur2' || $_SESSION['user_role'] === 'ur3')){
+        include __DIR__ . '/pages/myTaskDetails.php';
     }elseif(isset($_GET['taskHistory'])){
         include __DIR__ . '/pages/taskHistory.php';
     }elseif(isset($_GET['chat'])){

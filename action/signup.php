@@ -205,8 +205,10 @@ if(isset($_POST['signup'])){
                             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                             </head>
                             <body>
-                        <p>Welcome to Online Research Repository System. Your new account comes with access to CBSUA Unpublished Researches. Please click/copy the link below to verify your account.</p><br>
-                            <a href="https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$code.'" target="_BLANK">https://orrssystem.000webhostapp.com/orrs/verify.php?account='.$code.'</a>
+                            <p>To verify your email address use this security code: '.$code.'
+
+                            Thanks,
+                            The Artnature Admin
             </body>
             </html>';
 

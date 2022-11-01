@@ -15,7 +15,7 @@ while($task = $selAllTasks->fetch_assoc()){
       $update = $conn->query("UPDATE tasks set status = 'tstts3' where order_no = '$orderNo'");
     }elseif($task['user_id'] == '' || $task['user_id'] == NULL){
       $update = $conn->query("UPDATE tasks set status = 'tstts1' where order_no = '$orderNo'");
-    }elseif($task['status'] != 'tstts5' && $task['process'] > 0 && $task['process'] < 100){
+    }elseif($task['status'] != 'tstts5' && $task['status'] != 'tstts1' && $task['process'] > 0 && $task['process'] < 100){
       $update = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orderNo'");
     }
 }
@@ -37,7 +37,7 @@ while($notif = $selAllTasks2->fetch_assoc()){
       $remaining = $noOfDays - $i;
       $i++;
       if($addDate <= $today){
-        if(time() >= strtotime("17:00:00") && time() <= strtotime("17:30:00")){
+        if(time() >= strtotime("20:00:00") && time() <= strtotime("20:30:00")){
           if($progress > $notif['process']){
             // Query here for the notification
             $userId = $notif['user_id'];
@@ -73,7 +73,7 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 
   $dates = date('Y-m-d', strtotime($endDate));
   if($today > $endDate && $progress < 100){
-    $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo'");
+    $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1'");
     if(time() >= strtotime("17:00:00") && time() <= strtotime("17:30:00")){
       $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forAdmin', 2, 0)");
       $inNotifEmployee = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forEmployee', '$userId', 0)");
@@ -90,5 +90,36 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
     $update = $conn->query("UPDATE tasks set status = 'bstts2' where batch_id = '$orderNo'");
   }
 }
+
+    $selWig = $conn->query("SELECT * from wig where wig_id = '$wigNo'")->fetch_assoc();
+    $area1Pic1 = ($selWig['area_i_pic_one'] != NULL || $selWig['area_i_pic_one'] == '') ? 25 : 0;
+    $area2Pic1 = ($selWig['area_ii_pic_one'] != NULL || $selWig['area_ii_pic_one'] == '') ? 25 : 0;
+    $area3Pic1 = ($selWig['area_iii_pic_one'] != NULL || $selWig['area_iii_pic_one'] == '') ? 25 : 0;
+    $area4Pic1 = ($selWig['area_iv_pic_one'] != NULL || $selWig['area_iv_pic_one'] == '') ? 25 : 0;
+    $area1Pic2 = ($selWig['area_i_pic_two'] != NULL || $selWig['area_i_pic_two'] == '') ? 25 : 0;
+    $area2Pic2 = ($selWig['area_ii_pic_two'] != NULL || $selWig['area_ii_pic_one'] == '') ? 25 : 0;
+    $area3Pic2 = ($selWig['area_iii_pic_two'] != NULL || $selWig['area_iii_pic_one'] == '') ? 25 : 0;
+    $area4Pic2 = ($selWig['area_iv_pic_two'] != NULL || $selWig['area_iv_pic_one'] == '') ? 25 : 0;
+    $area1Pic3 = ($selWig['area_i_pic_three'] != NULL || $selWig['area_i_pic_three'] == '') ? 25 : 0;
+    $area2Pic3 = ($selWig['area_ii_pic_three'] != NULL || $selWig['area_ii_pic_one'] == '') ? 25 : 0;
+    $area3Pic3 = ($selWig['area_iii_pic_three'] != NULL || $selWig['area_iii_pic_one'] == '') ? 25 : 0;
+    $area4Pic3 = ($selWig['area_iv_pic_three'] != NULL || $selWig['area_iv_pic_one'] == '') ? 25 : 0;
+    $area1Pic4 = ($selWig['area_i_pic_four'] != NULL || $selWig['area_i_pic_four'] == '') ? 25 : 0;
+    $area2Pic4 = ($selWig['area_ii_pic_four'] != NULL || $selWig['area_ii_pic_one'] == '') ? 25 : 0;
+    $area3Pic4 = ($selWig['area_iii_pic_four'] != NULL || $selWig['area_iii_pic_one'] == '') ? 25 : 0;
+    $area4Pic4 = ($selWig['area_iv_pic_four'] != NULL || $selWig['area_iv_pic_one'] == '') ? 25 : 0;
+    $areaProgress = 0;
+    if($areaNo == 'area_i'){
+        $areaProgress = ($area1Pic1 + $area1Pic2 + $area1Pic3 + $area1Pic4) / 4;
+    }elseif($areaNo == 'area_ii'){
+        $areaProgress = ($area2Pic1 + $area2Pic2 + $area2Pic3 + $area2Pic4) / 4;
+    }elseif($areaNo == 'area_iii'){
+        $areaProgress = ($area3Pic1 + $area3Pic2 + $area3Pic3 + $area3Pic4) / 4;
+    }elseif($areaNo == 'area_iv'){
+        $areaProgress = ($area4Pic1 + $area4Pic2 + $area4Pic3 + $area4Pic4) / 4;
+    }
+    $totalProgress = ($area1Pic1 + $area2Pic1 + $area3Pic1 + $area4Pic1 + $area1Pic2 + $area2Pic2 + $area3Pic2 + $area4Pic2 + 
+                        $area1Pic3 + $area2Pic3 + $area3Pic3 + $area4Pic3 + $area1Pic4 + $area2Pic4 + $area3Pic4 + $area4Pic4) / 16;
+    
 
 ?>

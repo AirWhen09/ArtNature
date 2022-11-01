@@ -42,12 +42,18 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         $row = $selectUser->fetch_assoc();
         if(password_verify($password, $row['password'])){
             session_start();
-            $_SESSION['user_role'] = $row['user_role'];
-            $_SESSION['userId'] = $row['user_id'];
-            $_SESSION['status'] = "valid";
-            $_SESSION['firstName'] = $row['first_name'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['image'] = $row['image'];
+            if($row['status'] == 'ustts1'){
+                $_SESSION['email'] = $row['email'];
+                echo "<script>swal('Verify First!', 'You need to verify your email first!', 'success');</script>";
+                echo "<script>window.location.href = 'landing.php?verify'</script>";
+            }else{
+                $_SESSION['user_role'] = $row['user_role'];
+                $_SESSION['userId'] = $row['user_id'];
+                $_SESSION['status'] = "valid";
+                $_SESSION['firstName'] = $row['first_name'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['image'] = $row['image'];
+            }
         }else{
             array_push($errors, CREDENTIAL_INVALID);
         }

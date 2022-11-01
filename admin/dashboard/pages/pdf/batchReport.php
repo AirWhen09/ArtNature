@@ -86,11 +86,11 @@ $pdf->cell(30,6, "{$endDate}",1,0);
 $pdf->cell(30,6, "{$result['batchName']}",1,0);
 $pdf->cell(15,6, "{$result['noOfDays']}",1,0);
 
-$count = "SELECT count(*) as task from task_days where task_id = '$orderNo'";
+$count = "SELECT count(*) as task from tasks_days where task_id = '$orderNo'";
 $getCount = $conn->query($count)->fetch_assoc();
 for($i = 0; $i <= 14; ++$i){
     if($i < $getCount['task'] ){
-        $progress = $conn->query("SELECT progress from task_days where task_id = '$orderNo' order by dates limit $i,1")->fetch_assoc();
+        $progress = $conn->query("SELECT progress from tasks_days where task_id = '$orderNo' order by dates limit $i,1")->fetch_assoc();
         $pdf->cell(12,6, "{$progress['progress']}%",1,0);
     }else{
         $pdf->cell(12,6, "",1,0);

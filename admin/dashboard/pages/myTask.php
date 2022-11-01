@@ -91,7 +91,7 @@
                                                 <?php
                                                     if($result['start_date'] != '' && $result['process'] != 100){
                                                 ?>
-                                                    <button class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myTask<?php echo $result['order_no'] ?>">Update</button>
+                                                    <a class="btn btn-primary btn-sm" href="index.php?taskDetail&orderNo=<?php echo $result['order_no'] ?>">Update</a>
                                                 <?php 
                                                     }else{
                                                     ?>
@@ -100,7 +100,7 @@
                                             </td>
                                         </tr>
                                         <?php
-                                            include 'pages/component/myTaskModal.php';
+                                            // include 'pages/component/myTaskModal.php';
                                         }
                                         ?>
                                 </tbody>
