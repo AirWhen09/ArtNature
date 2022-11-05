@@ -123,4 +123,12 @@ if(isset($_POST['batchName'])){
     echo $output;
 }
 
+if(isset($_POST['remarks'])){
+    $remark = $_POST['remarks'];
+    $orNo = $_POST['orNo'];
+
+    $up = $conn->query("UPDATE tasks set remarks = '$remark' where order_no = '$orNo'");
+    
+}
+
 ?>

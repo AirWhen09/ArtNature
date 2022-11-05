@@ -21,6 +21,34 @@
                 </div>
                 <div class="row my-2 mx-2">
                         <h2 class="card-title mb-2 ">Description: <span class="fw-bold"><?php echo $getHistory['descriptions']?></span></h2>
+                        <?php
+                            if($_SESSION['user_role'] === "ur1"){
+                                ?>
+                                <h2 class="card-title mb-2 ">Remarks: <span class="fw-bold">
+                                    <div class="form-check mx-5">
+                                      <input class="form-check-input adminRemarks" type="radio" name="remarks" id="good" value="Good"
+                                      <?php if($getHistory['remarks'] === 'Good') echo 'checked';?>
+                                      >
+                                      <label class="form-check-label" for="good">
+                                        Good
+                                      </label>
+                                    </div>
+                                    <div class="form-check mx-5">
+                                     <input class="form-check-input adminRemarks" type="radio" name="remarks" id="damage" value="Damage"
+                                     <?php if($getHistory['remarks'] === 'Damage') echo 'checked';?>
+                                     >
+                                      <label class="form-check-label" for="damage">
+                                        Damage
+                                      </label>
+                                    </div>
+                                </h2>
+                                <?php
+                            }else{
+                                ?>
+                                <h2 class="card-title mb-2 ">Remarks: <span class="fw-bold"><?php echo $getHistory['remarks']?></span></h2>
+                                <?php
+                            }
+                        ?>
                     </div>
                 <div class="row mx-3">
                         <?php

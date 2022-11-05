@@ -20,6 +20,28 @@
                 ";
     $getTask = $conn->query($allTask);
 
+    //get all archived task
+    $allTaskArchived = "SELECT *, b.name as taskStatus , 
+                          c.first_name as firstName, 
+                          c.last_name as lastName,
+                          c.image as imagePath,
+                          e.name as wigModel,
+                          f.name as wigSize,
+                          g.name as userRole,
+                          a.status as taskStat,
+                          h.name as batchName
+                from tasks as a
+                left join reference_code as b on a.status = b.ref_id
+                left join users as c on a.user_id = c.user_id
+                left join reference_code as e on a.wig_model = e.ref_id
+                left join reference_code as f on a.wig_size = f.ref_id
+                left join reference_code as g on c.user_role = g.ref_id
+                left join task_batch as h on a.batch = h.batch_id
+                where a.status = 'tstts4'
+                order by a.date_created ASC;
+                ";
+    $getTaskArchived = $conn->query($allTaskArchived);
+
     //get all new task
     $allNewTask = "SELECT *, b.name as taskStatus,
                              c.name as wigModel,

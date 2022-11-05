@@ -10,8 +10,15 @@ if($_SESSION['user_role'] === 'ur1'){
 }
 $calendars = "";
 $calendars .= "[";
-  
+date_default_timezone_set('Asia/Manila');
+$todayz = date('Y-m-d');
+$colors = '';
   while($calendar = $getTasksDate->fetch_assoc()){
+    if($todayz > date('Y-m-d', strtotime($calendar['end_date']))){
+      $colors = "'#ff0000'";
+    }else{
+      $colors = "'#4fc65f'";
+    }
     $calendars .= '
     {
       title: "'.$calendar['order_no'].'",
@@ -26,6 +33,7 @@ $calendars .= "[";
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calen = <?php echo $calendars?>;
+    var colors = <?php echo $colors?>;
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
@@ -36,8 +44,8 @@ $calendars .= "[";
       editable: false,
       height: 650,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: calen
-       
+      events: calen,
+      eventColor: colors
       
     });
 

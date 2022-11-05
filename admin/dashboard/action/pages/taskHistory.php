@@ -5,6 +5,7 @@ if(isset($_GET['or'])){
                           b.date_created as dateCreated,
                           b.no_of_days as noOfDays,
                           b.start_date as startDate,
+                          b.remarks as remarks,
                           b.description as descriptions,
                           c.name as batchName,
                           d.name as wigSize,

@@ -91,7 +91,9 @@ if(isset($_POST['updateImg'])){
                             }
                             
                     }else{
-                            echo "<script> alert('Image Cant Update')</script>";
+                        $ey = $conn->error;
+                        echo $ey;
+                            echo "<script> alert('$ey')</script>";
                     }
             }else{
                     echo "<script> alert('Image Cant Upload 4');</script>";
