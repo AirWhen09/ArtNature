@@ -1,3 +1,4 @@
+<?php include 'pages/validation/helpers.php'?>
 <?php include 'action/pages/manageTask.php'; ?>
 <?php include 'action/addNewTask.php'; ?>
 <?php include 'action/assignEmployee.php'; ?>
@@ -316,9 +317,15 @@
                                                     <option value="">Select Employee</option>
                                                     <?php
                                                     while($employee = $getEmployee->fetch_assoc()){
-                                                        ?>
+                                                        $userId = $employee['user_id'];
+                                                        $selTask = $conn->query("SELECT * from tasks where user_id = '$userId' and status IN('tstts1', 'tstts2', 'tstts5')");
+                                                        if($selTask->num_rows > 0){
+                                                        }else{
+                                                            ?>
                                                             <option value="<?php echo $employee['user_id']; ?>"><?php echo $employee['fullname']; ?></option>
                                                         <?php
+                                                        }
+                                                        
                                                     }
                                                     ?>
                                                     </select>

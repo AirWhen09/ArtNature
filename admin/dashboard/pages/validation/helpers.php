@@ -97,7 +97,7 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 //check task batch
 while($taskBatch = $selAllTaskBatch->fetch_assoc()){
   $orderNo = $taskBatch['batch_id'];
-  if($taskBatch['progress'] == 100){
+  if($taskBatch['progress'] == 100 && $taskBatch['status'] != 'bstts5'){
     $update = $conn->query("UPDATE tasks set status = 'bstts3' where batch_id = '$orderNo'");
   }elseif($taskBatch['status'] != 'bstts5' && $taskBatch['progress'] > 0 && $taskBatch['progress'] < 100){
     $update = $conn->query("UPDATE tasks set status = 'bstts2' where batch_id = '$orderNo'");

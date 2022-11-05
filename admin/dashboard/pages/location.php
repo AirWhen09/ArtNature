@@ -39,7 +39,7 @@
                                                 </svg>
                                             </div>
                                             <div class="d-grid">
-                                                <span class="text-white fs-10"><?php echo $location['batchName']?> is currently at <?php echo $location['address']?>, <?php echo date('F d, Y h:mA', strtotime($location['dateArrived']))?></span>
+                                                <span class="text-white fs-10"><?php echo $location['batchName']?> is currently at <?php echo $location['address']?>, <?php echo $location['dateArrived']?></span>
                                                 <span class="text-white fs-10">Driver Name: <b><?php echo $location['fullName']?></b></span>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                         }
 
                         $selStat = $conn->query("SELECT status from task_batch where name = '$batchId'")->fetch_assoc();
-                        if($selStat['status'] == 'bstts4'){
+                        if($selStat['status'] == 'bstts5'){
                             ?>
                                 <div class="col-xl-3 col-xxl-3 col-sm-6">
                                     <div class="card bg-success invoice-card">
@@ -161,7 +161,7 @@
                                                     $badge = "badge badge-warning";
                                                 }elseif($batch['batchStatus'] == 'bstts2'){
                                                     $badge = "badge badge-danger";
-                                                }elseif($batch['batchStatus'] == 'bstts3'){
+                                                }elseif($batch['batchStatus'] == 'bstts3' || $batch['batchStatus'] == 'bstts5'){
                                                     $badge = "badge badge-success";
                                                 }elseif($batch['batchStatus'] == 'bstts4'){
                                                     $badge = "badge badge-secondary";

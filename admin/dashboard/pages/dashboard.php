@@ -12,15 +12,15 @@
 						<?php
 						while($batch = $getBatch->fetch_assoc()){
 							$batchId = $batch['batch_id'];
-							$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4' and batch = '$batchId'";
+							$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve, status from tasks as a where a.status  != 'tstts4' and batch = '$batchId'";
     						$getAve = $conn->query($aveProcess)->fetch_assoc();
-							if($getAve['totalAve'] == 100){
-								$update = $conn->query("UPDATE task_batch set status = 'bstts3' where batch_id = '$batchId'");
-							}elseif($getAve['totalAve'] == '' || $getAve['totalAve'] == 0){
-								$update = $conn->query("UPDATE task_batch set status = 'bstts1' where batch_id = '$batchId'");
-							}else{
-								$update = $conn->query("UPDATE task_batch set status = 'bstts2' where batch_id = '$batchId'");
-							}
+							// if($getAve['totalAve'] == 100 && $getAve['status'] != 'bstts5'){
+							// 	$update = $conn->query("UPDATE task_batch set status = 'bstts3' where batch_id = '$batchId'");
+							// }elseif($getAve['totalAve'] == '' || $getAve['totalAve'] == 0){
+							// 	$update = $conn->query("UPDATE task_batch set status = 'bstts1' where batch_id = '$batchId'");
+							// }else{
+							// 	$update = $conn->query("UPDATE task_batch set status = 'bstts2' where batch_id = '$batchId'");
+							// }
 						?>
 						<option value="<?php echo $batch['batch_id']?>"><?php echo $batch['name']?></option>
 						<?php		

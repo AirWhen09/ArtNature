@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    <div class="row container">
+                    <div class="row p-5">
                         <div class="col-xl-6 col-xxl-6 col-sm-12">
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe1')" onmouseout="hideUpdatePic('showMe1')">
                                 

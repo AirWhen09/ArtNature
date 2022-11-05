@@ -49,7 +49,7 @@
     if(isset($_POST['batchDelivered'])){
         $batchId = $_POST['batchName'];
 
-        $delivered = $conn->query("UPDATE task_batch set status = 'bstts4' where name = '$batchId'");
+        $delivered = $conn->query("UPDATE task_batch set status = 'bstts5' where name = '$batchId'");
         if($delivered){
             echo "<script> alert('Update Successfully');</script>";
             echo "<script>window.location.href = 'index.php?location&batch=$batchId'</script>";
