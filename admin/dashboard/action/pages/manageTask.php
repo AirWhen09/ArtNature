@@ -16,6 +16,7 @@
                 left join reference_code as f on a.wig_size = f.ref_id
                 left join reference_code as g on c.user_role = g.ref_id
                 left join task_batch as h on a.batch = h.batch_id
+                where a.status != 'tstts4'
                 order by a.date_created ASC;
                 ";
     $getTask = $conn->query($allTask);

@@ -77,7 +77,7 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 
     $dates = date('Y-m-d', strtotime($endDate));
     if($today > $dates && $progress < 100){
-      $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1'");
+      $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1' and status != 'tstts4'");
       if($isLoginUserId === $userId){
 
         ?>

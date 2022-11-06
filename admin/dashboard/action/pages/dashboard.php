@@ -41,24 +41,24 @@
     }
 
     // update lapsed task 
-    $today = date('Y-m-d');
-    $selAllTask = $conn->query("SELECT * FROM tasks");
-    while($taskList = $selAllTask->fetch_assoc()){
+    // $today = date('Y-m-d');
+    // $selAllTask = $conn->query("SELECT * FROM tasks");
+    // while($taskList = $selAllTask->fetch_assoc()){
        
 
-        if($taskList['process'] < 100 && $taskList['process'] !== NULL){
+    //     if($taskList['process'] < 100 && $taskList['process'] !== NULL){
 
-            $dueDate = date('Y-m-d', strtotime($taskList['end_date']));
+    //         $dueDate = date('Y-m-d', strtotime($taskList['end_date']));
 
-            $orderNo = $taskList['order_no'];
+    //         $orderNo = $taskList['order_no'];
 
             
 
-                if($today > $dueDate){
-                    $updateLapse = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo'");
+    //             if($today > $dueDate){
+    //                 $updateLapse = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo'");
                     
-                }
+    //             }
             
-        }
-    }
+    //     }
+    // }
 ?>

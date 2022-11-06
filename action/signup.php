@@ -161,7 +161,7 @@ if(isset($_POST['signup'])){
             }
         }
     }else{
-        $filepath = "image/profile/avatar.png";
+        $filepath = "img/profile/avatar.png";
         
         
     }

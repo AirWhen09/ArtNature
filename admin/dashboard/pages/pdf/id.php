@@ -47,7 +47,7 @@ $pdf->SetFont('Arial','',10);
 $pdf->Cell(100,5,"{$employee}",0,1,"C");
 $pdf->Cell(100,5,"{$address}",0,1,"C");
 
-$pdf->Image('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=HiImUnderTheWaterPlsHelpMe&choe=UTF-8',33,74,35,0,'PNG');
+//$pdf->Image('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=HiImUnderTheWaterPlsHelpMe&choe=UTF-8',33,74,35,0,'PNG');
 
 $pdf->Cell(16,35,"",0,1,"C");
 $pdf->SetFont('Arial','B',10);
