@@ -24,37 +24,34 @@ while($task = $selAllTasks->fetch_assoc()){
 while($notif = $selAllTasks2->fetch_assoc()){
   $noOfDays = $notif['no_of_days'];
   if($noOfDays != NULL || $noOfDays != ""){
+   
 
     $percent = 100/$noOfDays;
     $startDate = $notif['start_date'];
     $progress = 0;
     $dates = date('Y-m-d', strtotime($startDate));
     if($dates <= $today){
-
+      
       $i = 0;
       while($i < $noOfDays){
         $progress += $percent;
         $addDate = date('Y-m-d', strtotime($startDate. ' + '.$i.' day'));
         $remaining = $noOfDays - $i;
         $i++;
+        
         if($addDate <= $today){
-          if(time() >= strtotime("20:00:00") && time() <= strtotime("20:30:00")){
-            if($progress > $notif['process']){
+          if(time() >= strtotime("15:00:00") && time() <= strtotime("15:01:00")){
+            if($progress > $notif['process'] && $today == $addDate){
               // Query here for the notification
               $userId = $notif['user_id'];
               $selUser = $conn->query("SELECT * from users where user_id = '$userId'")->fetch_assoc();
               $userName = $selUser['first_name'].' '.$selUser['last_name'];
               $forAdmin = "$userName FAILED TO MEET THE EXPECTED PROCESS ON DAY $i";
-              $forEmployee = "The system detected that you didn't meet the expected percentage of task progress this $i. Please allow extra time to finish the task. You have only <b>$remaining</b> days remaining. Thank you!";
-
+              $forEmployee = "The system detected that you didnt meet the expected percentage of task progress this $addDate. Please allow extra time to finish the task. You have only $remaining days remaining. Thank you!";
               $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forAdmin', 2, 0)");
               $inNotifEmployee = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forEmployee', '$userId', 0)");
-
+              
             }
-          }
-
-          if($today == $addDate){
-
           }
         }
       }
@@ -79,7 +76,7 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
     if($today > $dates && $progress < 100){
       $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1' and status != 'tstts4'");
       if($isLoginUserId === $userId){
-
+        
         ?>
           <script>
 
@@ -97,10 +94,10 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 //check task batch
 while($taskBatch = $selAllTaskBatch->fetch_assoc()){
   $orderNo = $taskBatch['batch_id'];
-  if($taskBatch['progress'] == 100 && $taskBatch['status'] != 'bstts5'){
-    $update = $conn->query("UPDATE tasks set status = 'bstts3' where batch_id = '$orderNo'");
+  if($taskBatch['progress'] == 100.00 && $taskBatch['status'] != 'bstts5'){
+    $update = $conn->query("UPDATE task_batch set status = 'bstts3' where batch_id = '$orderNo'");
   }elseif($taskBatch['status'] != 'bstts5' && $taskBatch['progress'] > 0 && $taskBatch['progress'] < 100){
-    $update = $conn->query("UPDATE tasks set status = 'bstts2' where batch_id = '$orderNo'");
+    $update = $conn->query("UPDATE task_batch set status = 'bstts2' where batch_id = '$orderNo'");
   }
 }
 

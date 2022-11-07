@@ -7,6 +7,7 @@ if(isset($_GET['or'])){
                           b.start_date as startDate,
                           b.remarks as remarks,
                           b.description as descriptions,
+                          b.user_id as userId,
                           c.name as batchName,
                           d.name as wigSize,
                           e.name as wigModel,

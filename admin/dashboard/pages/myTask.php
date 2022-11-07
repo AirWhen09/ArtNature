@@ -89,11 +89,11 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    if($result['start_date'] != '' && $result['process'] != 100){
+                                                    if($result['start_date'] != '' && $result['process'] != 100 && $result['taskStatus'] != 'Archived'){
                                                 ?>
                                                     <a class="btn btn-primary btn-sm" href="index.php?taskDetail&orderNo=<?php echo $result['order_no'] ?>">Update</a>
                                                 <?php 
-                                                    }else{
+                                                    }elseif($result['taskStatus'] == 'Archived'){echo '';}else{
                                                     ?>
                                                     <button class="btn btn-success btn-sm">Done</button>
                                                 <?php } ?>
@@ -167,11 +167,11 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    if($result['start_date'] != '' && $result['process'] != 100){
+                                                    if($result['start_date'] != '' && $result['process'] != 100 && $result['taskStatus'] != 'tstts4'){
                                                 ?>
                                                     <a class="btn btn-primary btn-sm" href="index.php?taskDetail&orderNo=<?php echo $result['order_no'] ?>">Update</a>
                                                 <?php 
-                                                    }else{
+                                                    }elseif($result['taskStatus'] == 'tstts4'){}else{
                                                     ?>
                                                     <button class="btn btn-success btn-sm">Done</button>
                                                 <?php } ?>

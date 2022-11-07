@@ -26,18 +26,18 @@
                                 ?>
                                 <h2 class="card-title mb-2 ">Remarks: <span class="fw-bold">
                                     <div class="form-check mx-5">
-                                      <input class="form-check-input adminRemarks" type="radio" name="remarks" id="good" value="Good"
+                                      <input class="form-check-input adminRemarks" data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="good" value="Good"
                                       <?php if($getHistory['remarks'] === 'Good') echo 'checked';?>
                                       >
-                                      <label class="form-check-label" for="good">
+                                      <label class="form-check-label " for="good" data-user="<?php echo $getHistory['userId']?>">
                                         Good
                                       </label>
                                     </div>
                                     <div class="form-check mx-5">
-                                     <input class="form-check-input adminRemarks" type="radio" name="remarks" id="damage" value="Damage"
+                                     <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="damage" value="Damage"
                                      <?php if($getHistory['remarks'] === 'Damage') echo 'checked';?>
                                      >
-                                      <label class="form-check-label" for="damage">
+                                      <label class="form-check-label " for="damage" data-user="<?php echo $getHistory['userId']?>">
                                         Damage
                                       </label>
                                     </div>
@@ -93,7 +93,7 @@
                                     
                                     ?>
                                     <tr>
-                                        <td><?php echo date('F d, Y h:mA', strtotime($result['historyDate'])) ?></td>
+                                        <td><?php echo date('F d, Y', strtotime($result['historyDate'])) ?></td>
                                         <td>
                                             <img src="../../<?php echo $result['wigImage'] ?>" class="img-fluid" width="300" alt="">
                                         </td>

@@ -126,9 +126,16 @@ if(isset($_POST['batchName'])){
 if(isset($_POST['remarks'])){
     $remark = $_POST['remarks'];
     $orNo = $_POST['orNo'];
+    $userId = $_POST['userid'];
 
     $up = $conn->query("UPDATE tasks set remarks = '$remark' where order_no = '$orNo'");
     
+    if($remark == 'Damage'){
+        $remarks = "Your Order Number: $orNo, is $remark please message your manager for further information about your damage product. ASAP!" ;
+    }elseif($remark == 'Good'){
+        $remarks = "The admin praise your work. Order Number: $orNo" ;
+    }
+    $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$remarks', '$userId', 0)");
 }
 
 ?>

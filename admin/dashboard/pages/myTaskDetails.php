@@ -28,7 +28,13 @@
                                 ?>
                                 <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
                                     <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $result['process']?>%; height:20px;" role="progressbar">
-                                        <span><?php echo $result['process']?>% Complete</span>
+                                        <?php 
+                                            if($result['process'] > 0){
+                                                ?>
+                                                    <span><?php echo $result['process']?>% Complete</span>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +63,13 @@
                                         ?>
                                         <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
                                             <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $area1?>%; height:20px;" role="progressbar">
-                                                <span><?php echo $area1?>% Complete</span>
+                                                <?php 
+                                                    if($area1 > 0){
+                                                        ?>
+                                                            <span><?php echo $area1?>% Complete</span>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +95,13 @@
                                         ?>
                                         <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
                                             <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $area2?>%; height:20px;" role="progressbar">
-                                                <span><?php echo $area2?>% Complete</span>
+                                                <?php 
+                                                    if($area2 > 0){
+                                                        ?>
+                                                            <span><?php echo $area2?>% Complete</span>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +129,13 @@
                                         ?>
                                         <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
                                             <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $area3?>%; height:20px;" role="progressbar">
-                                                <span><?php echo $area3?>% Complete</span>
+                                            <?php 
+                                                    if($area3 > 0){
+                                                        ?>
+                                                            <span><?php echo $area3?>% Complete</span>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +163,13 @@
                                         ?>
                                         <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
                                             <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $area4?>%; height:20px;" role="progressbar">
-                                                <span><?php echo $area4?>% Complete</span>
+                                            <?php 
+                                                    if($area4 > 0){
+                                                        ?>
+                                                            <span><?php echo $area4?>% Complete</span>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

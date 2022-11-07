@@ -79,6 +79,7 @@ if(isset($_POST['updateImg'])){
                                         $inQueryDays = "INSERT INTO tasks_days(dates, task_id, days_count, progress) VALUES('$today', '$orderNo', 0, '$totalProgress')";
                                         $inTaskDays = $conn->query($inQueryDays);
                                         if($inTaskDays){
+                                            echo "<script>window.location.href = 'index.php?taskDetail&orderNo=$orderNo'</script>";
                                         }else{
                                                 echo "<script> alert('error');</script>";
                                                 echo $conn->error;
