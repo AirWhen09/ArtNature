@@ -74,9 +74,22 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 
     $dates = date('Y-m-d', strtotime($endDate));
     if($today > $dates && $progress < 100){
-      $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1' and status != 'tstts4'");
-      if($isLoginUserId === $userId){
-        
+      $me = strtotime($today) - strtotime($dates);
+      $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1' and status != 'tstts4' and status != 'tstts6'");
+      if($me > 86400 && $isLoginUserId != 2){
+          $updateU = $conn->query("UPDATE users set status = 'ustts5' where user_id = '$userId'");
+          ?>
+          <script>
+
+              document.addEventListener('DOMContentLoaded', (event) => {    
+                  document.getElementById("showNotif2").click();
+                });
+
+          </script>
+        <?php
+        }
+      else{
+        if($isLoginUserId === $userId){
         ?>
           <script>
 
@@ -86,6 +99,7 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
 
           </script>
         <?php
+        }
       }
     }
   }
@@ -122,6 +136,31 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
     </div>
   </div>
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="showNotif2">
+  
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop2Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdrop2Label">WARNING!</h5>
+      </div>
+      <div class="modal-body">
+        <h1 class="text-center">Your Account is Locked!!</h1>
+      </div>
+      <div class="modal-footer">
+          <form action="action/logout.php" method="post">
+              <button type="submit" class="btn btn-danger" name="logout">Logout</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

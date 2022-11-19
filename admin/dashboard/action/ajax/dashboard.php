@@ -132,6 +132,7 @@ if(isset($_POST['remarks'])){
     
     if($remark == 'Damage'){
         $remarks = "Your Order Number: $orNo, is $remark please message your manager for further information about your damage product. ASAP!" ;
+        $upT = $conn->query("UPDATE tasks set status = 'tstts6' where order_no = '$orNo'");
     }elseif($remark == 'Good'){
         $remarks = "The admin praise your work. Order Number: $orNo" ;
     }

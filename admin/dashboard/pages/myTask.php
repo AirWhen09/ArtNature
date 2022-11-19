@@ -89,11 +89,11 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    if($result['start_date'] != '' && $result['process'] != 100 && $result['taskStatus'] != 'Archived'){
+                                                    if($result['start_date'] != '' && $result['process'] != 100 && $result['taskStatus'] != 'Archived' && $result['taskStatus'] != 'Damage'){
                                                 ?>
                                                     <a class="btn btn-primary btn-sm" href="index.php?taskDetail&orderNo=<?php echo $result['order_no'] ?>">Update</a>
                                                 <?php 
-                                                    }elseif($result['taskStatus'] == 'Archived'){echo '';}else{
+                                                    }elseif($result['taskStatus'] == 'Archived' || $result['taskStatus'] == 'Damage'){echo '';}else{
                                                     ?>
                                                     <button class="btn btn-success btn-sm">Done</button>
                                                 <?php } ?>

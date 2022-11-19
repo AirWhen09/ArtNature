@@ -72,14 +72,18 @@
 				let remarks = $(this).val();
 				let userId = $(this).data('user');
                 let orderNo = '<?php echo $orNo?>';
-				$.ajax({
-					url   : 'action/ajax/dashboard.php',
-					type  : 'POST',
-					dataType: "text",
-					data  : {orNo : orderNo, remarks : remarks, userid : userId},
-					success : function(data){
-					}
-				});
+                var r = confirm(`Set "${remarks}" for the remarks?`);  
+                if (r == true) {  
+                    $.ajax({
+                        url   : 'action/ajax/dashboard.php',
+                        type  : 'POST',
+                        dataType: "text",
+                        data  : {orNo : orderNo, remarks : remarks, userid : userId},
+                        success : function(data){
+                        }
+                    });
+                } 
+				
 			});
 </script>
 	
