@@ -253,7 +253,7 @@ include 'action/signup.php';
                     name="signup" 
                     id="login" 
                     class="btn primary-btn"
-                    >Signup</button>
+                    >Sign Up</button>
                 </div>
 
                 <p class="text-center fw-bold">Already have an account? Click <a href="?login">here</a> to log in!</p>

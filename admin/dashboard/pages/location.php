@@ -89,6 +89,9 @@
                         
                         <?php     
                         }else{
+                            $selDriver = $conn->query("SELECT assigned_driver from task_batch where name = '$batchId'")->fetch_assoc();
+                            if($isLoginUserId == $selDriver['assigned_driver']){
+                              
                             ?>
                                 <div class="col-xl-3 col-xxl-3 col-sm-6">
                                     <div class="card bg-success invoice-card">
@@ -113,9 +116,10 @@
                                     </div>
                                 </div>
                             <?php
+                            }  
                         }
                         ?>
-                    }
+                    
                     
                     </div>
                 </div>
@@ -214,7 +218,7 @@
                                             <td> 
                                             <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
                                                 <input type="hidden" name="batchName" value="<?php echo $batch['batchName'] ?>">
-                                                <button class="btn btn-primary btn-sm batchDelivered" name="batchDelivered" <?php if($batchStat['ref_id'] != "bstts3") echo "disabled";?>>
+                                                <button class="btn btn-primary btn-sm batchDelivered" name="batchDelivered" <?php if($batchStat['ref_id'] != "bstts3" || $isLoginUserId != $batch['driver']) echo "disabled";?>>
                                                     Update to Delivered
                                                 </button>
                                             </form>

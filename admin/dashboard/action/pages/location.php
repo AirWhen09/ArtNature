@@ -26,10 +26,13 @@
                         a.status as batchStatus,
                         a.date_created as dateCreated,
                         a.batch_id as batchId,
-                        a.progress as batchProgress
+                        a.progress as batchProgress,
+                        a.assigned_driver as driver
                     from task_batch as a 
                     join tasks as b on a.batch_id = b.batch
-                    group by a.batch_id";
+                    where a.assigned_driver = '$isLoginUserId'
+                    group by a.batch_id
+                    ";
     $getAllBatch = $conn->query($allBatch);           
     
     
@@ -53,6 +56,20 @@
         if($delivered){
             echo "<script> alert('Update Successfully');</script>";
             echo "<script>window.location.href = 'index.php?location&batch=$batchId'</script>";
+        }
+    }
+
+    if(isset($_POST['assignDriver'])){
+        $driverId = $_POST['driver'];
+        $batch = $_POST['batchId'];
+
+        $update = $conn->query("UPDATE task_batch set assigned_driver = '$driverId' where name = '$batch'");
+
+        if($update){
+            echo "<script> alert('Update Successfully');</script>";
+            echo "<script>window.location.href = 'index.php?delivery</script>";
+        }else{
+            echo "<script> alert('Something is wrong please try again.');</script>";
         }
     }
 ?>

@@ -74,6 +74,7 @@
                                         <th>Progress</th>
                                         <th>Status</th>
                                         <th>Date Created</th>
+                                        <th>Assigned Driver</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -151,6 +152,18 @@
                                                     echo date('F d, Y', strtotime($batch['dateCreated']));
                                                 ?>
                                             </td>
+                                            <td>
+                                                <?php
+                                                    $driver = $batch['driver'];
+                                                    $assDriver = $conn->query("SELECT first_name, last_name from users where user_id = '$driver'");
+                                                    if($assDriver->num_rows > 0){
+                                                        $resDriver = $assDriver->fetch_assoc();
+                                                        echo $resDriver['first_name']." ".$resDriver['last_name'];
+                                                    }else{
+                                                        echo "Unassigned";
+                                                    }
+                                                ?>
+                                            </td>
                                             <td> 
 
                                                 <a class="btn btn-primary btn-sm batchDelivered" name="batchDelivered" href="?delivery&batch=<?php echo $batch['batchName'] ?>">
@@ -160,9 +173,45 @@
                                                 <?php
                                                     if($batch['batchStatus'] == 'bstts3'){
                                                         ?>
-                                                            <a class="btn btn-primary btn-sm " >
+                                                            <a class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#driverModal<?php echo $no ?>">
                                                                 Assign Driver
                                                             </a>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="driverModal<?php echo $no ?>" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="modalTitleId">ASSIGN DRIVER</h5>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  class="needs-validation" novalidate>
+                                                                            <div class="modal-body">
+                                                                                <div class="container-fluid">
+                                                                                    <select name="driver" id="" class="form-select">
+                                                                                        <option value="">Select Driver</option>
+                                                                                        <?php
+                                                                                        $getAllDriver = $conn->query("SELECT * from users where user_role = 'ur4'");
+                                                                                        while($allDriver = $getAllDriver->fetch_assoc()){
+                                                                                            $driverId = $allDriver['user_id'];
+                                                                                            $driverName = $allDriver['first_name']." ".$allDriver['last_name'];
+
+                                                                                            ?>
+                                                                                            <option value="<?php echo $driverId?>"><?php echo $driverName?></option>
+                                                                                            <?php
+                                                                                        }
+                                                                                        ?>
+                                                                                    </select>
+                                                                                    <input type="hidden" name="batchId" value="<?php echo $batch['batchName'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary" name="assignDriver">Save</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         <?php
                                                     }
                                                 ?>
@@ -185,23 +234,4 @@
     Content body end
 ***********************************-->
 
-<!-- Modal -->
-<div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">ASSIGN DRIVER</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    Add rows here
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+

@@ -19,7 +19,7 @@
 						?>
 					</select>
 					<div class="col-sm-8">
-							
+					<div id="chartBar2" class="bar-chart"></div>
 						<div id="task" class="row ">
 							<div class="invoice-card-row mb-3 mx-1">
 								<div class="bg-warning invoice-card shadow-lg rounded">

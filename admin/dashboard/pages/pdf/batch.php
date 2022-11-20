@@ -54,8 +54,18 @@ $allTask = "SELECT a.order_no as orderNo,
             join users as e on a.user_id = e.user_id
             where a.batch = '$batch'";
 $getAllBatch = $conn->query($allTask);
+$new = 0;
+$production = 0;
+$done = 0;
+$archived = 0;
+$lapsed = 0;
 
 while($result = $getAllBatch->fetch_assoc()){
+if($result['taskStatus'] == "New") ++$new;
+if($result['taskStatus'] == "Production") ++$production;
+if($result['taskStatus'] == "Done") ++$done;
+if($result['taskStatus'] == "Archived") ++$archived;
+if($result['taskStatus'] == "Lapsed") ++$lapsed;
 $orderNo = $result['orderNo'];
 $dateCreated = date('M d, Y', strtotime($result['dateCreated']));
 $startDate = date('M d, Y', strtotime($result['startDate']));
@@ -77,6 +87,13 @@ $pdf->Cell(160,5,"",0,1,"C");
 
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(0,5,"BATCH REPORT",0,1,"C");
+$pdf->Cell(160,5,"",0,1,"C");
+$pdf->Cell(160,5,"",0,1,"C");
+
+$pdf->Cell(84,10,"New: {$new}",0,0,"C");
+$pdf->Cell(84,10,"Done: {$done}",0,0,"C");
+$pdf->Cell(84,10,"Archived: {$archived}",0,0,"C");
+$pdf->Cell(84,10,"Lapsed: {$lapsed}",0,1,"C");
 
 $pdf->Output();
 ?>

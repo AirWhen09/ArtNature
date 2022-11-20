@@ -135,6 +135,7 @@ if(isset($_POST['remarks'])){
         $upT = $conn->query("UPDATE tasks set status = 'tstts6' where order_no = '$orNo'");
     }elseif($remark == 'Good'){
         $remarks = "The admin praise your work. Order Number: $orNo" ;
+        $upT = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orNo'");
     }
     $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$remarks', '$userId', 0)");
 }

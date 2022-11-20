@@ -76,17 +76,21 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
     if($today > $dates && $progress < 100){
       $me = strtotime($today) - strtotime($dates);
       $upLapsedTask = $conn->query("UPDATE tasks set status = 'tstts5' where order_no = '$orderNo' and status != 'tstts1' and status != 'tstts4' and status != 'tstts6'");
-      if($me > 86400 && $isLoginUserId != 2){
+      if($me > 86400){
           $updateU = $conn->query("UPDATE users set status = 'ustts5' where user_id = '$userId'");
+          if($_SESSION['user_role'] != 'ur1' && $_SESSION['user_role'] != 'ur4' && $isLoginUserId === $userId){
+
           ?>
-          <script>
+              <script>
+                
 
-              document.addEventListener('DOMContentLoaded', (event) => {    
-                  document.getElementById("showNotif2").click();
-                });
+                  document.addEventListener('DOMContentLoaded', (event) => {    
+                      document.getElementById("showNotif2").click();
+                    });
 
-          </script>
+              </script>
         <?php
+          }
         }
       else{
         if($isLoginUserId === $userId){

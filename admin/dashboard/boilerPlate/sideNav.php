@@ -62,6 +62,11 @@
 							<span class="nav-text <?php if(isset($_GET['manageTask'])) echo "text-primary"; ?>">Manage Task</span>
 						</a>
                     </li>
+					<li><a href="index.php?pendingTask" aria-expanded="false">
+							<i class="flaticon-041-graph"></i>
+							<span class="nav-text <?php if(isset($_GET['pendingTask'])) echo "text-primary"; ?>">Pending Task</span>
+						</a>
+                    </li>
 					<?php } ?>
                     <li><a href="index.php?chat" aria-expanded="false">
 							<i class="flaticon-093-waving"></i>
