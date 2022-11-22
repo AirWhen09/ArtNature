@@ -8,7 +8,16 @@
         $email = "HACKER@HACKER.com";
         $image = "images/ion/man (1).png";
     }
-
+	$rejectedBadge = '';
+	$selReject = $conn->query("SELECT count(*) as rejected from wig_picture as a join tasks as b on b.order_no = a.task_id where b.user_id = '$isLoginUserId' and a.pic_status = 'Rejected'")->fetch_assoc();
+	// if($selReject->num_rows > 0){
+		if($selReject['rejected'] > 0){
+			$rT = $selReject['rejected'];
+			$rejectedBadge = "<label class='badge badge-primary'>$rT</label>";
+		}else{
+			$rejectedBadge = '';
+		}
+	// }
     
 ?>
         <!--**********************************
@@ -38,6 +47,7 @@
 							<a href="index.php?myTask" aria-expanded="false">
 								<i class="flaticon-041-graph"></i>
 								<span class="nav-text <?php if(isset($_GET['myTask'])) echo "text-primary"; ?>">My Task</span>
+								<?php echo $rejectedBadge?>
 							</a>
                    		 </li>
 					<?php } ?>

@@ -28,6 +28,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area1Pic1Status != ""){?>
+                                    <div class="badge badge-<?php echo $area1Pic1Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area1Pic1Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -48,6 +54,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area1Pic2Status != ""){?>
+                                    <div class="badge badge-<?php echo $area1Pic2Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area1Pic2Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -68,6 +80,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area1Pic3Status != ""){?>
+                                    <div class="badge badge-<?php echo $area1Pic3Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area1Pic3Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -88,6 +106,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area1Pic4Status != ""){?>
+                                    <div class="badge badge-<?php echo $area1Pic4Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area1Pic4Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -130,6 +154,12 @@
                                             data-bs-toggle="modal"
                                             data-bs-target="#updateModal"
                                             >
+                                            <?php 
+                                            if($area2Pic1Status != ""){?>
+                                            <div class="badge badge-<?php echo $area2Pic1Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                                    <label for=""><?php echo $area2Pic1Status?></label>
+                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -150,6 +180,12 @@
                                             data-bs-toggle="modal"
                                             data-bs-target="#updateModal"
                                             >
+                                            <?php 
+                                            if($area2Pic2Status != ""){?>
+                                            <div class="badge badge-<?php echo $area2Pic2Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                                    <label for=""><?php echo $area2Pic2Status?></label>
+                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -170,6 +206,12 @@
                                             data-bs-toggle="modal"
                                             data-bs-target="#updateModal"
                                             >
+                                            <?php 
+                                            if($area2Pic3Status != ""){?>
+                                            <div class="badge badge-<?php echo $area2Pic3Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                                    <label for=""><?php echo $area2Pic3Status?></label>
+                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -190,6 +232,12 @@
                                             data-bs-toggle="modal"
                                             data-bs-target="#updateModal"
                                             >
+                                            <?php 
+                                            if($area2Pic4Status != ""){?>
+                                            <div class="badge badge-<?php echo $area2Pic4Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                                    <label for=""><?php echo $area2Pic4Status?></label>
+                                            </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -232,6 +280,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area3Pic1Status != ""){?>
+                                    <div class="badge badge-<?php echo $area3Pic1Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area3Pic1Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -252,6 +306,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area3Pic2Status != ""){?>
+                                    <div class="badge badge-<?php echo $area3Pic2Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area3Pic2Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -272,6 +332,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area3Pic3Status != ""){?>
+                                    <div class="badge badge-<?php echo $area3Pic3Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area3Pic3Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -292,6 +358,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area3Pic4Status != ""){?>
+                                    <div class="badge badge-<?php echo $area3Pic4Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area3Pic4Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -334,6 +406,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area4Pic1Status != ""){?>
+                                    <div class="badge badge-<?php echo $area4Pic1Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area4Pic1Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -354,6 +432,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area4Pic2Status != ""){?>
+                                    <div class="badge badge-<?php echo $area4Pic2Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area4Pic2Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -374,6 +458,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area4Pic3Status != ""){?>
+                                    <div class="badge badge-<?php echo $area4Pic3Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area4Pic3Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 mb-3">
@@ -394,6 +484,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateModal"
                                     >
+                                    <?php 
+                                    if($area4Pic4Status != ""){?>
+                                    <div class="badge badge-<?php echo $area4Pic4Status == 'Approved' ? 'success' : 'primary'?>" style="position: absolute; ">
+                                            <label for=""><?php echo $area4Pic4Status?></label>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

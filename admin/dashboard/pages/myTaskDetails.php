@@ -22,16 +22,14 @@
                                     </div>
                                 </div>
                                 <?php
-                                
-
 
                                 ?>
                                 <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
-                                    <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $result['process']?>%; height:20px;" role="progressbar">
+                                    <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $totalProgreess?>%; height:20px;" role="progressbar">
                                         <?php 
-                                            if($result['process'] > 0){
+                                            if($totalProgreess > 0){
                                                 ?>
-                                                    <span><?php echo $result['process']?>% Complete</span>
+                                                    <span><?php echo $totalProgreess?>% Complete</span>
                                                 <?php
                                             }
                                         ?>
@@ -46,6 +44,13 @@
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe1')" onmouseout="hideUpdatePic('showMe1')">
                                 
                                 <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
+                                    <?php 
+                                        $taskId = $result['order_no'];
+                                        $selArea1 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_i' and pic_status = 'Rejected'")->fetch_assoc();
+                                        echo $selArea1['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea1['area'].'</label>' : '';
+                                    ?>
+                                </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe1" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaI">
                                         <h4 class="text-center mt-2 p-2" > Update Area I </h4>
                                     </div>
@@ -80,6 +85,13 @@
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe2')" onmouseout="hideUpdatePic('showMe2')">
                                 
                                 <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
+                                    <?php 
+                                        $taskId = $result['order_no'];
+                                        $selArea2 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_ii' and pic_status = 'Rejected'")->fetch_assoc();
+                                        echo $selArea2['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea2['area'].'</label>' : '';
+                                    ?>
+                                </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe2" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaII">
                                         <h4 class="text-center mt-2 p-2" > Update AREA II </h4>
                                     </div>
@@ -112,6 +124,13 @@
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe3')" onmouseout="hideUpdatePic('showMe3')">
                                 
                                 <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
+                                    <?php 
+                                        $taskId = $result['order_no'];
+                                        $selArea3 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_iii' and pic_status = 'Rejected'")->fetch_assoc();
+                                        echo $selArea3['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea3['area'].'</label>' : '';
+                                    ?>
+                                </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe3" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaIII">
                                         <h4 class="text-center mt-2 p-2" > Update Area III </h4>
                                     </div>
@@ -146,6 +165,13 @@
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe4')" onmouseout="hideUpdatePic('showMe4')">
                                 
                                 <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
+                                    <?php 
+                                        $taskId = $result['order_no'];
+                                        $selArea4 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_iv' and pic_status = 'Rejected'")->fetch_assoc();
+                                        echo $selArea4['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea4['area'].'</label>' : '';
+                                    ?>
+                                </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe4" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaIV">
                                         <h4 class="text-center mt-2 p-2" > Update Area IV </h4>
                                     </div>

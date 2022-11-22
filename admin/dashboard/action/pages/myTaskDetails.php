@@ -15,41 +15,9 @@ if(isset($_POST['updateImg'])){
     $areaNo = $_POST['areaNo'];
     $wigNo = $_POST['wigId'];
     $selWig = $conn->query("SELECT * from wig where wig_id = '$wigNo'")->fetch_assoc();
-    $area1Pic1 = ($selWig['area_i_pic_one'] != NULL || $selWig['area_i_pic_one'] != '') ? 100 : 0;
-    $area2Pic1 = ($selWig['area_ii_pic_one'] != NULL || $selWig['area_ii_pic_one'] != '') ? 100 : 0;
-    $area3Pic1 = ($selWig['area_iii_pic_one'] != NULL || $selWig['area_iii_pic_one'] != '') ? 100 : 0;
-    $area4Pic1 = ($selWig['area_iv_pic_one'] != NULL || $selWig['area_iv_pic_one'] != '') ? 100 : 0;
-    $area1Pic2 = ($selWig['area_i_pic_two'] != NULL || $selWig['area_i_pic_two'] != '') ? 100 : 0;
-    $area2Pic2 = ($selWig['area_ii_pic_two'] != NULL || $selWig['area_ii_pic_two'] != '') ? 100 : 0;
-    $area3Pic2 = ($selWig['area_iii_pic_two'] != NULL || $selWig['area_iii_pic_two'] != '') ? 100 : 0;
-    $area4Pic2 = ($selWig['area_iv_pic_two'] != NULL || $selWig['area_iv_pic_two'] != '') ? 100 : 0;
-    $area1Pic3 = ($selWig['area_i_pic_three'] != NULL || $selWig['area_i_pic_three'] != '') ? 100 : 0;
-    $area2Pic3 = ($selWig['area_ii_pic_three'] != NULL || $selWig['area_ii_pic_three'] != '') ? 100 : 0;
-    $area3Pic3 = ($selWig['area_iii_pic_three'] != NULL || $selWig['area_iii_pic_three'] != '') ? 100 : 0;
-    $area4Pic3 = ($selWig['area_iv_pic_three'] != NULL || $selWig['area_iv_pic_three'] != '') ? 100 : 0;
-    $area1Pic4 = ($selWig['area_i_pic_four'] != NULL || $selWig['area_i_pic_four'] != '') ? 100 : 0;
-    $area2Pic4 = ($selWig['area_ii_pic_four'] != NULL || $selWig['area_ii_pic_four'] != '') ? 100 : 0;
-    $area3Pic4 = ($selWig['area_iii_pic_four'] != NULL || $selWig['area_iii_pic_four'] != '') ? 100 : 0;
-    $area4Pic4 = ($selWig['area_iv_pic_four'] != NULL || $selWig['area_iv_pic_four'] != '') ? 100 : 0;
-    $areaProgress = 0;
-    if($areaNo == 'area_i'){
-        $areaProgress = ($area1Pic1 + $area1Pic2 + $area1Pic3 + $area1Pic4) / 4;
-        if($areaProgress != 100) $areaProgress += 25;
-    }elseif($areaNo == 'area_ii'){
-        $areaProgress = ($area2Pic1 + $area2Pic2 + $area2Pic3 + $area2Pic4) / 4;
-        if($areaProgress != 100) $areaProgress += 25;
-    }elseif($areaNo == 'area_iii'){
-        $areaProgress = ($area3Pic1 + $area3Pic2 + $area3Pic3 + $area3Pic4) / 4;
-        if($areaProgress != 100) $areaProgress += 25;
-    }elseif($areaNo == 'area_iv'){
-        $areaProgress = ($area4Pic1 + $area4Pic2 + $area4Pic3 + $area4Pic4) / 4;
-        if($areaProgress != 100) $areaProgress += 25;
-    }
-    // echo "<script> alert('$areaNo , progress: $areaProgress')</script>";
     
-    $totalProgress = ($area1Pic1 + $area2Pic1 + $area3Pic1 + $area4Pic1 + $area1Pic2 + $area2Pic2 + $area3Pic2 + $area4Pic2 + 
-                        $area1Pic3 + $area2Pic3 + $area3Pic3 + $area4Pic3 + $area1Pic4 + $area2Pic4 + $area3Pic4 + $area4Pic4) / 16;
-    if($totalProgress != 100) $totalProgress += 6.25;
+    // echo "<script> alert('$areaNo , progress: $areaProgress')</script>";
+   
     $filetemp4 = $_FILES['img']['tmp_name'];
     $filename4 = $_FILES['img']['name'];
     $filetype4 = $_FILES['img']['type'];
@@ -64,32 +32,16 @@ if(isset($_POST['updateImg'])){
                     $addHistory4 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('$filepath4','$orderNo','$areaProgress', '$areaNo')";
                     $newHistory4 = $conn->query($addHistory4);
                     if($newHistory4){
-                            $updateProcess = $conn->query("UPDATE tasks set process = '$totalProgress' where order_no = '$orderNo'");
-                            $updateArea = $conn->query("UPDATE wig set $areaNo = '$areaProgress', $areaPic = '$filepath4' where wig_id = '$wigNo'");
-                            if($updateArea){
-                                date_default_timezone_set('Asia/Manila');
-                                $today = date('Y-m-d');
-                                $selDaysProgress = $conn->query("SELECT * from tasks_days where task_id = '$orderNo' and dates = '$today'");
-                                if($selDaysProgress->num_rows > 0){
-                                        $updateDayProgress = $conn->query("UPDATE tasks_days set progress = '$totalProgress' where dates = '$today' and task_id = '$orderNo'");
-                                        if($updateDayProgress){
-                                            echo "<script>window.location.href = 'index.php?taskDetail&orderNo=$orderNo'</script>";
-                                        }
-                                }else{
-                                        $inQueryDays = "INSERT INTO tasks_days(dates, task_id, days_count, progress) VALUES('$today', '$orderNo', 0, '$totalProgress')";
-                                        $inTaskDays = $conn->query($inQueryDays);
-                                        if($inTaskDays){
-                                            echo "<script>window.location.href = 'index.php?taskDetail&orderNo=$orderNo'</script>";
-                                        }else{
-                                                echo "<script> alert('error');</script>";
-                                                echo $conn->error;
-                                        }
-
-                                }
+                            // $updateProcess = $conn->query("UPDATE tasks set process = '$totalProgress' where order_no = '$orderNo'");
+                            // $updateArea = $conn->query("UPDATE wig set $areaNo = '$areaProgress', $areaPic = '$filepath4' where wig_id = '$wigNo'");
+                            $updateArea = $conn->query("UPDATE wig set $areaPic = '$filepath4' where wig_id = '$wigNo'");
+                            $selWigPic = $conn->query("SELECT * from wig_picture where area_no = '$areaNo' and picture_no = '$areaPic' and pic_status = 'Pending'");
+                            if($selWigPic->num_rows > 0){
+                                $updateWigPic = $conn->query("UPDATE wig_picture set picture = '$filepath4' where area_no = '$areaNo' and picture_no = '$areaPic'");
                             }else{
-                                echo "<script> alert('error update wig');</script>";
-                                echo $conn->error;
+                                $inWigPic = $conn->query("INSERT INTO wig_picture(picture, pic_status, area_no, picture_no, task_id) VALUES('$filepath4', 'Pending', '$areaNo', '$areaPic', '$orderNo')");
                             }
+                            
                             
                     }else{
                         $ey = $conn->error;
@@ -127,29 +79,196 @@ if($today < $days[0]){
         $estimatedProgress = "something else";
     }
 }
-$wigId = $result['wig_id'];
-$getArea = $conn->query("SELECT * from wig where wig_id = '$wigId'")->fetch_assoc();
+$area1Pic1 = '';
+$area1Pic2 = '';
+$area1Pic3 = '';
+$area1Pic4 = '';
+$area2Pic1 = '';
+$area2Pic2 = '';
+$area2Pic3 = '';
+$area2Pic4 = '';
+$area3Pic1 = '';
+$area3Pic2 = '';
+$area3Pic3 = '';
+$area3Pic4 = '';
+$area4Pic1 = '';
+$area4Pic2 = '';
+$area4Pic3 = '';
+$area4Pic4 = '';
+$area1Pic1Status = '';
+$area1Pic2Status = '';
+$area1Pic3Status = '';
+$area1Pic4Status = '';
+$area2Pic1Status = '';
+$area2Pic2Status = '';
+$area2Pic3Status = '';
+$area2Pic4Status = '';
+$area3Pic1Status = '';
+$area3Pic2Status = '';
+$area3Pic3Status = '';
+$area3Pic4Status = '';
+$area4Pic1Status = '';
+$area4Pic2Status = '';
+$area4Pic3Status = '';
+$area4Pic4Status = '';
+$area1 = 0;
+$area2 = 0;
+$area3 = 0;
+$area4 = 0;
+$totalProgreess = 0;
+$getArea = $conn->query("SELECT * from wig_picture where task_id = '$orderNo'");
+if($getArea->num_rows > 0){
+while($getData = $getArea->fetch_assoc()){
+    if($getData['area_no'] == 'area_i'){
+        if($getData['picture_no'] == 'area_i_pic_one'){
+            $area1Pic1 = $getData['picture'];
+            $area1Pic1Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area1 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
 
-$area1 = $getArea['area_i'];
-$area2 = $getArea['area_ii'];
-$area3 = $getArea['area_iii'];
-$area4 = $getArea['area_iv'];
-$area1Pic1 = $getArea['area_i_pic_one'];
-$area2Pic1 = $getArea['area_ii_pic_one'];
-$area3Pic1 = $getArea['area_iii_pic_one'];
-$area4Pic1 = $getArea['area_iv_pic_one'];
-$area1Pic2 = $getArea['area_i_pic_two'];
-$area2Pic2 = $getArea['area_ii_pic_two'];
-$area3Pic2 = $getArea['area_iii_pic_two'];
-$area4Pic2 = $getArea['area_iv_pic_two'];
-$area1Pic3 = $getArea['area_i_pic_three'];
-$area2Pic3 = $getArea['area_ii_pic_three'];
-$area3Pic3 = $getArea['area_iii_pic_three'];
-$area4Pic3 = $getArea['area_iv_pic_three'];
-$area1Pic4 = $getArea['area_i_pic_four'];
-$area2Pic4 = $getArea['area_ii_pic_four'];
-$area3Pic4 = $getArea['area_iii_pic_four'];
-$area4Pic4 = $getArea['area_iv_pic_four'];
+        if($getData['picture_no'] == 'area_i_pic_two'){
+            $area1Pic2 = $getData['picture'];
+            $area1Pic2Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area1 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
 
+        if($getData['picture_no'] == 'area_i_pic_three'){
+            $area1Pic3 = $getData['picture'];
+            $area1Pic3Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area1 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_i_pic_four'){
+            $area1Pic4 = $getData['picture'];
+            $area1Pic4Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area1 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+    }
+    if($getData['area_no'] == 'area_ii'){
+        if($getData['picture_no'] == 'area_ii_pic_one'){
+            $area2Pic1 = $getData['picture'];
+            $area2Pic1Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area2 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_ii_pic_two'){
+            $area2Pic2 = $getData['picture'];
+            $area2Pic2Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area2 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_ii_pic_three'){
+            $area2Pic3 = $getData['picture'];
+            $area2Pic3Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area2 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_ii_pic_four'){
+            $area2Pic4 = $getData['picture'];
+            $area2Pic4Status = $getData['pic_status'];
+            if($getData['pic_status'] == 'Approved'){
+                $area2 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+    }
+    if($getData['area_no'] == 'area_iii'){
+        if($getData['picture_no'] == 'area_iii_pic_one'){
+            $area3Pic1 = $getData['picture'];
+            $area3Pic1Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area3 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iii_pic_two'){
+            $area3Pic2 = $getData['picture'];
+            $area3Pic2Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area3 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iii_pic_three'){
+            $area3Pic3 = $getData['picture'];
+            $area3Pic3Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area3 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iii_pic_four'){
+            $area3Pic4 = $getData['picture'];
+            $area3Pic4Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area3 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+    }
+    if($getData['area_no'] == 'area_iv'){
+        if($getData['picture_no'] == 'area_iv_pic_one'){
+            $area4Pic1 = $getData['picture'];
+            $area4Pic1Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area4 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iv_pic_two'){
+            $area4Pic2 = $getData['picture'];
+            $area4Pic2Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area4 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iv_pic_three'){
+            $area4Pic3 = $getData['picture'];
+            $area4Pic3Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area4 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+
+        if($getData['picture_no'] == 'area_iv_pic_four'){
+            $area4Pic4 = $getData['picture'];
+            $area4Pic4Status = $getData['pic_status']; 
+            if($getData['pic_status'] == 'Approved'){
+                $area4 += 25;
+                $totalProgreess += 6.25;
+            }
+        }
+    }
+}
+}
 
 ?>
