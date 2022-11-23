@@ -35,13 +35,18 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .apexcharts-bar-area{
+            fill : a;
+        }
+    </style>
 </head>
 <body>
 
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="waviy">
 		   <span style="--i:1">L</span>
 		   <span style="--i:2">o</span>
@@ -54,7 +59,7 @@
 		   <span style="--i:9">.</span>
 		   <span style="--i:10">.</span>
 		</div>
-    </div>
+    </div> -->
     <!--*******************
         Preloader end
     ********************-->

@@ -41,10 +41,36 @@
                             $area2 = $getArea['area_ii'];
                             $area3 = $getArea['area_iii'];
                             $area4 = $getArea['area_iv'];
-                            $area1Pic = $getArea['area_i_pic'];
-                            $area2Pic = $getArea['area_ii_pic'];
-                            $area3Pic = $getArea['area_iii_pic'];
-                            $area4Pic = $getArea['area_iv_pic'];
+                            $orderNo = $result['order_no'];
+                            $selArea1 = $conn->query("SELECT picture from wig_picture where task_id = '$orderNo' and area_no = 'area_i' order by date_created DESC limit 1");
+                            $selArea2 = $conn->query("SELECT picture from wig_picture where task_id = '$orderNo' and area_no = 'area_ii' order by date_created DESC limit 1");
+                            $selArea3 = $conn->query("SELECT picture from wig_picture where task_id = '$orderNo' and area_no = 'area_iii' order by date_created DESC limit 1");
+                            $selArea4 = $conn->query("SELECT picture from wig_picture where task_id = '$orderNo' and area_no = 'area_iv' order by date_created DESC limit 1");
+                            if($selArea1->num_rows > 0){
+                                $getArea1 = $selArea1->fetch_assoc();
+                                $area1Pic = $getArea1['picture'];
+                            }else{
+                                $area1Pic = null;
+                            }
+                            if($selArea2->num_rows > 0){
+                                $getArea2 = $selArea2->fetch_assoc();
+                                $area2Pic = $getArea2['picture'];
+                            }else{
+                                $area2Pic = null;
+                            }
+                            if($selArea3->num_rows > 0){
+                                $getArea3 = $selArea3->fetch_assoc();
+                                $area3Pic = $getArea3['picture'];
+                            }else{
+                                $area3Pic = null;
+                            }
+                            if($selArea4->num_rows > 0){
+                                $getArea4 = $selArea4->fetch_assoc();
+                                $area4Pic = $getArea4['picture'];
+                            }else{
+                                $area4Pic = null;
+                            }
+                            
                             
                             
                         ?>

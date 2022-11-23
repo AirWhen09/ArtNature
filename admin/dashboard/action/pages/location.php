@@ -21,18 +21,32 @@
                         ";
     $getProgress = $conn->query($todayProgress);
     //get all batch
+   if($_SESSION['user_role'] == 'ur4'){
     $allBatch = "SELECT a.name as batchName, 
-                        count(b.order_no) as numOfTask,
-                        a.status as batchStatus,
-                        a.date_created as dateCreated,
-                        a.batch_id as batchId,
-                        a.progress as batchProgress,
-                        a.assigned_driver as driver
+                    count(b.order_no) as numOfTask,
+                    a.status as batchStatus,
+                    a.date_created as dateCreated,
+                    a.batch_id as batchId,
+                    a.progress as batchProgress,
+                    a.assigned_driver as driver
                     from task_batch as a 
                     join tasks as b on a.batch_id = b.batch
                     where a.assigned_driver = '$isLoginUserId'
                     group by a.batch_id
-                    ";
+        ";
+   }else{
+        $allBatch = "SELECT a.name as batchName, 
+                    count(b.order_no) as numOfTask,
+                    a.status as batchStatus,
+                    a.date_created as dateCreated,
+                    a.batch_id as batchId,
+                    a.progress as batchProgress,
+                    a.assigned_driver as driver
+                from task_batch as a 
+                join tasks as b on a.batch_id = b.batch
+                group by a.batch_id
+                ";
+   }
     $getAllBatch = $conn->query($allBatch);           
     
     

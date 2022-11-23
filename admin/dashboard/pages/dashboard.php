@@ -19,7 +19,6 @@
 						?>
 					</select>
 					<div class="col-sm-8">
-					<div id="chartBar2" class="bar-chart"></div>
 						<div id="task" class="row ">
 							<div class="invoice-card-row mb-3 mx-1">
 								<div class="bg-warning invoice-card shadow-lg rounded">
@@ -134,7 +133,7 @@
 	
  var dlabChartlist = function(){
 	
-	var screenWidth = $(window).width();	
+	
 
 	var polarChart = function(){
 		 var ctx = document.getElementById("polarChart").getContext('2d');
@@ -258,10 +257,269 @@
 				$.ajax({
 					url   : 'action/ajax/dashboard.php',
 					type  : 'POST',
-					dataType: "text",
+					dataType: "json",
 					data  : {batchName : batchName},
 					success : function(data){
-						$('#task').html(data);
+						let lapsed = data.lapsed.split(",");
+						let goods = data.goods.split(",");
+						let dateRange = data.daterange.split(",");
+						$('#task').html(data.datas);
+						(function($) {
+							var chartBar2 = function(){
+		
+								var options = {
+									series: [
+										{
+											name: 'DONE',
+											data: goods,
+											//radius: 12,	
+										}, 
+										{
+										name: 'LAPSED',
+										data: lapsed
+										}, 
+										
+									],
+										chart: {
+										type: 'bar',
+										height: 400,
+										
+										toolbar: {
+											show: false,
+										},
+										
+									},
+									plotOptions: {
+									bar: {
+										horizontal: false,
+										columnWidth: '70%',
+										borderRadius:10
+									},
+									
+									},
+									states: {
+									hover: {
+										filter: 'none',
+									}
+									},
+									colors:['#80ec67', '#fe7d65'],
+									dataLabels: {
+									enabled: false,
+									},
+									markers: {
+								shape: "circle",
+								},
+								
+								
+									legend: {
+										position: 'top',
+										horizontalAlign: 'right', 
+										show: true,
+										fontSize: '12px',
+										labels: {
+											colors: '#000000',
+											
+											},
+										markers: {
+										width: 18,
+										height: 18,
+										strokeWidth: 0,
+										strokeColor: '#fff',
+										fillColors: undefined,
+										radius: 12,	
+										}
+									},
+									stroke: {
+									show: true,
+									width: 5,
+									colors: ['transparent']
+									},
+									grid: {
+										borderColor: '#eee',
+									},
+									xaxis: {
+										
+									categories: dateRange,
+									labels: {
+									style: {
+										colors: '#3e4954',
+										fontSize: '13px',
+										fontFamily: 'poppins',
+										fontWeight: 400,
+										cssClass: 'apexcharts-xaxis-label',
+										},
+									},
+									crosshairs: {
+									show: false,
+									}
+									},
+									yaxis: {
+										labels: {
+											offsetX:-16,
+										style: {
+											colors: '#3e4954',
+											fontSize: '13px',
+											fontFamily: 'poppins',
+											fontWeight: 400,
+											cssClass: 'apexcharts-xaxis-label',
+										},
+									},
+									},
+									fill: {
+									opacity: 1,
+									colors:['#80ec67', '#fe7d65'],
+									},
+									tooltip: {
+									y: {
+										formatter: function (val) {
+										return  val 
+										}
+									}
+									},
+									responsive: [{
+										breakpoint: 575,
+										options: {
+											chart: {
+												height: 250,
+											}
+										},
+									}]
+									};
+
+									var chartBar1 = new ApexCharts(document.querySelector("#chartBar2"), options);
+									chartBar1.render();
+							}
+
+							var handleCard = function(){
+			
+								// Vars
+								var reloadButton  = document.querySelector( '.change-btn' );
+								var reloadIcon     = document.querySelector( '.reload' );
+								var reloadEnabled = true;
+								var rotation      = 0;
+								// Events
+								reloadButton.addEventListener('click', function() { reloadClick() });
+								// Functions
+								function reloadClick() {
+								reloadEnabled = false;
+								rotation += 360;
+								// Eh, this works.
+								reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								reloadIcon.style.MozTransform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								reloadIcon.style.transform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								}
+								// Show button.
+								setTimeout(function() {
+								reloadButton.classList.add('active');
+								}, 1);
+								
+								//Number formatting
+								var sliderFormat = document.getElementById('slider-format');
+								noUiSlider.create(sliderFormat, {
+									start: [20000],
+									step: 1000,
+									connect: [true, false],
+									range: {
+										'min': [20000],
+										'max': [80000]
+									},
+									ariaFormat: wNumb({
+										decimals: 3
+									}),
+									format: wNumb({
+										decimals: 3,
+										thousand: '.',
+										//suffix: ' (US $)'
+									})
+								});
+
+								var inputFormat = document.getElementById('input-format');
+								sliderFormat.noUiSlider.on('update', function (values, handle) {
+									inputFormat.value = values[handle];
+								});
+
+								inputFormat.addEventListener('change', function () {
+									sliderFormat.noUiSlider.set(this.value);
+								});
+								//Number formatting ^
+							}
+											
+							var dlabChartlist = function(){
+								var screenWidth = $(window).width();	
+								var handleCard = function(){
+							
+								// Vars
+								var reloadButton  = document.querySelector( '.change-btn' );
+								var reloadIcon     = document.querySelector( '.reload' );
+								var reloadEnabled = true;
+								var rotation      = 0;
+								// Events
+								reloadButton.addEventListener('click', function() { reloadClick() });
+								// Functions
+								function reloadClick() {
+								reloadEnabled = false;
+								rotation += 360;
+								// Eh, this works.
+								reloadIcon.style.webkitTransform = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								reloadIcon.style.MozTransform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								reloadIcon.style.transform  = 'translateZ(0px) rotateZ( ' + rotation + 'deg )';
+								}
+								// Show button.
+								setTimeout(function() {
+								reloadButton.classList.add('active');
+								}, 1);
+							
+								//Number formatting
+								var sliderFormat = document.getElementById('slider-format');
+								noUiSlider.create(sliderFormat, {
+									start: [20000],
+									step: 1000,
+									connect: [true, false],
+									range: {
+										'min': [20000],
+										'max': [80000]
+									},
+									ariaFormat: wNumb({
+										decimals: 3
+									}),
+									format: wNumb({
+										decimals: 3,
+										thousand: '.',
+										//suffix: ' (US $)'
+									})
+							});
+
+							var inputFormat = document.getElementById('input-format');
+							sliderFormat.noUiSlider.on('update', function (values, handle) {
+								inputFormat.value = values[handle];
+							});
+
+							inputFormat.addEventListener('change', function () {
+								sliderFormat.noUiSlider.set(this.value);
+							});
+							//Number formatting ^
+						}
+							return {
+								init:function(){
+								},
+								
+								
+								load:function(){
+									chartBar2();
+								},
+								
+								resize:function(){
+								}
+							}
+	
+
+							
+						}();
+
+						setTimeout(function(){
+								dlabChartlist.load();
+							}, 1000); 
+						})(jQuery);
 					}
 				});
 			});

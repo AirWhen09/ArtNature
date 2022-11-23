@@ -18760,12 +18760,6 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 
 
-.apexcharts-bar-area
-{
-  fill: #6610f2;
-}
-
-
 [data-primary="color_13"] {
   --primary: #2a2a2a;
   --secondary: #709fba;

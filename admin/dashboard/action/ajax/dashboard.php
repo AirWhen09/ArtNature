@@ -3,6 +3,7 @@ include '../../../../connection/connection.php';
 
 if(isset($_POST['batchName'])){
     $batch = $_POST['batchName'];
+    $data = array();
     $output = '';
     //get all task
     $allTask = "SELECT *, b.name as taskStatus , 
@@ -36,8 +37,11 @@ if(isset($_POST['batchName'])){
             $batchName = $batchNames->fetch_assoc();
     
             $output .= '
+                
+
                     <div class="invoice-card-row mb-3 p-2">
-						
+					<div id="chartBar2" class="bar-chart"></div>
+
                         <div class="bg-warning invoice-card shadow-lg rounded">
                             <div class="p-3">
                                 <div class="d-flex">
@@ -120,7 +124,48 @@ if(isset($_POST['batchName'])){
 
         }
 
-    echo $output;
+    $data['datas'] = $output;
+    $data['daterange'] = '';
+    $data['goods'] = '';
+    $data['lapsed'] = '';
+    $minDate = '';
+    $maxDate = '';
+    $selMinDate = $conn->query("SELECT * from tasks as a where a.batch = '$batch' order by a.start_date ASC limit 1");
+    if($selMinDate->num_rows > 0){
+        $getMinDate = $selMinDate->fetch_assoc();
+        $minDate = date('Y/m/d', strtotime($getMinDate['start_date']));
+    }
+
+    $selMaxDate = $conn->query("SELECT * from tasks where batch = '$batch' order by end_date DESC limit 1");
+    if($selMaxDate->num_rows > 0){
+        $getMaxDate = $selMaxDate->fetch_assoc();
+        $maxDate = date('Y/m/d', strtotime($getMaxDate['end_date']));
+    }
+
+    while($minDate != $maxDate){
+        $data['daterange'] .= $minDate.', ';
+        $redate = date('Y-m-d', strtotime($minDate));
+        $selAllGood = $conn->query("SELECT count(*) as goods from daily_batch_report where task_date = '$redate' and batch_id = '$batch' and remarks = 'GOOD'");
+        if($selAllGood->num_rows > 0){
+            $gdss = $selAllGood->fetch_assoc();
+            $data['goods'] .= $gdss['goods'].', ';;
+        }
+
+        $selAlllapsed = $conn->query("SELECT count(*) as goods from daily_batch_report where task_date = '$redate' and batch_id = '$batch' and remarks = 'LAPSED'");
+        if($selAlllapsed->num_rows > 0){
+            $gdss = $selAlllapsed->fetch_assoc();
+            $data['lapsed'] .= $gdss['goods'].', ';;
+        }
+
+        $minDate = date('Y/m/d', strtotime($minDate. ' + 1 day'));
+
+    }
+
+    
+    $data['daterange'] = substr($data['daterange'], 0, -2);
+    $data['goods'] = substr($data['goods'], 0, -2);
+    $data['lapsed'] = substr($data['lapsed'], 0, -2);
+    echo json_encode($data);
 }
 
 if(isset($_POST['remarks'])){

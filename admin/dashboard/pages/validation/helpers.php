@@ -23,6 +23,10 @@ while($task = $selAllTasks->fetch_assoc()){
 // send notification to employee and admin
 while($notif = $selAllTasks2->fetch_assoc()){
   $noOfDays = $notif['no_of_days'];
+  $orderNo = $notif['order_no'];
+  $userId = $notif['user_id'];
+
+  $batchNo = $notif['batch'];
   if($noOfDays != NULL || $noOfDays != ""){
    
 
@@ -40,10 +44,9 @@ while($notif = $selAllTasks2->fetch_assoc()){
         $i++;
         
         if($addDate <= $today){
-          if(time() >= strtotime("15:00:00") && time() <= strtotime("15:01:00")){
+          if(time() >= strtotime("6:00:00") && time() <= strtotime("7:01:00")){
             if($progress > $notif['process'] && $today == $addDate){
               // Query here for the notification
-              $userId = $notif['user_id'];
               $selUser = $conn->query("SELECT * from users where user_id = '$userId'")->fetch_assoc();
               $userName = $selUser['first_name'].' '.$selUser['last_name'];
               $forAdmin = "$userName FAILED TO MEET THE EXPECTED PROCESS ON DAY $i";
@@ -51,6 +54,18 @@ while($notif = $selAllTasks2->fetch_assoc()){
               $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forAdmin', 2, 0)");
               $inNotifEmployee = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$forEmployee', '$userId', 0)");
               
+            }
+
+            if($progress > $notif['process']){
+              $selbr = $conn->query("SELECT * from daily_batch_report where task_date = '$addDate' and task_id = '$orderNo'");
+              if($selbr->num_rows == 0){
+                $inReport = $conn->query("INSERT INTO daily_batch_report(user_id, remarks, task_date, task_id, batch_id) VALUES('$userId', 'LAPSED', '$addDate', '$orderNo', '$batchNo')");
+              }
+            }elseif($progress <= $notif['process']){
+              $selbr = $conn->query("SELECT * from daily_batch_report where task_date = '$addDate' and task_id = '$orderNo'");
+              if($selbr->num_rows == 0){
+                $inReport = $conn->query("INSERT INTO daily_batch_report(user_id, remarks, task_date, task_id, batch_id) VALUES('$userId', 'GOOD', '$addDate', '$orderNo', '$batchNo')");
+              }
             }
           }
         }
