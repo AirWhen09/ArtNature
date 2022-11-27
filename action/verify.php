@@ -6,7 +6,7 @@ if(isset($_POST['auth']) && isset($_POST['email']) && isset($_POST['verify'])){
 
     $selEmail = $conn->query("SELECT code from users where email = '$email' and code = '$auth'");
     if($selEmail->num_rows > 0){
-        $updateEmail = $conn->query("UPDATE users set status = 'ustts2' where email = '$email'");
+        $updateEmail = $conn->query("UPDATE users set status = 'ustts6' where email = '$email'");
         if($updateEmail){
             echo "<script>alert('Thanks.')</script>";
             echo "<script>window.location.href = 'landing.php?login'</script>";

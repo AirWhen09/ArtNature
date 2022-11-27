@@ -13,7 +13,7 @@
 
 
     ///////////////  content  //////////////////////
-    if(isset($_GET['dashboard'])){
+    if(isset($_GET['dashboard']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/dashboard.php';
     }elseif(isset($_GET['employeeList']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/employeeList.php';
@@ -21,6 +21,8 @@
         include __DIR__ . '/pages/manageTask.php';
     }elseif(isset($_GET['pendingTask']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/pendingTask.php';
+    }elseif(isset($_GET['performance']) && $_SESSION['user_role'] === 'ur1'){
+        include __DIR__ . '/pages/performance.php';
     }elseif(isset($_GET['setting']) && $_SESSION['user_role'] === 'ur1'){
         include __DIR__ . '/pages/setting.php';
     }elseif(isset($_GET['delivery']) && $_SESSION['user_role'] === 'ur1'){

@@ -42,14 +42,6 @@
                                       </label>
                                     </div>
                                     <div class="form-check mx-5">
-                                     <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="improvement" value="Improvement"
-                                     <?php if($getHistory['remarks'] === 'Improvement') echo 'checked';?>
-                                     >
-                                      <label class="form-check-label " for="improvement" data-user="<?php echo $getHistory['userId']?>">
-                                      Improvement
-                                      </label>
-                                    </div>
-                                    <div class="form-check mx-5">
                                      <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="damage" value="Damage"
                                      <?php if($getHistory['remarks'] === 'Damage') echo 'checked';?>
                                      >

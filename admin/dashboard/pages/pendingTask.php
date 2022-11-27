@@ -61,16 +61,38 @@
                                                                 <img src="../../<?php echo $pendingT['picture']?>" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="modal-footer">
-                                                            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
 
-                                                                <input type="hidden" value="<?php echo $pendingT['wigPicId']?>" name="wigPic">
-                                                                <button type="submit" class="btn btn-danger" name="reject">Reject</button>
-                                                            </form>
+                                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateModal2<?php echo $no?>" name="reject">Reject</button>
                                                         <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
                                                                 <input type="hidden" value="<?php echo $pendingT['wigPicId']?>" name="wigPic">
                                                                 <input type="hidden" value="<?php echo $pendingT['orderNo']?>" name="orderNo">
                                                                 <button type="submit" class="btn btn-success" name="approve">Approve</button>
                                                             </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="updateModal2<?php echo $no?>" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h3>Order No: <?php echo $pendingT['orderNo']?></h3>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <img src="../../<?php echo $pendingT['picture']?>" alt="" class="img-fluid">
+                                                                 <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
+                                                                <textarea name="rejectMsg" class="form-control shadow-md" placeholder="Add Reason" required id="" ></textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <input type="hidden" value="<?php echo $pendingT['wigPicId']?>" name="wigPic">
+                                                                <input type="hidden" value="<?php echo $pendingT['userId']?>" name="userId">
+                                                                <button type="submit" class="btn btn-danger" name="reject">Reject</button>
+                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>

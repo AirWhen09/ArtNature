@@ -416,7 +416,6 @@
                                                 <th>Progress</th>
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody> 
@@ -497,21 +496,7 @@
                                                             }
                                                         ?>
                                                     </td>
-                                                    <td>  
-                                                        <?php
-                                                            if($result['start_date'] != ''){
-                                                                // if($result['start_date'] != '' && $result['process'] != 100){
-                                                                ?>
-                                                                    <button class="btn btn-warning btn-sm"  title="Edit" data-bs-toggle="modal" data-bs-target="#task<?php echo $result['order_no'] ?>">
-                                                                        <i class="flaticon-062-pencil"></i>
-                                                                    </button>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                        <button class="btn btn-danger btn-sm"  title="Move To Archive" data-bs-toggle="modal" data-bs-target="#arcTask<?php echo $result['order_no'] ?>">
-                                                            <i class="flaticon-089-trash"></i>
-                                                        </button>
-                                                    </td>
+                                                   
                                                 </tr>
                                                 <?php
                                                 include 'pages/component/taskModal.php';

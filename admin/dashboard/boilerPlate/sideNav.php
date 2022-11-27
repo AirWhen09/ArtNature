@@ -36,11 +36,13 @@
 						</a>
 						
 					</li>
+					<?php if($_SESSION['user_role'] === "ur1"){ ?>
                     <li><a href="index.php?dashboard" aria-expanded="false" >
 							<i class="flaticon-025-dashboard"></i>
 							<span class="nav-text <?php if(isset($_GET['dashboard'])) echo "text-primary"; ?>">Dashboard</span>
 						</a>
                     </li>
+					<?php } ?>
 					<!-- FOR EMPLOYEE  -->
 					<?php if($_SESSION['user_role'] === "ur2" || $_SESSION['user_role'] === "ur3"){ ?>
 						<li>
@@ -75,6 +77,11 @@
 					<li><a href="index.php?pendingTask" aria-expanded="false">
 							<i class="flaticon-041-graph"></i>
 							<span class="nav-text <?php if(isset($_GET['pendingTask'])) echo "text-primary"; ?>">Pending Task</span>
+						</a>
+                    </li>
+					<li><a href="index.php?performance" aria-expanded="false">
+							<i class="flaticon-041-graph"></i>
+							<span class="nav-text <?php if(isset($_GET['performance'])) echo "text-primary"; ?>">Performance</span>
 						</a>
                     </li>
 					<?php } ?>

@@ -1,10 +1,13 @@
 <?php 
 if(isset($_POST['reject'])){
     $id = $_POST['wigPic'];
+    $rejectMsg = $_POST['rejectMsg'];
+    $userId = $_POST['userId'];
     $update = $conn->query("UPDATE wig_picture set pic_status = 'Rejected' where id = '$id'");
     if($update){
+        $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$rejectMsg', '$userId', 0)");
         echo "<script> alert('Update Successfully.');</script>";
-        echo "<script>window.location.href = 'index.php?pendingTask</script>";
+        echo "<script>window.location.href = 'index.php?pendingTask'</script>";
     }else{
         echo "<script> alert('Something is wrong, Please try again.');</script>";
     }
@@ -20,7 +23,14 @@ if(isset($_POST['approve'])){
         date_default_timezone_set('Asia/Manila');
         $today = date('Y-m-d');
         $selDaysProgress = $conn->query("SELECT * from tasks_days where task_id = '$orderNo' and dates = '$today'");
-        $updateTask = $conn->query("UPDATE tasks set process = '$totalProgress' where order_no = '$orderNo'");
+        $selEnddate = $conn->query("SELECT * from tasks where order_no = '$orderNo'")->fetch_assoc();
+        if($today < date('Y-m-d', strtotime($selEnddate['end_date'])) && $totalProgress == 100){
+           $updateTask = $conn->query("UPDATE tasks set process = '$totalProgress', status = 'tstts8' where order_no = '$orderNo'");
+        }elseif($today == date('Y-m-d', strtotime($selEnddate['end_date'])) && $totalProgress == 100){
+            $updateTask = $conn->query("UPDATE tasks set process = '$totalProgress', status = 'tstts7' where order_no = '$orderNo'");
+         }else{
+            $updateTask = $conn->query("UPDATE tasks set process = '$totalProgress' where order_no = '$orderNo'");
+        }
         $selectArea1 = $conn->query("SELECT count(*) as area from wig_picture where pic_status = 'Approved' and area_no = 'area_i' and task_id = '$orderNo'")->fetch_assoc();
         $selectArea2 = $conn->query("SELECT count(*) as area from wig_picture where pic_status = 'Approved' and area_no = 'area_ii' and task_id = '$orderNo'")->fetch_assoc();
         $selectArea3 = $conn->query("SELECT count(*) as area from wig_picture where pic_status = 'Approved' and area_no = 'area_iii' and task_id = '$orderNo'")->fetch_assoc();
@@ -69,6 +79,7 @@ $selAllPending = "SELECT a.pic_status as picStatus,
                          a.area_no as areaNo,
                          a.picture_no as pictureNo,
                          a.picture as picture,
+                         b.user_id as userId,
                          a.date_created as dateCreated
                         FROM wig_picture as a
                         join tasks as e on e.order_no = a.task_id
