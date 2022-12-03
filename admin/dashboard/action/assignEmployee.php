@@ -22,9 +22,10 @@
             $endDate = trim($endDate);
             if($endDate === ''){
                 array_push($errors, "Please input end date");
-            }elseif($startDate < date("Y-m-d")){
-                array_push($errors, "Invalid end date");
             }
+            // elseif($startDate < date("Y-m-d")){
+            //     array_push($errors, "Invalid end date");
+            // }
         }else{
             array_push($errors, "Please input end date");
         }
@@ -33,9 +34,10 @@
             $startDate = trim($startDate);
             if($startDate === ''){
                 array_push($errors, "Please input start date");
-            }elseif($startDate < date("Y-m-d")){
-                array_push($errors, "Invalid start date");
             }
+            // elseif($startDate < date("Y-m-d")){
+            //     array_push($errors, "Invalid start date");
+            // }
         }else{
             array_push($errors, "Please input start date");
         }

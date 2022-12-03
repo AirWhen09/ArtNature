@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$conn = new mysqli("localhost", "root", "password123", "artnature_db");
+$conn = new mysqli("localhost", "artnatur_one", "123!@#Qwerty", "artnatur_123");
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);

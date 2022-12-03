@@ -120,10 +120,18 @@
                                 echo "<script> alert('Image Cant Uploads 4')</script>";
                         }
     
-                    $totalProcess = ($area1 + $area2 + $area3 + $area4) / 4;
-                    date_default_timezone_set('Asia/Manila');
-                $todays = date('Y-m-d');
-                    $updateProcess = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
+                        $totalProcess = ($area1 + $area2 + $area3 + $area4) / 4;
+                        date_default_timezone_set('Asia/Manila');
+                        $todays = date('Y-m-d');
+
+                        $selEnddate = $conn->query("SELECT * from tasks where order_no = '$orderNo'")->fetch_assoc();
+                        if($today < date('Y-m-d', strtotime($selEnddate['end_date'])) && $totalProcess == 100){
+                                $updateTask = $conn->query("UPDATE tasks set process = '$totalProcess', status = 'tstts8' where order_no = '$orderNo'");
+                        }elseif($today == date('Y-m-d', strtotime($selEnddate['end_date'])) && $totalProcess == 100){
+                                $updateTask = $conn->query("UPDATE tasks set process = '$totalProcess', status = 'tstts7' where order_no = '$orderNo'");
+                        }else{
+                                $updateTask = $conn->query("UPDATE tasks set process = '$totalProcess' where order_no = '$orderNo'");
+                        }
                     
                     if($updateProcess){
                         $selDaysProgress = $conn->query("SELECT * from task_days where task_id = '$orderNo' and dates = '$todays'");
@@ -139,7 +147,6 @@
                                 }
                         }
 
-                            echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
                             echo "<script> alert('Task Updated');</script>";
                             echo "<script>window.location.href = 'index.php?manageTask'</script>";
                     }

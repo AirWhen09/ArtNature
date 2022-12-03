@@ -25,4 +25,4 @@ require 'session/session.php'; // sessions
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <!-- <body> -->
-  <body style="background-image: url('img/bg.jpg');">
+  <body>

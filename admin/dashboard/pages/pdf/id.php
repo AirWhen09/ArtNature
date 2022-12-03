@@ -8,11 +8,13 @@ if(isset($_GET['id'])){
                                     b.name as employee,
                                     a.birthday as dob,
                                     a.address as address,
-                                    a.contact as contact    
+                                    a.contact as contact,
+                                    a.user_id as userId    
                                     from users as a
                                     join reference_code as b on a.user_role = b.ref_id
                                     where a.user_id = '$id'")->fetch_assoc();
     $image = $getUser['image'];
+    $userId = sprintf('%06d',$getUser['userId']);
     $name = $getUser['fullname'];
     $employee = $getUser['employee'];
     $address = $getUser['address'];
@@ -36,26 +38,56 @@ $pdf->SetMargins(0, 0, 0, true);
 $pdf->AliasNbPages('{pages}');
 //$pdf->AliasNbPages('{$print_date}');
 $pdf->AddPage();
-
 $pdf->Cell(0,5,"",0,1,"C");
 $pdf->Image("../../../../img/ID.jpg",0,0,100);
-$pdf->Image("../../../../{$image}",35,27,30);
-$pdf->SetFont('Arial','B',15);
-$pdf->Cell(16,53,"",0,1,"C");
-$pdf->Cell(100,5,"{$name}",0,1,"C");
-$pdf->SetFont('Arial','',10);
+$pdf->Image("../../../../img/logo3.png",8,3,25);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(30,5,"",0,0,"C");
+$pdf->Cell(70,5,"ARTNATURE MANUFACTURING.",0,1,"C");
+$pdf->Cell(30,5,"",0,0,"C");
+$pdf->Cell(70,5,"PHILLIPINES INC.",0,1,"C");
+$pdf->Cell(30,5,"",0,1,"C");
+$pdf->Cell(30,5,"",0,0,"C");
+$pdf->SetFont('Arial','',8);
+$pdf->Cell(70,5,"MABINI, LIBMANAN, CAMARINES SUR.",0,1,"C");
+$pdf->Image("../../../../{$image}",35,28,30);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(16,37,"",0,1,"C");
 $pdf->Cell(100,5,"{$employee}",0,1,"C");
-$pdf->Cell(100,5,"{$address}",0,1,"C");
+$pdf->SetFont('Arial','',10);
+
+$pdf->Cell(16,3,"",0,1,"C");
+$pdf->SetFont('Arial','B',11);
+$pdf->Cell(100,5,"{$name}",0,1,"C");
+$pdf->SetFont('Arial','',8);
+$pdf->Cell(100,5,"Name",0,1,"C");
+$pdf->Cell(16,3,"",0,1,"C");
+
+$pdf->SetFont('Arial','B',15);
+$pdf->Cell(100,5,"{$userId}",0,1,"C");
+$pdf->SetFont('Arial','',8);
+$pdf->Cell(100,5,"ID Number",0,1,"C");
 
 //$pdf->Image('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=HiImUnderTheWaterPlsHelpMe&choe=UTF-8',33,74,35,0,'PNG');
 
-$pdf->Cell(16,35,"",0,1,"C");
+$pdf->Cell(16,15,"",0,1,"C");
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(50,5,"{$dob}",0,0,"C");
-$pdf->Cell(50,5,"{$contact}",0,1,"C");
+$pdf->Cell(50,5,"_____________",0,1,"C");
 $pdf->SetFont('Arial','',7);
 $pdf->Cell(50,5,"Date of Birth",0,0,"C");
-$pdf->Cell(50,5,"Contact Number",0,1,"C");
+$pdf->Cell(50,5,"Signature",0,1,"C");
 
+
+$pdf->AddPage();
+$pdf->Image("../../../../img/ID.jpg",0,0,100);
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(90,4,"",0,1,"C");
+$pdf->Cell(4,10,"",0,0,"C");
+$pdf->Multicell(93,10,"IMPORTANT\nThis ID is non-transferable and shall be confiscated when use by others.\nWear this ID card when entering company premises and present to company officers upon demand",1, "C"); 
+
+$pdf->Cell(90,4,"",0,1,"C");
+$pdf->Cell(4,10,"",0,0,"C");
+$pdf->Multicell(93,10,"______________________\nADDRESS\n____________________\nINCASE OF EMERGENCY PLEASE CONTACT\n_________________________\n Authorized Signature",1,"C"); 
 $pdf->Output();
 ?>

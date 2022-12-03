@@ -3,6 +3,7 @@ require('pdf/fpdf.php');
 include '../../../../connection/connection.php';
 if(isset($_GET['batch'])){
     $batch = mysqli_real_escape_string($conn, $_GET['batch']);
+    $selBName = $conn->query("SELECT name from task_batch where batch_id = '$batch'")->fetch_assoc();
 }
 $print_date = date("M. d, Y");
 class PDF extends FPDF{
@@ -23,77 +24,59 @@ $pdf->AliasNbPages('{pages}');
 $pdf->AddPage();
 
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(0,5,"BATCH REPORT",0,1,"C");
-$pdf->Cell(160,5,"",0,1,"C");
+$pdf->Cell(165,5,"{$selBName['name']}",0,0,"L");
+$pdf->Cell(165,5,"{$print_date}",0,0,"R");
+$pdf->Cell(160,10,"",0,1,"C");
 
 $pdf->SetFont('Arial','B',25); 
-$pdf->cell(45,10, 'Order No',1,0);
-$pdf->cell(40,10, 'Model',1,0);
-$pdf->cell(33,10, 'Size',1,0);
-$pdf->cell(50,10, 'Start Date',1,0);
-$pdf->cell(50,10, 'End Date',1,0);
-$pdf->cell(50,10, 'Status',1,0);
-$pdf->cell(60,10, 'OPERATOR',1,1);
+$pdf->cell(80,10, 'EMPLOYEE NAME',1,0);
+$pdf->cell(70,10, 'NO. OF LAPSES',1,0);
+$pdf->cell(180,10, 'DATE OF LAPSES',1,1);
 
 //get all task
-$allTask = "SELECT a.order_no as orderNo,
-                    a.date_created as dateCreated,
-                    a.start_date as startDate,
-                    a.end_date as endDate,
-                    b.name as batchName,
-                    c.name as wigModel,
-                    d.name as wigSize,
-                    f.name as taskStatus,
-                    e.first_name as operator,
-                    a.no_of_days as noOfDays
-            from tasks as a
-            join task_batch as b on a.batch = b.batch_id
-            join reference_code as c on a.wig_model = c.ref_id
-            join reference_code as d on a.wig_size = d.ref_id
-            join reference_code as f on a.status = f.ref_id
-            join users as e on a.user_id = e.user_id
-            where a.batch = '$batch'";
+$allTask = "SELECT distinct(user_id) as userId from daily_batch_report where batch_id = '$batch'";
 $getAllBatch = $conn->query($allTask);
-$new = 0;
-$production = 0;
-$done = 0;
-$archived = 0;
-$lapsed = 0;
-
+$totalLapse = 0;
 while($result = $getAllBatch->fetch_assoc()){
-if($result['taskStatus'] == "New") ++$new;
-if($result['taskStatus'] == "Production") ++$production;
-if($result['taskStatus'] == "Done") ++$done;
-if($result['taskStatus'] == "Archived") ++$archived;
-if($result['taskStatus'] == "Lapsed") ++$lapsed;
-$orderNo = $result['orderNo'];
-$dateCreated = date('M d, Y', strtotime($result['dateCreated']));
-$startDate = date('M d, Y', strtotime($result['startDate']));
-$endDate = date('M d, Y', strtotime($result['endDate']));
+    $userId = $result['userId'];
+$selectUser = $conn->query("SELECT * from users where user_id = '$userId'")->fetch_assoc();
+$countLapsed = $conn->query("SELECT count(*) as lapsed from daily_batch_report where batch_id = '$batch' and user_id = '$userId' and remarks = 'LAPSED'")->fetch_assoc();
+$dateLapse = $conn->query("SELECT task_date from daily_batch_report where batch_id = '$batch' and user_id = '$userId' and remarks = 'LAPSED'");
 $pdf->SetFont('Arial','',18); 
-$pdf->cell(45,10, "{$orderNo}",1,0);
-$pdf->cell(40,10, "{$result['wigModel']}",1,0);
-$pdf->cell(33,10, "{$result['wigSize']}",1,0);
-$pdf->cell(50,10, "{$dateCreated}",1,0);
-$pdf->cell(50,10, "{$startDate}",1,0);
-$pdf->cell(50,10, "{$result['taskStatus']}",1,0);
+$fullname = $selectUser['first_name'].' '.$selectUser['last_name'];
+$lapsedCount = $countLapsed['lapsed'];
 
-$pdf->cell(60,10, "{$result['operator']}",1,1);
+$dates = '';
+
+while($dateL = $dateLapse->fetch_assoc()){
+    $dates .= $dateL['task_date'].", ";
+}
+$pdf->cell(80,10, "{$fullname}",1,0);
+$pdf->setFillColor(0,255,0); 
+if($lapsedCount == 0){
+    $pdf->SetTextColor(76,153,0);
+}elseif($lapsedCount > 0 && $lapsedCount < 3){
+    $pdf->SetTextColor(204,102,0);
+}elseif($lapsedCount > 3){
+    $pdf->SetTextColor(153,0,0);
+}
+$totalLapse += $lapsedCount;
+$pdf->cell(70,10, "{$lapsedCount}",1,0);
+$pdf->SetTextColor(0,0,0);
+$pdf->SetDrawColor(50,50,100);
+$pdf->cell(180,10, "{$dates}",1,1);
 
 }
+$pdf->cell(80,10, '',0,0);
+$pdf->cell(70,10, "{$totalLapse}",1,0);
 $pdf->Cell(160,5,"",0,1,"C");
 $pdf->Cell(160,5,"",0,1,"C");
-$pdf->Cell(160,5,"",0,1,"C");
+$pdf->Cell(180,5,"",0,1,"C");
+$pdf->cell(180,10, 'TOTAL NO OF LAPSES:',0,1);
+$pdf->cell(180,10, '0 KEEP IT UP!',0,1);
+$pdf->cell(180,10, '1-15 TOTAL OF LAPSES, PLEASE MESSAGE THE EMPLOYEES ABOUT THE LAPSES!',0,1);
+$pdf->cell(180,10, '16 AND ABOVE TOTAL OF LAPSES: EMERGENCY MEETING',0,1);
 
-$pdf->SetFont('Arial','B',20);
-$pdf->Cell(0,5,"BATCH REPORT",0,1,"C");
-$pdf->Cell(160,5,"",0,1,"C");
-$pdf->Cell(160,5,"",0,1,"C");
-
-$pdf->Cell(84,10,"New: {$new}",0,0,"C");
-$pdf->Cell(84,10,"Done: {$done}",0,0,"C");
-$pdf->Cell(84,10,"Archived: {$archived}",0,0,"C");
-$pdf->Cell(84,10,"Lapsed: {$lapsed}",0,1,"C");
 
 $pdf->Output();
 ?>

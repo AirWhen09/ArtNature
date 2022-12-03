@@ -25,14 +25,7 @@
                             if($_SESSION['user_role'] === "ur1"){
                                 ?>
                                 <h2 class="card-title mb-2 ">Remarks: <span class="fw-bold">
-                                    <div class="form-check mx-5">
-                                      <input class="form-check-input adminRemarks" data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="veryGood" value="Very Good"
-                                      <?php if($getHistory['remarks'] === 'Very Good') echo 'checked';?>
-                                      >
-                                      <label class="form-check-label " for="veryGood" data-user="<?php echo $getHistory['userId']?>">
-                                        Very Good
-                                      </label>
-                                    </div>
+                                    
                                     <div class="form-check mx-5">
                                      <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="good" value="Good"
                                      <?php if($getHistory['remarks'] === 'Good') echo 'checked';?>
@@ -42,19 +35,19 @@
                                       </label>
                                     </div>
                                     <div class="form-check mx-5">
-                                     <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="improvement" value="Improvement"
-                                     <?php if($getHistory['remarks'] === 'Improvement') echo 'checked';?>
-                                     >
-                                      <label class="form-check-label " for="improvement" data-user="<?php echo $getHistory['userId']?>">
-                                      Improvement
-                                      </label>
-                                    </div>
-                                    <div class="form-check mx-5">
-                                     <input class="form-check-input adminRemarks"  data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="damage" value="Damage"
+                                     <input class="form-check-input " data-bs-toggle="modal" data-bs-target="#updateModal2" data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="damage" value="Damage"
                                      <?php if($getHistory['remarks'] === 'Damage') echo 'checked';?>
                                      >
                                       <label class="form-check-label " for="damage" data-user="<?php echo $getHistory['userId']?>">
                                       Damage
+                                      </label>
+                                    </div>
+                                    <div class="form-check mx-5">
+                                      <input class="form-check-input adminRemarks" data-user="<?php echo $getHistory['userId']?>" type="radio" name="remarks" id="severlyDamage" value="Severly Damage"
+                                      <?php if($getHistory['remarks'] === "Severly Damage") echo 'checked';?>
+                                      >
+                                      <label class="form-check-label " for="veryGood" data-user="<?php echo $getHistory['userId']?>">
+                                        Severly Damage
                                       </label>
                                     </div>
                                 </h2>
@@ -128,3 +121,27 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal2" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Order No: <?php echo $getHistory['orderNumber']?></h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                     <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data" class="pt-2 needs-validation" enctype="multipart/form-data">
+                    <textarea name="rejectMsg" class="form-control shadow-md" placeholder="Add Reason" required id="" ></textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="<?php echo $getHistory['userId']?>" name="userId">
+                    <input type="hidden" value="<?php echo $getHistory['orderNumber']?>" name="orderNo">
+                    <button type="submit" class="btn btn-danger" name="reject">Reject</button>
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+

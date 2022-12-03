@@ -52,7 +52,7 @@
                         </div>
                       </div>
                     </div>
-
+                  <?php if($_SESSION['user_role'] === 'ur1'){?>
                     <div class="accordion accordion-flush" id="empContact">
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="empCon">
@@ -132,7 +132,7 @@
                         </div>
                       </div>
                     </div>
-
+                  <?php } ?>
                 </div>
                 <div class="col-lg-9">
                     <div class="card text-start mh-100">

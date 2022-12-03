@@ -42,5 +42,14 @@ if(isset($_GET['or'])){
 
     //get estimated progress
 }
+
+if(isset($_POST['reject'])){
+    $rejectMsg = $_POST['rejectMsg'];
+    $userId = $_POST['userId'];
+    $or = $_POST['orderNo'];
+    $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$rejectMsg', '$userId', 0)");
+    echo "<script> alert('Update Successfully.');</script>";
+    echo "<script>window.location.href = 'index.php?taskHistory&or=$or'</script>";
+}
     
 ?>

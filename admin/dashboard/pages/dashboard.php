@@ -260,9 +260,11 @@
 					dataType: "json",
 					data  : {batchName : batchName},
 					success : function(data){
+					    console.log(data);
 						let lapsed = data.lapsed.split(",");
 						let goods = data.goods.split(",");
 						let dateRange = data.daterange.split(",");
+						
 						$('#task').html(data.datas);
 						(function($) {
 							var chartBar2 = function(){
@@ -358,7 +360,7 @@
 											offsetX:-16,
 										style: {
 											colors: '#3e4954',
-											fontSize: '13px',
+											fontSize: '1px',
 											fontFamily: 'poppins',
 											fontWeight: 400,
 											cssClass: 'apexcharts-xaxis-label',

@@ -1,4 +1,6 @@
 <?php include 'action/pages/myTask.php'; ?>
+<?php include 'pages/validation/helpers.php'?>
+
 <!--**********************************
     Content body start
 ***********************************-->
@@ -6,6 +8,64 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="col-xl-12 col-xxl-12">
+            <div class="card p-5">
+                <div class="row">
+                <?php
+                 $allTask2 = "SELECT *, b.name as taskStatus , 
+                            c.first_name as firstName, 
+                            c.last_name as lastName,
+                            c.image as imagePath,
+                            e.name as wigModel,
+                            f.name as wigSize,
+                            a.user_id as userId,
+                            g.name as userRole
+                from tasks as a
+                left join reference_code as b on a.status = b.ref_id
+                left join users as c on a.user_id = c.user_id
+                left join reference_code as e on a.wig_model = e.ref_id
+                left join reference_code as f on a.wig_size = f.ref_id
+                left join reference_code as g on c.user_role = g.ref_id
+                where a.status in ('tstts2') and a.user_id = '$isLoginUserId'
+                ";
+            $getTask2 = $conn->query($allTask2);
+                    while($task = $getTask2->fetch_assoc()){
+                        $orderNo = $task['order_no'];
+                        
+                    ?>
+                    <div class="col-xl-3 col-xxl-3 col-sm-6">
+                        <a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
+                            <div class="bg-warning invoice-card shadow-lg rounded mb-2">
+                                <div class="p-3">
+                                    <div class="d-flex">
+                                        <div class="icon me-3">
+                                            <img src="../../<?php echo $task['imagePath']?>" alt="image" class="rounded-circle border-3 border border-white" height="100px">
+                                        </div> 
+                                        <div class="d-flex flex-column">
+                                            <span class="text-white fs-18 fw-bold"><?php echo $task['firstName'].' '.$task['lastName']?></span>
+                                            
+                                            <span class="text-white fs-10"><?php echo $task['userRole']?></span>
+                                            <span class="text-white fs-10">or #: <b><?php echo $task['order_no']?></b></span>
+                                        </div>
+                                    </div>
+                                    <div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
+                                        <div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $task['process']?>%; height:20px;" role="progressbar">
+                                            <span><?php echo $task['process']?>%</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-evenly">
+                                        <span class="text-white fs-18">Model: <b><?php echo $task['wigModel']?></b></span>
+                                        <span class="text-white fs-18">Size: <b><?php echo $task['wigSize']?></b></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header d-block d-sm-flex border-0">
                     <div class="me-3">

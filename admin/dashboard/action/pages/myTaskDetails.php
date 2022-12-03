@@ -3,7 +3,9 @@ if(isset($_GET['orderNo'])){
     $orderNo = mysqli_real_escape_string($conn, $_GET['orderNo']);
     $results = $conn->query("SELECT * from tasks where order_no = '$orderNo'");
     if($results->num_rows > 0){
+        
         $result = $results->fetch_assoc();
+        $wigId = $result['wig_id'];
     }else{
         echo "<script> alert('Order number not found');</script>";
         echo "<script>window.location.href = 'index.php?myTask'</script>";
@@ -29,15 +31,15 @@ if(isset($_POST['updateImg'])){
     }else{
             if(move_uploaded_file($filetemp4, $filepaths4)){ //upload image
                     
-                    $addHistory4 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('$filepath4','$orderNo','$areaProgress', '$areaNo')";
+                    $addHistory4 = "INSERT INTO task_progress_history (image, task_id, progress, area_no) VALUES('$filepath4','$orderNo',0, '$areaNo')";
                     $newHistory4 = $conn->query($addHistory4);
                     if($newHistory4){
                             // $updateProcess = $conn->query("UPDATE tasks set process = '$totalProgress' where order_no = '$orderNo'");
                             // $updateArea = $conn->query("UPDATE wig set $areaNo = '$areaProgress', $areaPic = '$filepath4' where wig_id = '$wigNo'");
-                            $updateArea = $conn->query("UPDATE wig set $areaPic = '$filepath4' where wig_id = '$wigNo'");
-                            $selWigPic = $conn->query("SELECT * from wig_picture where area_no = '$areaNo' and picture_no = '$areaPic' and pic_status = 'Pending'");
+                            // $updateArea = $conn->query("UPDATE wig set $areaNo = '$filepath4' where wig_id = '$wigNo'");
+                            $selWigPic = $conn->query("SELECT * from wig_picture where area_no = '$areaNo' and picture_no = '$areaPic' and pic_status = 'Pending' and task_id = '$orderNo'");
                             if($selWigPic->num_rows > 0){
-                                $updateWigPic = $conn->query("UPDATE wig_picture set picture = '$filepath4' where area_no = '$areaNo' and picture_no = '$areaPic'");
+                                $updateWigPic = $conn->query("UPDATE wig_picture set picture = '$filepath4' where area_no = '$areaNo' and picture_no = '$areaPic' and task_id = '$orderNo'");
                             }else{
                                 $inWigPic = $conn->query("INSERT INTO wig_picture(picture, pic_status, area_no, picture_no, task_id) VALUES('$filepath4', 'Pending', '$areaNo', '$areaPic', '$orderNo')");
                             }
@@ -46,7 +48,7 @@ if(isset($_POST['updateImg'])){
                     }else{
                         $ey = $conn->error;
                         echo $ey;
-                            echo "<script> alert('$ey')</script>";
+                            echo "<script> alert('aa $ey')</script>";
                     }
             }else{
                     echo "<script> alert('Image Cant Upload 4');</script>";

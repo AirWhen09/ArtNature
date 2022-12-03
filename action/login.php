@@ -62,8 +62,16 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     }
     
     if(count($errors) === 0){
+
+        if($_SESSION['user_role'] == 'ur1'){
+            $redirect = 'dashboard';
+        }elseif($_SESSION['user_role'] == 'ur2' || $_SESSION['user_role'] == 'ur3'){
+            $redirect = 'myTask';
+        }elseif($_SESSION['user_role'] == 'ur4'){
+            $redirect = 'location';
+        }
         echo "<script>swal('Welcome!', 'You have successfully logged in!', 'success');</script>";
-        echo "<script>window.location.href = 'admin/dashboard/index.php?dashboard'</script>";
+        echo "<script>window.location.href = 'admin/dashboard/index.php?$redirect'</script>";
     }
 }
 

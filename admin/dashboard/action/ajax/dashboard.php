@@ -38,7 +38,7 @@ if(isset($_POST['batchName'])){
     
             $output .= '
                 
-
+                    <a class="ms-auto btn btn-primary" href="pages/pdf/batch.php?batch='.$batch.'" target="_BLANK"">Generate Report <i class="las la-signal ms-3 scale5"></i></a>
                     <div class="invoice-card-row mb-3 p-2">
 					<div id="chartBar2" class="bar-chart"></div>
 
@@ -130,13 +130,13 @@ if(isset($_POST['batchName'])){
     $data['lapsed'] = '';
     $minDate = '';
     $maxDate = '';
-    $selMinDate = $conn->query("SELECT * from tasks as a where a.batch = '$batch' order by a.start_date ASC limit 1");
+    $selMinDate = $conn->query("SELECT * from tasks as a where a.batch = '$batch' and a.start_date IS NOT NULL order by a.start_date ASC limit 1");
     if($selMinDate->num_rows > 0){
         $getMinDate = $selMinDate->fetch_assoc();
         $minDate = date('Y/m/d', strtotime($getMinDate['start_date']));
     }
 
-    $selMaxDate = $conn->query("SELECT * from tasks where batch = '$batch' order by end_date DESC limit 1");
+    $selMaxDate = $conn->query("SELECT * from tasks where batch = '$batch' and end_date IS NOT NULL order by end_date DESC limit 1");
     if($selMaxDate->num_rows > 0){
         $getMaxDate = $selMaxDate->fetch_assoc();
         $maxDate = date('Y/m/d', strtotime($getMaxDate['end_date']));
@@ -175,14 +175,38 @@ if(isset($_POST['remarks'])){
 
     $up = $conn->query("UPDATE tasks set remarks = '$remark' where order_no = '$orNo'");
     
-    if($remark == 'Damage'){
+    if($remark == 'Severly Damage'){
         $remarks = "Your Order Number: $orNo, is $remark please message your manager for further information about your damage product. ASAP!" ;
         $upT = $conn->query("UPDATE tasks set status = 'tstts6' where order_no = '$orNo'");
+        $upT = $conn->query("UPDATE users set status = 'ustts5' where user_id = '$userId'");
     }elseif($remark == 'Good'){
         $remarks = "The admin praise your work. Order Number: $orNo" ;
-        $upT = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orNo'");
+        // $upT = $conn->query("UPDATE tasks set status = 'tstts2' where order_no = '$orNo'");
     }
     $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$remarks', '$userId', 0)");
+}
+
+if(isset($_POST['year']) && isset($_POST['month'])){
+    $year = $_POST['year'];
+    $month = $_POST['month'];
+    //get task overview
+    $lapsed = "SELECT count(*) as arc from tasks where status = 'tstts5' and YEAR(end_date) like '%$year%' and MONTH(end_date) like '%$month%'";
+    $damage = "SELECT count(*) as new from tasks where status = 'tstts6' and YEAR(end_date) like '%$year%' and MONTH(end_date) like '%$month%'";
+    $onTime = "SELECT count(*) as done from tasks where status = 'tstts7' and YEAR(end_date) like '%$year%' and MONTH(end_date) like '%$month%'";
+    $early = "SELECT count(*) as production from tasks where status = 'tstts8' and YEAR(end_date) like '%$year%' and MONTH(end_date) like '%$month%'";
+
+    $getArchive = $conn->query($lapsed)->fetch_assoc();
+    $getNew = $conn->query($damage)->fetch_assoc();
+    $getDone = $conn->query($onTime)->fetch_assoc();
+    $getProduction = $conn->query($early)->fetch_assoc();
+
+    if($getArchive && $getNew && $getDone && $getProduction){
+        $taskOverview = $getArchive['arc'].','.$getNew['new'].','.$getDone['done'].','.$getProduction['production'];
+    }else{
+        $taskOverview = "0,0,0,0";
+    }
+
+    echo $taskOverview;
 }
 
 ?>
