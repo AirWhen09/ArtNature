@@ -82,6 +82,11 @@
 								<a class="dropdown-item" href="index.php?progressReport">Progress Report</a>
 							</div>
                     </li>
+					<li><a href="index.php?performance" aria-expanded="false">
+							<i class="flaticon-041-graph"></i>
+							<span class="nav-text <?php if(isset($_GET['performance'])) echo "text-primary"; ?>">Performance</span>
+						</a>
+                    </li>
 					<?php } ?>
                     <!-- <li><a href="index.php?chat" aria-expanded="false">
 							<i class="flaticon-093-waving"></i>
