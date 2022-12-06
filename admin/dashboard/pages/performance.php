@@ -153,7 +153,7 @@
                         <input type="date"  onchange="setEndDateMin(this)"
                         class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input start date.
@@ -165,7 +165,7 @@
                         <input type="date" min="<?php echo date('Y-m-d');?>T00:00" disabled
                         class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input end date.

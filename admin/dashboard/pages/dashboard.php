@@ -7,19 +7,20 @@
 			<div class="container-fluid">
 				
 				<div class="row invoice-card-row">
-					<select name="batchName" id="batchName" class="form-select w-50 mx-2 mb-3">
+					<!-- <select name="batchName" id="batchName" class="form-select w-50 mx-2 mb-3">
 						<option value="">Select Batch</option>
 						<?php
-						while($batch = $getBatch->fetch_assoc()){
-							$batchId = $batch['batch_id'];
+						//while($batch = $getBatch->fetch_assoc()){
+							//$batchId = $batch['batch_id'];
 						?>
-						<option value="<?php echo $batch['batch_id']?>"><?php echo $batch['name']?></option>
+						<option value="<?php //echo $batch['batch_id']?>"><?php //echo $batch['name']?></option>
 						<?php		
-						}
+						//}
 						?>
-					</select>
+					</select> -->
 					<div class="col-sm-8">
 						<div id="task" class="row ">
+						<!-- <div id="task" class="row ">
 							<div class="invoice-card-row mb-3 mx-1">
 								<div class="bg-warning invoice-card shadow-lg rounded">
 									<div class="p-3">
@@ -30,14 +31,14 @@
 											</div>
 										</div>
 										<?php
-										$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
-										$getAve = $conn->query($aveProcess)->fetch_assoc();
+										//$aveprogress = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
+										//$getAve = $conn->query($aveProcess)->fetch_assoc();
 
 
 										?>
 										<div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
-											<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getAve['totalAve']?>%; height:20px;" role="progressbar">
-												<span><?php echo $getAve['totalAve']?>% Complete</span>
+											<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php //echo $getAve['totalAve']?>%; height:20px;" role="progressbar">
+												<span><?php //echo $getAve['totalAve']?>% Complete</span>
 											</div>
 										</div>
 									</div>
@@ -45,7 +46,93 @@
 							</div>
 								
 							<?php
-							while($task = $getTask->fetch_assoc()){
+							//while($task = $getTask->fetch_assoc()){
+								//$orderNo = $task['order_no'];
+								
+							?>
+							<div class="col-xl-4 col-xxl-4 col-sm-6">
+								<a href="index.php?taskHistory&or=<?php //echo $task['order_no']?>">
+									<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+										<div class="p-3">
+											<div class="d-flex">
+												<div class="icon me-3">
+													<img src="../../<?php //echo $task['imagePath']?>" alt="image" class="img-fluid rounded-circle border-3 border border-white">
+												</div> 
+												<div class="d-flex flex-column">
+													<span class="text-white fs-18 fw-bold"><?php //echo $task['firstName'].' '.$task['lastName']?></span>
+													
+													<span class="text-white fs-10"><?php //echo $task['userRole']?></span>
+													<span class="text-white fs-10">or #: <b><?php //echo $task['order_no']?></b></span>
+												</div>
+											</div>
+											<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
+												<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php //echo $task['process']?>%; height:20px;" role="progressbar">
+													<span><?php //echo $task['process']?>%</span>
+												</div>
+											</div>
+											<div class="d-flex justify-content-evenly">
+												<span class="text-white fs-18">Model: <b><?php //echo $task['wigModel']?></b></span>
+												<span class="text-white fs-18">Size: <b><?php //echo $task['wigSize']?></b></span>
+											</div>
+											
+										</div>
+									</div>
+								</a>
+							</div>
+							<?php
+							//}
+							?>
+						</div> -->
+						
+						<?php
+							if(isset($_GET['dashboard']) && isset($_GET['batch'])){
+								$batchId = $_GET['batch'];
+								$selectB = $conn->query("SELECT * from task_batch where batch_id = '$batchId'");
+								if($selectB->num_rows > 0){
+									$getB = $selectB->fetch_assoc();
+								?>
+									<div class="invoice-card-row mb-3 mx-1">
+										<div class="bg-warning invoice-card shadow-lg rounded">
+											<div class="p-3">
+												<div class="d-flex">
+													<div class="d-flex flex-column">
+														<span class="text-white fs-18 fw-bold"><?php echo $getB['name']?></span>
+														
+													</div>
+												</div>
+												<?php
+												//$aveprogress = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status  != 'tstts4'";
+												//$getAve = $conn->query($aveProcess)->fetch_assoc();
+
+
+												?>
+												<div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
+													<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getB['progress']?>%; height:20px;" role="progressbar">
+														<span><?php echo $getB['progress']?>% Complete</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							<?php
+							$allTask = "SELECT *, b.name as taskStatus , 
+													c.first_name as firstName, 
+													c.last_name as lastName,
+													c.image as imagePath,
+													e.name as wigModel,
+													f.name as wigSize,
+													a.user_id as userId,
+													g.name as userRole
+										from tasks as a
+										left join reference_code as b on a.status = b.ref_id
+										left join users as c on a.user_id = c.user_id
+										left join reference_code as e on a.wig_model = e.ref_id
+										left join reference_code as f on a.wig_size = f.ref_id
+										left join reference_code as g on c.user_role = g.ref_id
+										where a.batch = '$batchId'
+										";
+							$getTaskz = $conn->query($allTask);
+							while($task = $getTaskz->fetch_assoc()){
 								$orderNo = $task['order_no'];
 								
 							?>
@@ -79,8 +166,94 @@
 								</a>
 							</div>
 							<?php
+							} ?>
+								<?php
+								}else{
+									echo "<script>window.location.href = 'index.php?dashboard'</script>";
+								}
+
+							}else{
+								$selBatch = $conn->query("SELECT * from task_batch order by date_created limit 20");
+								while($getBatch = $selBatch->fetch_assoc()){
+									?>
+										<div class="col-xl-4 col-xxl-4 col-sm-6">
+											<a href="index.php?dashboard&batch=<?php echo $getBatch['batch_id']?>">
+												<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+													<div class="p-3">
+														<div class="d-flex">
+															<div class="d-flex flex-column">
+																<span class="text-white fs-18 fw-bold"><?php echo $getBatch['name']?></span>
+															</div>
+														</div>
+														<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
+															<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getBatch["progress"]?>%; height:20px;" role="progressbar">
+																<span><?php echo $getBatch['progress']?>%</span>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</a>
+										</div>
+									<?php
+								}
+								?>
+								<div class="card m-3 p-4">
+									<h2>Product Location</h2>
+									<div class="row">
+										<?php
+											$selBatchs = $conn->query("SELECT * from task_batch order by date_created limit 20");
+											while($getBatch = $selBatchs->fetch_assoc()){
+												$batchId = $getBatch['name'];
+												?>
+													<div class="col-xl-4 col-xxl-4 col-sm-6">
+														<a href="index.php?delivery&batch=<?php echo $getBatch['name']?>">
+															<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+																<div class="p-3">
+																	<div class="d-flex">
+																		<div class="d-flex flex-column">
+																			<span class="text-white fs-18 fw-bold"><?php echo $getBatch['name']?></span>
+																			<span class="text-white fs-16 ">Assigned Driver: 
+																			<?php
+																				$driver = $getBatch['assigned_driver'];
+																				$assDriver = $conn->query("SELECT first_name, last_name from users where user_id = '$driver'");
+																				if($assDriver->num_rows > 0){
+																					$resDriver = $assDriver->fetch_assoc();
+																					echo $resDriver['first_name']." ".$resDriver['last_name'];
+																					$allLocation = "SELECT a.batch_id as batchName,
+																											a.date_created as dateArrived,
+																											CONCAT(b.first_name, ' ', b.last_name) as fullName,
+																											c.address as address
+																											from task_batch_location as a
+																											join users as b on a.user_id = b.user_id 
+																											join location as c on a.location_id = c.location_id 
+																											where a.batch_id = '$batchId' order by date_created DESC limit 1";
+																						$getLocation = $conn->query($allLocation)->fetch_assoc();
+																					?>
+																						<span class="text-white fs-18">Currently At: <?php echo $getLocation['address']?></span>
+
+																					<?php
+																				}else{
+																					echo "Unassigned";
+																				}
+																			?>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</a>
+													</div>
+												<?php
+											}
+											
+										?>
+									</div>
+								</div>
+								<?php
+								
 							}
-							?>
+						?>
 						</div>
 					</div>
 					<!-- CALENDAR -->
@@ -94,6 +267,9 @@
 									<li><span class="circle" style="background-color: #5800FF;"></span>Done<span><?php echo $getDone['done']?></span></li>
 									<li><span class="circle" style="background-color: #38bfb3;"></span>New<span><?php echo $getNew['new']?></span></li>
 									<li><span class="circle" style="background-color: #c8c8c8;"></span>Lapsed<span><?php echo $getArchive['arc']?></span></li>
+									<li><span class="circle" style="background-color: #00FF00;"></span>Early<span><?php echo $early1['production']?></span></li>
+                                <li><span class="circle" style="background-color: #00A300;"></span>On Time<span><?php echo $onTime1['done']?></span></li>
+                                <li><span class="circle" style="background-color: #FF2E2E;"></span>Damage<span><?php echo $damage1['new']?></span></li>
 								</ul>
 							</div>
 							<div class="col-md-6">
@@ -141,13 +317,16 @@
 			var myChart = new Chart(ctx, {
 				type: 'polarArea',
 				data: {
-					labels: ["Archived", "New", "Done", "Production"],
+					labels: ["Archived", "New", "Done", "Production", "Damage", "Early", "On-Time"],
 					datasets: [{
 						backgroundColor: [
 							"#c8c8c8",
 							"#38bfb3",
 							"#5800FF",
-							"#0096FF"
+							"#0096FF",
+							"#FF2E2E",
+							"#00A300",
+							"#00FF00"
 						],
 						data: <?php echo $taskOverview ?>
 					}]

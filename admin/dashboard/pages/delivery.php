@@ -155,8 +155,10 @@
                                             <td>
                                                 <?php
                                                     $driver = $batch['driver'];
+                                                    $ass = 0;
                                                     $assDriver = $conn->query("SELECT first_name, last_name from users where user_id = '$driver'");
                                                     if($assDriver->num_rows > 0){
+                                                        $ass += 1;
                                                         $resDriver = $assDriver->fetch_assoc();
                                                         echo $resDriver['first_name']." ".$resDriver['last_name'];
                                                     }else{
@@ -171,7 +173,7 @@
                                                 </a>
 
                                                 <?php
-                                                    if($batch['batchStatus'] == 'bstts3'){
+                                                    if($batch['batchStatus'] == 'bstts3' && $ass == 0){
                                                         ?>
                                                             <a class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#driverModal<?php echo $no ?>">
                                                                 Assign Driver

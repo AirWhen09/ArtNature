@@ -39,7 +39,7 @@
                                         value="<?php echo !empty($getAccount['first_name']) ? $getAccount['first_name'] : ""?>"
                                         >
                                         <div class="valid-feedback">
-                                            Looks good!
+                                             
                                         </div>
                                         <div class="invalid-feedback">
                                             Please input first name.
@@ -71,7 +71,7 @@
                                         value="<?php echo !empty($getAccount['last_name']) ? $getAccount['last_name'] : ""?>"
                                         >
                                         <div class="valid-feedback">
-                                            Looks good!
+                                             
                                         </div>
                                         <div class="invalid-feedback">
                                             Please input last name.
@@ -89,7 +89,7 @@
                                                 value="Female">Female</option>
                                             </select>
                                             <div class="valid-feedback">
-                                            Looks good!
+                                             
                                             </div>
                                             <div class="invalid-feedback">
                                                 Please select gender.
@@ -108,7 +108,7 @@
                                         value="<?php echo !empty($getAccount['birthday']) ? $getAccount['birthday'] : ""?>"
                                         >
                                         <div class="valid-feedback">
-                                            Looks good!
+                                             
                                         </div>
                                         <div class="invalid-feedback">
                                             Please input date of birth.
@@ -127,7 +127,7 @@
                                         value="<?php echo !empty($getAccount['contact']) ? $getAccount['contact'] : ""?>"
                                         >
                                         <div class="valid-feedback">
-                                            Looks good!
+                                             
                                         </div>
                                         <div class="invalid-feedback">
                                             Please input contact number.
@@ -152,7 +152,7 @@
                                 value="<?php echo !empty($getAccount['userRole']) ? $getAccount['userRole'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please select employee.
@@ -172,7 +172,7 @@
                                 value="<?php echo !empty($getAccount['address']) ? $getAccount['address'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input address.
@@ -192,7 +192,7 @@
                                 value="<?php echo !empty($getAccount['email']) ? $getAccount['email'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input email.
@@ -214,7 +214,7 @@
                                         value="<?php //echo !empty($getAccount['username']) ? $getAccount['username'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input username.
@@ -233,7 +233,7 @@
                                 required
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input password.
@@ -283,7 +283,7 @@
                         <div class="col-lg-10 mx-auto">
                             <input type="file" name="image" accept=".png, .jpg, .jpeg, .tif" onchange="loadfile(event)" class="form-control mt-4" required>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This fiels is required.

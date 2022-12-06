@@ -147,7 +147,7 @@
                                 ?>
                             </select>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -159,7 +159,7 @@
                           <input type="text"
                             class="form-control" name="refCode" id="refCode" placeholder="type here..." required>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -171,7 +171,7 @@
                           <input type="text"
                             class="form-control" name="name" id="name" placeholder="type here..." required>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -183,7 +183,7 @@
                           <input type="number"
                             class="form-control" name="ranking" id="ranking" placeholder="type here..." required>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -195,7 +195,7 @@
                           <input type="text"
                             class="form-control" name="description" id="description" placeholder="type here..." required>
                             <div class="valid-feedback">
-                                Looks good!
+                                 
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.

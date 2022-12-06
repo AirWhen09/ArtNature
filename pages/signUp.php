@@ -47,7 +47,7 @@ include 'action/signup.php';
                                 value="<?php echo !empty($inputs['firstName']) ? $inputs['firstName'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input first name.
@@ -79,7 +79,7 @@ include 'action/signup.php';
                                 value="<?php echo !empty($inputs['lastName']) ? $inputs['lastName'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input last name.
@@ -93,7 +93,7 @@ include 'action/signup.php';
                                         <option value="Female">Female</option>
                                     </select>
                                     <div class="valid-feedback">
-                                    Looks good!
+                                     
                                     </div>
                                     <div class="invalid-feedback">
                                         Please select gender.
@@ -112,7 +112,7 @@ include 'action/signup.php';
                                 value="<?php echo !empty($inputs['dateOfBirth']) ? $inputs['dateOfBirth'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input date of birth.
@@ -131,7 +131,7 @@ include 'action/signup.php';
                                 value="<?php echo !empty($inputs['contact']) ? $inputs['contact'] : ""?>"
                                 >
                                 <div class="valid-feedback">
-                                    Looks good!
+                                     
                                 </div>
                                 <div class="invalid-feedback">
                                     Please input contact number.
@@ -157,7 +157,7 @@ include 'action/signup.php';
                             ?>    
                         </select>
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please select employee.
@@ -177,7 +177,7 @@ include 'action/signup.php';
                         value="<?php echo !empty($inputs['address']) ? $inputs['address'] : ""?>"
                         >
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input address.
@@ -197,7 +197,7 @@ include 'action/signup.php';
                         value="<?php echo !empty($inputs['email']) ? $inputs['email'] : ""?>"
                         >
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input email.
@@ -219,7 +219,7 @@ include 'action/signup.php';
                                 value="<?php echo !empty($inputs['username']) ? $inputs['username'] : ""?>"
                         >
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input username.
@@ -238,7 +238,7 @@ include 'action/signup.php';
                         required
                         >
                         <div class="valid-feedback">
-                            Looks good!
+                             
                         </div>
                         <div class="invalid-feedback">
                             Please input password.

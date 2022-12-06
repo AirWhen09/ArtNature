@@ -30,7 +30,7 @@ require 'action/login.php';
                     required
                     >
                     <div class="valid-feedback">
-                        Looks good!
+                         
                     </div>
                     <div class="invalid-feedback">
                         Please input username.
@@ -48,7 +48,7 @@ require 'action/login.php';
                     required
                     >  
                     <div class="valid-feedback">
-                        Looks good!
+                         
                     </div>
                     <div class="invalid-feedback">
                         Please input password.

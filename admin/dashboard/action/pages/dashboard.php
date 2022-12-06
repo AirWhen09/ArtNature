@@ -28,16 +28,22 @@
     $newSQL = "SELECT count(*) as new from tasks where status = 'tstts1'";
     $doneSQL = "SELECT count(*) as done from tasks where status = 'tstts3'";
     $productionSQL = "SELECT count(*) as production from tasks where status = 'tstts2'";
+    $damage = "SELECT count(*) as new from tasks where status = 'tstts6'";
+    $onTime = "SELECT count(*) as done from tasks where status = 'tstts7'";
+    $early = "SELECT count(*) as production from tasks where status = 'tstts8'";
 
     $getArchive = $conn->query($archiveSQL)->fetch_assoc();
     $getNew = $conn->query($newSQL)->fetch_assoc();
     $getDone = $conn->query($doneSQL)->fetch_assoc();
     $getProduction = $conn->query($productionSQL)->fetch_assoc();
+    $damage1 = $conn->query($damage)->fetch_assoc();
+    $onTime1 = $conn->query($onTime)->fetch_assoc();
+    $early1 = $conn->query($early)->fetch_assoc();
 
     if($getArchive && $getNew && $getDone && $getProduction){
-        $taskOverview = '['.$getArchive['arc'].','.$getNew['new'].','.$getDone['done'].','.$getProduction['production'].']';
+        $taskOverview = '['.$getArchive['arc'].','.$getNew['new'].','.$getDone['done'].','.$getProduction['production'].','.$damage1['new'].','.$onTime1['done'].','.$early1['production'].']';
     }else{
-        $taskOverview = "0,0,0,0";
+        $taskOverview = "0,0,0,0,0,0,0";
     }
 
     // update lapsed task 

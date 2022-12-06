@@ -66,7 +66,7 @@
 					<?php if($_SESSION['user_role'] === "ur1"){ ?>
                     <li><a href="index.php?employeeList" aria-expanded="false">
 						<i class="flaticon-050-info"></i>
-							<span class="nav-text <?php if(isset($_GET['employeeList'])) echo "text-primary"; ?>">Employee List</span>
+							<span class="nav-text <?php if(isset($_GET['employeeList'])) echo "text-primary"; ?>">Manage Employee</span>
 						</a>
                     </li>
                     <li><a href="index.php?manageTask" aria-expanded="false">
@@ -74,33 +74,31 @@
 							<span class="nav-text <?php if(isset($_GET['manageTask'])) echo "text-primary"; ?>">Manage Task</span>
 						</a>
                     </li>
-					<li><a href="index.php?pendingTask" aria-expanded="false">
-							<i class="flaticon-041-graph"></i>
-							<span class="nav-text <?php if(isset($_GET['pendingTask'])) echo "text-primary"; ?>">Pending Task</span>
-						</a>
-                    </li>
-					<li><a href="index.php?performance" aria-expanded="false">
-							<i class="flaticon-041-graph"></i>
-							<span class="nav-text <?php if(isset($_GET['performance'])) echo "text-primary"; ?>">Performance</span>
-						</a>
+					
+					<li class="dropdown">
+							<a href="javascript:void()" class="nav-text"> <i class="flaticon-041-graph"></i>  Reports</a>
+							<div class="dropdown-content">
+								<a class="dropdown-item" href="index.php?performance" >Performance Report</a>
+								<a class="dropdown-item" href="index.php?progressReport">Progress Report</a>
+							</div>
                     </li>
 					<?php } ?>
-                    <li><a href="index.php?chat" aria-expanded="false">
+                    <!-- <li><a href="index.php?chat" aria-expanded="false">
 							<i class="flaticon-093-waving"></i>
-							<span class="nav-text <?php if(isset($_GET['chat'])) echo "text-primary"; ?>">Chats</span>
+							<span class="nav-text <?php //if(isset($_GET['chat'])) echo "text-primary"; ?>">Chats</span>
 						</a>
-                    </li>
+                    </li> -->
 					<?php if($_SESSION['user_role'] === "ur1"){ ?>
-                    <li><a href="index.php?progressReport" aria-expanded="false">
+                    <!-- <li><a href="index.php?progressReport" aria-expanded="false">
 							<i class="flaticon-018-clock"></i>
-							<span class="nav-text <?php if(isset($_GET['progressReport']) || isset($_GET['batch'])) echo "text-primary"; ?>">Progress Report</span>
+							<span class="nav-text <?php //if(isset($_GET['progressReport']) || isset($_GET['batch'])) echo "text-primary"; ?>">Progress Report</span>
 						</a>
-                    </li>
-                    <li><a href="index.php?delivery" class="ai-icon" aria-expanded="false">
+                    </li> -->
+                    <!-- <li><a href="index.php?delivery" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-013-checkmark"></i>
-							<span class="nav-text <?php if(isset($_GET['delivery'])) echo "text-primary"; ?>">Product Location</span>
+							<span class="nav-text <?php //if(isset($_GET['delivery'])) echo "text-primary"; ?>">Product Location</span>
 						</a>
-					</li>
+					</li> -->
                     <li><a href="index.php?setting" aria-expanded="false">
 							<i class="flaticon-042-menu"></i>
 							<span class="nav-text <?php if(isset($_GET['setting'])) echo "text-primary"; ?>">Setting</span>

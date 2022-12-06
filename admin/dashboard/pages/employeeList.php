@@ -34,6 +34,34 @@
                         </div>
                         <div class="card-body tab-content p-0">
                             <div class="tab-pane active show fade" id="allEmp" role="tabpanel">
+                                <div class="d-flex flex-row-reverse">
+                                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get"  class="needs-validation" novalidate>
+                                            <div class="d-flex m-3 gap-3">
+                                                <input type="hidden" name="employeeList">
+                                                <div>
+                                                    <label for="eStatus">Account Status</label>
+                                                    <select name="status" id="eStatus" class="form-select">
+                                                    <option value="">--Select--</option>
+
+                                                        <?php
+                                                            $selStat = $conn->query("SELECT * from reference_code where group_name = 'ustts' and ref_id != 'ustts4'");
+                                                            while($ustat = $selStat->fetch_assoc()){
+                                                                ?>
+                                                                    <option value="<?php echo $ustat['ref_id']?>"><?php echo $ustat['name']?></option>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <br>
+                                                    <button class="btn btn-primary btn-sm" type="submit">
+                                                        Show
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                </div>
                                 <div class="table-responsive p-3">
                                     <table class="table table-responsive-lg" id="myTable1">
                                     <thead>

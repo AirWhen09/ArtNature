@@ -37,6 +37,33 @@
                         </div>
                         <div class="card-body tab-content p-0">
                             <div class="tab-pane active show fade" id="taskList" role="tabpanel">
+                                <div class="d-flex flex-row-reverse">
+                                        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get"  class="needs-validation" novalidate>
+                                            <div class="d-flex m-3 gap-3">
+                                                <input type="hidden" name="manageTask">
+                                                <div>
+                                                    <label for="sStatus">Task Status</label>
+                                                    <select name="status" id="eStatus" class="form-select">
+                                                        <option value="">--Select--</option>
+                                                        <?php
+                                                            $selStat = $conn->query("SELECT * from reference_code where group_name = 'tstts' and ref_id != 'tstts4'");
+                                                            while($ustat = $selStat->fetch_assoc()){
+                                                                ?>
+                                                                    <option value="<?php echo $ustat['ref_id']?>"><?php echo $ustat['name']?></option>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <br>
+                                                    <button class="btn btn-primary btn-sm" type="submit">
+                                                        Show
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                </div>
                                 <div class="table-responsive p-3">
                                     <table class="table table-responsive-lg" id="myTable5">
                                         <thead>
@@ -99,6 +126,8 @@
                                                             $badge = "badge badge-secondary";
                                                         }elseif($result['taskStat'] == 'tstts5'){
                                                             $badge = "badge badge-default";
+                                                        }else{
+                                                            $badge = "badge badge-success";
                                                         }
                                                     ?>
                                                     <td><?php echo $result['batchName'] ?></td>
@@ -175,7 +204,7 @@
                                                     <option value="new">Add new</option>
                                                   </select>
                                                   <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please select batch.
@@ -187,7 +216,7 @@
                                                   <input type="text" value="<?php echo !empty($inputs['addNewBatch']) ? $inputs['addNewBatch'] : ""?>" 
                                                   class="form-control" name="addNewBatch" id="addNewBatch" aria-describedby="helpId" placeholder="type here..." >
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input batch name.
@@ -199,7 +228,7 @@
                                                   <input type="text" value="<?php echo !empty($inputs['orderNumber']) ? $inputs['orderNumber'] : ""?>"
                                                     class="form-control" name="orderNumber" id="orderNumber" aria-describedby="helpId" placeholder="type here..." required>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input order number.
@@ -221,7 +250,7 @@
                                                             ?>
                                                         </select>
                                                         <div class="valid-feedback">
-                                                            Looks good!
+                                                             
                                                         </div>
                                                         <div class="invalid-feedback">
                                                             Please select wig model.
@@ -240,7 +269,7 @@
                                                             ?>
                                                         </select>
                                                         <div class="valid-feedback">
-                                                            Looks good!
+                                                             
                                                         </div>
                                                         <div class="invalid-feedback">
                                                             Please select wig size.
@@ -255,7 +284,7 @@
                                                   <textarea class="form-control" name="description" id="description" placeholder="type here..." rows="3" 
                                                    required><?php echo !empty($inputs['description']) ? $inputs['description'] : ""?></textarea>
                                                    <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input description.
@@ -333,7 +362,7 @@
                                                     ?>
                                                     </select>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please select employee.
@@ -353,7 +382,7 @@
                                                     ?>
                                                     </select>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please select order number.
@@ -365,7 +394,7 @@
                                                     <input type="datetime-local" onchange="setEndDateMin(this)"
                                                     class="form-control" name="startDate" id="startDate" aria-describedby="helpId" placeholder="type here..." required>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input start date.
@@ -377,7 +406,7 @@
                                                     <input type="datetime-local" min="<?php echo date('Y-m-d');?>T00:00" disabled
                                                     class="form-control" name="endDate" id="endDate" aria-describedby="helpId" placeholder="type here..." required>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input end date.
@@ -387,7 +416,7 @@
                                                     <label for="message" class="fw-bold">Message</label>
                                                     <textarea class="form-control" name="message" id="message" placeholder="type here..." rows="3" required></textarea>
                                                     <div class="valid-feedback">
-                                                        Looks good!
+                                                         
                                                     </div>
                                                     <div class="invalid-feedback">
                                                         Please input message.

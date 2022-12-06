@@ -13,7 +13,7 @@
                       <label for="address" class="form-label">Address</label>
                       <input type="text" class="form-control text-center" name="address" id="address" placeholder="type here..." value="<?php echo $location['address']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input reference code.

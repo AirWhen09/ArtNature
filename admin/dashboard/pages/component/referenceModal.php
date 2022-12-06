@@ -12,7 +12,7 @@
                       <label for="refCode" class="form-label">Reference Code</label>
                       <input type="text" class="form-control text-center" name="refCodes" readonly id="refCode" placeholder="type here..." value="<?php echo $reference['ref_id']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input reference code.
@@ -23,7 +23,7 @@
                       <label for="refName" class="form-label">Reference Name</label>
                       <input type="text" class="form-control text-center" name="refName" id="refName" placeholder="type here..." value="<?php echo $reference['name']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input reference name.
@@ -34,7 +34,7 @@
                       <label for="refRanking" class="form-label">Ranking</label>
                       <input type="number" class="form-control text-center" name="refRanking" id="refRanking" placeholder="type here..." value="<?php echo $reference['ranking']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input reference ranking.
@@ -45,7 +45,7 @@
                       <label for="description" class="form-label">Description</label>
                       <input type="text" class="form-control text-center" name="description" id="description" placeholder="type here..." value="<?php echo $reference['description']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input description.
@@ -56,7 +56,7 @@
                       <label for="groupName" class="form-label">Group Name</label>
                       <input type="text" class="form-control text-center" name="groupName" id="groupName" readonly placeholder="type here..." value="<?php echo $reference['group_name']?>" required>
                       <div class="valid-feedback">
-                        Looks good!
+                         
                       </div>
                       <div class="invalid-feedback">
                         Please input Group Name.

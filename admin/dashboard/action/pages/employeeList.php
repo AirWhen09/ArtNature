@@ -1,11 +1,23 @@
 <?php 
     // get all employee
-    $allEmp = "SELECT *, b.name as userRole, c.name as userStatus, a.user_id as userID from 
+    
+    if(isset($_GET['status'])){
+        $stat = $_GET['status'];
+        $allEmp = "SELECT *, b.name as userRole, c.name as userStatus, a.user_id as userID from 
+            users as a 
+            join reference_code as b on a.user_role = b.ref_id 
+            join reference_code as c on a.status = c.ref_id 
+            where a.user_role NOT IN ('ur1') and a.status = '$stat'";
+        $getEmp = $conn->query($allEmp);
+    }else{
+        $allEmp = "SELECT *, b.name as userRole, c.name as userStatus, a.user_id as userID from 
             users as a 
             join reference_code as b on a.user_role = b.ref_id 
             join reference_code as c on a.status = c.ref_id 
             where a.user_role NOT IN ('ur1') and a.status != 'ustts4'";
-    $getEmp = $conn->query($allEmp);
+        $getEmp = $conn->query($allEmp);
+    }
+    
 
     // get all driver
     $allEmpDriver = "SELECT *, b.name as userRole, c.name as userStatus, a.user_id as userID from 
