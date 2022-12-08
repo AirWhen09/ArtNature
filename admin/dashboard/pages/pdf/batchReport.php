@@ -4,6 +4,16 @@ include '../../../../connection/connection.php';
 if(isset($_GET['batch'])){
     $batch = mysqli_real_escape_string($conn, $_GET['batch']);
 }
+$count = 0;
+$selectT = "select distinct(a.task_id) as tasks from tasks_days as a join tasks as b on a.task_id = b.order_no join task_batch as c on b.batch = c.batch_id where c.batch_id = '$batch'";
+$getT = $conn->query($selectT);
+while($allT = $getT->fetch_assoc()){
+    $tId = $allT['tasks'];
+    $countT = $conn->query("SELECT COUNT(*) as taskC from tasks_days where task_id = '$tId'")->fetch_assoc();
+    if($count < $countT['taskC']){
+        $count = $countT['taskC'];
+    }
+}
 $print_date = date("M. d, Y");
 class PDF extends FPDF{
 				
@@ -36,22 +46,11 @@ $pdf->cell(30,6, 'Read Date',1,0);
 $pdf->cell(30,6, 'Due Date',1,0);
 $pdf->cell(30,6, 'Issue Vent',1,0);
 $pdf->cell(15,6, 'Days',1,0);
-$pdf->cell(12,6, '1',1,0);
-$pdf->cell(12,6, '2',1,0);
-$pdf->cell(12,6, '3',1,0);
-$pdf->cell(12,6, '4',1,0);
-$pdf->cell(12,6, '5',1,0);
-$pdf->cell(12,6, '6',1,0);
-$pdf->cell(12,6, '7',1,0);
-$pdf->cell(12,6, '8',1,0);
-$pdf->cell(12,6, '9',1,0);
-$pdf->cell(12,6, '10',1,0);
-$pdf->cell(12,6, '11',1,0);
-$pdf->cell(12,6, '12',1,0);
-$pdf->cell(12,6, '13',1,0);
-$pdf->cell(12,6, '14',1,0);
-$pdf->cell(12,6, '15',1,0);
-$pdf->cell(33,6, 'OPERATOR',1,1);
+for($i = 1; $i <= $count; ++$i){
+    $pdf->cell(20,6, "{$i}",1,0,"C");
+   
+}
+$pdf->cell(50,6, 'Employee',1,1);
 
 //get all task
 $allTask = "SELECT a.order_no as orderNo,
@@ -61,7 +60,7 @@ $allTask = "SELECT a.order_no as orderNo,
                     b.name as batchName,
                     c.name as wigModel,
                     d.name as wigSize,
-                    e.first_name as operator,
+                    CONCAT(e.first_name, ' ', e.last_name) as operator,
                     a.no_of_days as noOfDays
             from tasks as a
             join task_batch as b on a.batch = b.batch_id
@@ -88,16 +87,16 @@ $pdf->cell(15,6, "{$result['noOfDays']}",1,0);
 
 $count = "SELECT count(*) as task from tasks_days where task_id = '$orderNo'";
 $getCount = $conn->query($count)->fetch_assoc();
-for($i = 0; $i <= 14; ++$i){
+for($i = 0; $i <= $count; ++$i){
     if($i < $getCount['task'] ){
         $progress = $conn->query("SELECT progress from tasks_days where task_id = '$orderNo' order by dates limit $i,1")->fetch_assoc();
-        $pdf->cell(12,6, "{$progress['progress']}%",1,0);
+        $pdf->cell(20,6, "{$progress['progress']}%",1,0);
     }else{
-        $pdf->cell(12,6, "",1,0);
+        $pdf->cell(20,6, "",1,0);
     }
 }
 
-$pdf->cell(33,6, "{$result['operator']}",1,1);
+$pdf->cell(50,6, "{$result['operator']}",1,1);
 
 }
 $pdf->Output();

@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <div class="invoice-card-row mb-3 mx-1">
-                        <div class="bg-warning invoice-card shadow-lg rounded">
+                        <div class="bg-warnings invoice-card shadow-lg rounded">
                             <div class="p-3">
                                 <div class="d-flex">
                                     <div class="d-flex flex-column">
@@ -43,12 +43,12 @@
                         <div class="col-xl-6 col-xxl-6 col-sm-12">
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe1')" onmouseout="hideUpdatePic('showMe1')">
                                 
-                                <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="bg-warnings invoice-card shadow-lg rounded">
                                 <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
                                     <?php 
                                         $taskId = $result['order_no'];
                                         $selArea1 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_i' and pic_status = 'Rejected'")->fetch_assoc();
-                                        echo $selArea1['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea1['area'].'</label>' : '';
+                                        echo $selArea1['area'] > 0 ? '<label for="" class="badge bg-warnings float-end text-red">'.$selArea1['area'].'</label>' : '';
                                     ?>
                                 </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe1" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaI">
@@ -84,12 +84,12 @@
                         <div class="col-xl-6 col-xxl-6 col-sm-12">
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe2')" onmouseout="hideUpdatePic('showMe2')">
                                 
-                                <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="bg-warnings invoice-card shadow-lg rounded">
                                 <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
                                     <?php 
                                         $taskId = $result['order_no'];
                                         $selArea2 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_ii' and pic_status = 'Rejected'")->fetch_assoc();
-                                        echo $selArea2['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea2['area'].'</label>' : '';
+                                        echo $selArea2['area'] > 0 ? '<label for="" class="badge bg-warnings float-end text-red">'.$selArea2['area'].'</label>' : '';
                                     ?>
                                 </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe2" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaII">
@@ -123,12 +123,12 @@
                         <div class="col-xl-6 col-xxl-6 col-sm-12">
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe3')" onmouseout="hideUpdatePic('showMe3')">
                                 
-                                <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="bg-warnings invoice-card shadow-lg rounded">
                                 <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
                                     <?php 
                                         $taskId = $result['order_no'];
                                         $selArea3 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_iii' and pic_status = 'Rejected'")->fetch_assoc();
-                                        echo $selArea3['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea3['area'].'</label>' : '';
+                                        echo $selArea3['area'] > 0 ? '<label for="" class="badge bg-warnings float-end text-red">'.$selArea3['area'].'</label>' : '';
                                     ?>
                                 </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe3" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaIII">
@@ -164,12 +164,12 @@
                         <div class="col-xl-6 col-xxl-6 col-sm-12">
                             <div class="invoice-card-row mb-3 mx-1" onmouseover="showUpdatePic('showMe4')" onmouseout="hideUpdatePic('showMe4')">
                                 
-                                <div class="bg-warning invoice-card shadow-lg rounded">
+                                <div class="bg-warnings invoice-card shadow-lg rounded">
                                 <div class="float-end" style="margin-right: 1rem; margin-top:5px;">
                                     <?php 
                                         $taskId = $result['order_no'];
                                         $selArea4 = $conn->query("SELECT count(*) as area from wig_picture where task_id = '$taskId' and area_no = 'area_iv' and pic_status = 'Rejected'")->fetch_assoc();
-                                        echo $selArea4['area'] > 0 ? '<label for="" class="badge bg-warning float-end text-red">'.$selArea4['area'].'</label>' : '';
+                                        echo $selArea4['area'] > 0 ? '<label for="" class="badge bg-warnings float-end text-red">'.$selArea4['area'].'</label>' : '';
                                     ?>
                                 </div>
                                     <div class="text-center bg-white d-none container-fluid" id="showMe4" style="position:absolute; cursor: pointer; background-color: white" data-bs-toggle="modal" data-bs-target="#myTaskAreaIV">

@@ -34,7 +34,7 @@
                     ?>
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
                         <a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
-                            <div class="bg-warning invoice-card shadow-lg rounded mb-2">
+                            <div class="bg-warnings invoice-card shadow-lg rounded mb-2">
                                 <div class="p-3">
                                     <div class="d-flex">
                                         <div class="icon me-3">

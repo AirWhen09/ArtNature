@@ -36,6 +36,9 @@
     />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
+        .bg-warnings{
+            background-color: black !important; 
+        }
         .apexcharts-bar-area{
             fill : a;
         }

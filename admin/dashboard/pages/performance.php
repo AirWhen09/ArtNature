@@ -94,7 +94,7 @@
                                 <label for="year">Select Year</label>
                                 <select id="year" class="form-select">
                                     <?php 
-                                        $year = $conn->query("SELECT DISTINCT(YEAR(end_date)) as years from tasks");
+                                        $year = $conn->query("SELECT DISTINCT(YEAR(end_date)) as years from tasks where end_date != NULL");
                                         while($years = $year->fetch_assoc()){
                                             $yearss = $years['years'];
                                             echo "<option value='$yearss'>$yearss</option>";
@@ -106,7 +106,7 @@
                                 <label for="month">Select Month</label>
                                 <select id="month" class="form-select">
                                     <?php 
-                                        $month = $conn->query("SELECT DISTINCT(MONTH(end_date)) as months, YEAR(end_date) as years from tasks  group by months");
+                                        $month = $conn->query("SELECT DISTINCT(MONTH(end_date)) as months, YEAR(end_date) as years from tasks where end_date != NULL");
                                         while($months = $month->fetch_assoc()){
                                             $monthss = $months['months'];
                                             $years = $months['years'];
