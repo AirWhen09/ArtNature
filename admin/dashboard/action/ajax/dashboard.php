@@ -42,7 +42,7 @@ if(isset($_POST['batchName'])){
                     <div class="invoice-card-row mb-3 p-2">
 					<div id="chartBar2" class="bar-chart"></div>
 
-                        <div class="bg-warning invoice-card shadow-lg rounded">
+                        <div class=" bg-warnings invoice-card shadow-lg rounded">
                             <div class="p-3">
                                 <div class="d-flex">
                                     <div class="d-flex flex-column">
@@ -52,7 +52,7 @@ if(isset($_POST['batchName'])){
                                     </div>
                                 </div>
                                 <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
-                                    <div class="progress-bar bg-gradient-1 progress-animated" style="width: '.$ave['totalAve'].'%; height:20px;" role="progressbar">
+                                    <div class="progress-bar  progress-animated" style="width: '.$ave['totalAve'].'%; height:20px;" role="progressbar">
                                         <span>'.$ave['totalAve'].'% Complete</span>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@ if(isset($_POST['batchName'])){
             $ave = $getAve->fetch_assoc();
             $output .= '
                 <div class="invoice-card-row mb-3 p-2">
-                    <div class="bg-warning invoice-card shadow-lg rounded">
+                    <div class=" bg-warnings invoice-card shadow-lg rounded">
                         <div class="p-3">
                             <div class="d-flex">
                                 <div class="d-flex flex-column">
@@ -75,7 +75,7 @@ if(isset($_POST['batchName'])){
                                 </div>
                             </div>
                             <div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
-                                <div class="progress-bar bg-gradient-1 progress-animated" style="width: '.$ave['totalAve'].'%; height:20px;" role="progressbar">
+                                <div class="progress-bar  progress-animated" style="width: '.$ave['totalAve'].'%; height:20px;" role="progressbar">
                                     <span>'.$ave['totalAve'].'% Complete</span>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ if(isset($_POST['batchName'])){
         $output .= '
         <div class="col-xl-4 col-xxl-4 col-sm-6">
             <a href="index.php?taskHistory&or='.$task['order_no'].'">
-            <div class="bg-warning invoice-card shadow-lg rounded mb-2">
+            <div class=" bg-warnings invoice-card shadow-lg rounded mb-2">
                 <div class="p-3">
                     <div class="d-flex">
                         <div class="icon me-3">
@@ -108,7 +108,7 @@ if(isset($_POST['batchName'])){
                         </div>
                     </div>
                     <div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
-                        <div class="progress-bar bg-gradient-1 progress-animated" style="width: '.$task["process"].'%; height:20px;" role="progressbar">
+                        <div class="progress-bar  progress-animated" style="width: '.$task["process"].'%; height:20px;" role="progressbar">
                             <span>'.$task["process"].'%</span>
                         </div>
                     </div>

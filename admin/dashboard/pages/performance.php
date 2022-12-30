@@ -94,7 +94,7 @@
                                 <label for="year">Select Year</label>
                                 <select id="year" class="form-select">
                                     <?php 
-                                        $year = $conn->query("SELECT DISTINCT(YEAR(end_date)) as years from tasks");
+                                        $year = $conn->query("SELECT DISTINCT(YEAR(end_date)) as years from tasks where end_date != NULL");
                                         while($years = $year->fetch_assoc()){
                                             $yearss = $years['years'];
                                             echo "<option value='$yearss'>$yearss</option>";
