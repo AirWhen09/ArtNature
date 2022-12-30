@@ -44,7 +44,7 @@ while($notif = $selAllTasks2->fetch_assoc()){
         $i++;
         
         if($addDate <= $today){
-          if(time() >= strtotime("02:10:00") && time() <= strtotime("02:59:00")){
+          if(time() >= strtotime("07:00:00") && time() <= strtotime("07:30:00")){
             if($progress > $notif['process'] && $today == $addDate){
               // Query here for the notification
               $selUser = $conn->query("SELECT * from users where user_id = '$userId'")->fetch_assoc();

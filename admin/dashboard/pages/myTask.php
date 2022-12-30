@@ -34,7 +34,7 @@
                     ?>
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
                         <a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
-                            <div class="bg-warning invoice-card shadow-lg rounded mb-2">
+                            <div class="bg-warnings invoice-card shadow-lg rounded mb-2">
                                 <div class="p-3">
                                     <div class="d-flex">
                                         <div class="icon me-3">
@@ -70,7 +70,6 @@
                 <div class="card-header d-block d-sm-flex border-0">
                     <div class="me-3">
                         <h4 class="card-title mb-2">My Task List</h4>
-                        <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
                     </div>
                     <div class="card-tabs mt-3 mt-sm-0">
                         <ul class="nav nav-tabs" role="tablist">

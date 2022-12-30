@@ -5,7 +5,7 @@
 <div class="content-body">
     <!-- row -->
     <div class="container-fluid">
-        <div id="mySidebar" class="sidebar bg-success color-white">
+        <div id="mySidebar" class="sidebar color-white" style="background-color: #0096FF">
             <span href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="cursor: pointer; color: white">×</span>
             <a href="?performance&status=tstts5">Lapsed Report</a>
             <a href="?performance&status=tstts6">Damage Report</a>
@@ -106,7 +106,7 @@
                                 <label for="month">Select Month</label>
                                 <select id="month" class="form-select">
                                     <?php 
-                                        $month = $conn->query("SELECT DISTINCT(MONTH(end_date)) as months, YEAR(end_date) as years from tasks  group by months");
+                                        $month = $conn->query("SELECT DISTINCT(MONTH(end_date)) as months, YEAR(end_date) as years from tasks order by months DESC");
                                         while($months = $month->fetch_assoc()){
                                             $monthss = $months['months'];
                                             $years = $months['years'];

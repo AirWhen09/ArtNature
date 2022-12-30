@@ -10,7 +10,6 @@
                 <div class="card-header d-block d-sm-flex border-0">
                     <div class="me-3">
                         <h4 class="card-title mb-2"><?php echo $batch?></h4>
-                        <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
                     </div>
                 </div>
                 <div class="card-body tab-content p-0">

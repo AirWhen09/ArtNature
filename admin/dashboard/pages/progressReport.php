@@ -10,7 +10,6 @@
                 <div class="card-header d-block d-sm-flex border-0">
                     <div class="me-3">
                         <h4 class="card-title mb-2">Progress Report</h4>
-                        <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
                     </div>
                     <div class="card-tabs mt-3 mt-sm-0">
                         <ul class="nav nav-tabs" role="tablist">

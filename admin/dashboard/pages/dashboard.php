@@ -22,7 +22,7 @@
 						<div id="task" class="row ">
 						<!-- <div id="task" class="row ">
 							<div class="invoice-card-row mb-3 mx-1">
-								<div class="bg-warning invoice-card shadow-lg rounded">
+								<div class=" bg-warnings invoice-card shadow-lg rounded">
 									<div class="p-3">
 										<div class="d-flex">
 											<div class="d-flex flex-column">
@@ -52,7 +52,7 @@
 							?>
 							<div class="col-xl-4 col-xxl-4 col-sm-6">
 								<a href="index.php?taskHistory&or=<?php //echo $task['order_no']?>">
-									<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+									<div class=" bg-warnings invoice-card shadow-lg rounded mb-2">
 										<div class="p-3">
 											<div class="d-flex">
 												<div class="icon me-3">
@@ -90,9 +90,13 @@
 								$selectB = $conn->query("SELECT * from task_batch where batch_id = '$batchId'");
 								if($selectB->num_rows > 0){
 									$getB = $selectB->fetch_assoc();
+									$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status != 'tstts4' and a.status != 'tstts6' and a.batch = '$batchId'";
+                                                        $getAve = $conn->query($aveProcess)->fetch_assoc();
+                                                        $ave = $getAve['totalAve'];
+                                    $updateB = $conn->query("UPDATE task_batch set progress = '$ave' where batch_id = '$batchId'");
 								?>
 									<div class="invoice-card-row mb-3 mx-1">
-										<div class="bg-warning invoice-card shadow-lg rounded">
+										<div class=" bg-warnings invoice-card shadow-lg rounded">
 											<div class="p-3">
 												<div class="d-flex">
 													<div class="d-flex flex-column">
@@ -107,8 +111,8 @@
 
 												?>
 												<div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
-													<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getB['progress']?>%; height:20px;" role="progressbar">
-														<span><?php echo $getB['progress']?>% Complete</span>
+													<div class="progress-bar progress-animated" style="width: <?php echo $getAve['totalAve']?>%; height:20px; background-color: #0096FF" role="progressbar">
+														<span><?php echo $getAve['totalAve']?>% Complete</span>
 													</div>
 												</div>
 											</div>
@@ -121,6 +125,7 @@
 													c.image as imagePath,
 													e.name as wigModel,
 													f.name as wigSize,
+                          							h.name as wigStatus,
 													a.user_id as userId,
 													g.name as userRole
 										from tasks as a
@@ -129,7 +134,8 @@
 										left join reference_code as e on a.wig_model = e.ref_id
 										left join reference_code as f on a.wig_size = f.ref_id
 										left join reference_code as g on c.user_role = g.ref_id
-										where a.batch = '$batchId'
+                						left join reference_code as h on a.status = h.ref_id
+										where a.batch = '$batchId' and a.status != 'tstts1'
 										";
 							$getTaskz = $conn->query($allTask);
 							while($task = $getTaskz->fetch_assoc()){
@@ -138,7 +144,7 @@
 							?>
 							<div class="col-xl-4 col-xxl-4 col-sm-6">
 								<a href="index.php?taskHistory&or=<?php echo $task['order_no']?>">
-									<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+									<div class=" bg-warnings invoice-card shadow-lg rounded mb-2">
 										<div class="p-3">
 											<div class="d-flex">
 												<div class="icon me-3">
@@ -149,10 +155,11 @@
 													
 													<span class="text-white fs-10"><?php echo $task['userRole']?></span>
 													<span class="text-white fs-10">or #: <b><?php echo $task['order_no']?></b></span>
+													<span class="text-white fs-10">Status: <b><?php echo $task['wigStatus']?></b></span>
 												</div>
 											</div>
 											<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
-												<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $task['process']?>%; height:20px;" role="progressbar">
+												<div class="progress-bar progress-animated" style=" background-color: #0096FF; width: <?php echo $task['process']?>%; height:20px;" role="progressbar">
 													<span><?php echo $task['process']?>%</span>
 												</div>
 											</div>
@@ -173,12 +180,44 @@
 								}
 
 							}else{
+
+								?>
+								<div class="invoice-card-row mb-3 mx-1">
+									<div class=" bg-warnings invoice-card shadow-lg rounded">
+										<div class="p-3">
+											<div class="d-flex">
+												<div class="d-flex flex-column">
+													<span class="text-white fs-18 fw-bold">All task average</span>
+													
+												</div>
+											</div>
+											<?php
+											$aveprogress = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status != 'tstts4'";
+											$getAve = $conn->query($aveprogress)->fetch_assoc();
+
+
+											?>
+											<div class="progress default-progress my-3" style="outline: #ffffff solid 3px; box-shadow: none">
+												<div class="progress-bar progress-animated" style=" background-color: #0096FF; width: <?php echo $getAve['totalAve']?>%; height:20px;" role="progressbar">
+													<span><?php echo $getAve['totalAve']?>% Complete</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<h3 class="m-3">Batch List</h3>
+								<?php
+
 								$selBatch = $conn->query("SELECT * from task_batch order by date_created limit 20");
 								while($getBatch = $selBatch->fetch_assoc()){
+									$aveProcess = "SELECT FORMAT(AVG(a.process), 2) as totalAve from tasks as a where a.status != 'tstts4' and a.status != 'tstts6' and a.batch = '".$getBatch['batch_id']."'";
+                                                        $getAve = $conn->query($aveProcess)->fetch_assoc();
+                                                        
 									?>
 										<div class="col-xl-4 col-xxl-4 col-sm-6">
 											<a href="index.php?dashboard&batch=<?php echo $getBatch['batch_id']?>">
-												<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+												<div class=" bg-warnings invoice-card shadow-lg rounded mb-2">
 													<div class="p-3">
 														<div class="d-flex">
 															<div class="d-flex flex-column">
@@ -186,8 +225,8 @@
 															</div>
 														</div>
 														<div class="progress default-progress my-2" style="outline: #ffffff solid 3px; box-shadow: none">
-															<div class="progress-bar bg-gradient-1 progress-animated" style="width: <?php echo $getBatch["progress"]?>%; height:20px;" role="progressbar">
-																<span><?php echo $getBatch['progress']?>%</span>
+															<div class="progress-bar progress-animated" style="background-color: #0096FF; width: <?php echo $getAve['totalAve']?>%; height:20px;" role="progressbar">
+																<span><?php echo $getAve['totalAve']?>%</span>
 															</div>
 														</div>
 														
@@ -198,8 +237,9 @@
 									<?php
 								}
 								?>
-								<div class="card m-3 p-4">
-									<h2>Product Location</h2>
+								<hr>
+								<div class="p-4">
+									<h3>Product Location</h3>
 									<div class="row">
 										<?php
 											$selBatchs = $conn->query("SELECT * from task_batch order by date_created limit 20");
@@ -208,7 +248,7 @@
 												?>
 													<div class="col-xl-4 col-xxl-4 col-sm-6">
 														<a href="index.php?delivery&batch=<?php echo $getBatch['name']?>">
-															<div class="bg-warning invoice-card shadow-lg rounded mb-2">
+															<div class=" bg-warnings invoice-card shadow-lg rounded mb-2">
 																<div class="p-3">
 																	<div class="d-flex">
 																		<div class="d-flex flex-column">

@@ -25,7 +25,10 @@ $pdf->SetMargins(40,30,40, true);
 $pdf->AliasNbPages('{pages}');
 //$pdf->AliasNbPages('{$print_date}');
 $pdf->AddPage();
-
+$pdf->SetFont('Arial','B',20);
+$pdf->Image("../../../../img/header.jpg",10,0,230);
+$pdf->Cell(160,20,"",0,1,"C");
+$pdf->Cell(190,14,"",0,1,"C");
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(0,5,"BATCH REPORT",0,1,"C");
 $pdf->Cell(160,5,"",0,1,"C");
@@ -37,7 +40,7 @@ $pdf->cell(33,10, 'Size',1,0);
 $pdf->cell(50,10, 'Start Date',1,0);
 $pdf->cell(50,10, 'End Date',1,0);
 $pdf->cell(50,10, 'Status',1,0);
-$pdf->cell(60,10, 'OPERATOR',1,1);
+$pdf->cell(60,10, 'Employee',1,1);
 
 //get all task
 $allTask = "SELECT a.order_no as orderNo,

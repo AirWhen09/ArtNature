@@ -7,7 +7,7 @@ if(isset($_POST['reject'])){
     if($update){
         $inNotifAdmin = $conn->query("INSERT INTO notification(description, user_id, status) VALUES('$rejectMsg', '$userId', 0)");
         echo "<script> alert('Update Successfully.');</script>";
-        echo "<script>window.location.href = 'index.php?pendingTask'</script>";
+        echo "<script>window.location.href = 'index.php?manageTask'</script>";
     }else{
         echo "<script> alert('Something is wrong, Please try again.');</script>";
     }
@@ -50,14 +50,14 @@ if(isset($_POST['approve'])){
                 $updateDayProgress = $conn->query("UPDATE tasks_days set progress = '$totalProgress' where dates = '$today' and task_id = '$orderNo'");
                 if($updateDayProgress){
                     echo "<script> alert('Update Successfully.');</script>";
-                    echo "<script>window.location.href = 'index.php?pendingTask</script>";
+                    echo "<script>window.location.href = 'index.php?manageTask</script>";
                 }
         }else{
                 $inQueryDays = "INSERT INTO tasks_days(dates, task_id, days_count, progress) VALUES('$today', '$orderNo', 0, '$totalProgress')";
                 $inTaskDays = $conn->query($inQueryDays);
                 if($inTaskDays){
                     echo "<script> alert('Update Successfully.');</script>";
-                    echo "<script>window.location.href = 'index.php?pendingTask</script>";
+                    echo "<script>window.location.href = 'index.php?manageTask</script>";
                 }else{
                         echo "<script> alert('error');</script>";
                         echo $conn->error;

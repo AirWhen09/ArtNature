@@ -74,7 +74,7 @@
                                 $addDate = date('F d, Y', strtotime($startDate. ' + '.$i.' day'));
                                 array_push($days, date('Y-m-d', strtotime($startDate. ' + '.$i.' day')));
                                 ?>
-                                    <div class="col-sm-2 mx-auto bg-warning card p-3 text-center">
+                                    <div class="col-sm-2 mx-auto bg-warnings card p-3 text-center">
                                         <h4 class="text-white"><?php echo $addDate ?></h4>
                                         <h5 class="text-white">Estimated Progress: <span class="fw-bold"><?php echo number_format($progress, 0); ?>%</span></h5>
                                     </div>
