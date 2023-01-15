@@ -8,6 +8,48 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="col-xl-12 col-xxl-12">
+        <div>
+									<h3>Top Performing Employee</h3>
+									<div class="card">
+										<div class="container">	
+											<table class="table table-responsive-lg" id="myTable2">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>First Name</th>
+														<th>Last Name</th>
+														<th>Early Task</th>
+													</tr>
+												</thead>
+												<tbody> 
+
+													<?php
+													$no = 0;
+													$selTopEmp = "SELECT a.first_name as first_name,
+																		a.last_name as last_name,
+																		COUNT(b.order_no) as early 
+																	from users as a 
+																	join tasks as b on a.user_id = b.user_id
+																	where b.status = 'tstts8'
+																	group by a.user_id order by early limit 5";
+													$resultEarly = $conn->query($selTopEmp);
+													while($result = $resultEarly->fetch_assoc()){
+														$no++;
+														?>
+														<tr>
+															<td><?php echo $no ?></td>
+															<td><?php echo $result['first_name'] ?></td>
+															<td><?php echo $result['last_name'] ?></td>
+															<td><?php echo $result['early'] ?></td>
+														</tr>
+														<?php
+													}
+													?>
+												</tbody>
+											</table>
+										</div>	
+									</div>
+								</div>
             <div class="card p-5">
                 <div class="row">
                 <?php

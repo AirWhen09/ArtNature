@@ -8,7 +8,9 @@ if(isset($_GET['status'])){
     $endDate .= ' 23:00:00';
     $status = mysqli_real_escape_string($conn, $_GET['status']);
 }
-$print_date = date("M. d, Y");
+date_default_timezone_set('Asia/Manila');
+
+$print_date = date("M. d, Y H:i");
 class PDF extends FPDF{
 				
     function Footer(){
@@ -26,11 +28,12 @@ $pdf->AliasNbPages('{pages}');
 //$pdf->AliasNbPages('{$print_date}');
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',20);
-$pdf->Image("../../../../img/header.jpg",10,0,230);
+$pdf->Image("../../../../img/header.jpg",90,0,230);
 $pdf->Cell(160,20,"",0,1,"C");
 $pdf->Cell(190,14,"",0,1,"C");
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(0,5,"BATCH REPORT",0,1,"C");
+$pdf->Cell(0,5,"{$print_date}",0,1,"L");
 $pdf->Cell(160,5,"",0,1,"C");
 
 $pdf->SetFont('Arial','B',25); 

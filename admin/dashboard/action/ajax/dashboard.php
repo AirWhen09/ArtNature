@@ -209,4 +209,76 @@ if(isset($_POST['year']) && isset($_POST['month'])){
     echo $taskOverview;
 }
 
+if(isset($_POST['text'])){
+    $text = $_POST['text'];
+    $data = array();
+    $data['forEmp'] = '<ul>';
+    $data['forTask'] = '<ul>';
+
+    $selAllEmp = $conn->query("SELECT * from users where user_role != 'ur1' and (first_name like '%$text%' OR last_name like '%$text%')  limit 7");
+    $selTask = $conn->query("SELECT * from tasks where order_no like '%$text%' limit 7");
+    $no = 0;
+    while($result = $selAllEmp->fetch_assoc()){
+        $no++;
+        $data['forEmp'] .= "<li class='fw-bold' style='font-size:18px'><a href='#' data-bs-toggle='modal' data-bs-target='#allEmp".$no."'>".$result['first_name']." ".$result['last_name']."</a></li>";
+        $data['forEmp'] .= "
+        <div class='modal fade' id='allEmp".$no."' tabindex='-1' role='dialog' aria-labelledby='modelTitleId' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                            <h5 class='modal-title'>Employee Information</h5>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                    </div>
+                        <div class='modal-body'>
+                            <div class='container-fluid'>
+                                <div class='col-5 mx-auto mb-2'>
+                                    <img src='../../".$result['image']."' alt='' class='img-fluid rounded-circle border-primary border-2'>
+                                </div>
+                                <h3 class='text-center'>".$result['first_name'].' '.$result['last_name']."</h3>
+                                <div class='text-center'>
+                                    <span class='text-center text-muted'>".$result['email']."</span><br>
+                                    <span class='text-center text-muted'>".$result['contact']."</span><br>
+                                    <span class='text-center text-muted'>".$result['address']."</span><br>
+                                    <span class='text-center text-muted'>DOB: ".date('F d, Y', strtotime($result['birthday']))."</span><br>
+                                </div>
+                                <div class='row mt-2'>";
+                                    
+                                        $empId = $result['user_id'];
+                                        $getDoneTask = $conn->query("SELECT count(order_no) as done from tasks where user_id = '$empId' and status = 'tstts3'")->fetch_assoc();
+                                        $getOnGoingTask = $conn->query("SELECT count(order_no) as onGoing from tasks where user_id = '$empId' and status = 'tstts2'")->fetch_assoc();
+                                    
+                         $data['forEmp'] .=  "<div class='mb-3 col-6'>
+                                    <label class='form-label fw-bold'>Completed Task</label>
+                                    <input type='text' value='".$getDoneTask['done']."' readonly
+                                        class='form-control text-center' placeholder=''>
+                                    </div>
+                                    <div class='mb-3 col-6'>
+                                    <label class='form-label fw-bold'>On Going Task</label>
+                                    <input type='text' value='".$getOnGoingTask['onGoing']."' readonly
+                                        class='form-control text-center' placeholder=''>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        ";
+                                            
+    }
+    while($getTask = $selTask->fetch_assoc()){
+        $data['forTask'] .= "<li class='fw-bold' style='font-size:18px'><a href='?taskHistory&or=".$getTask['order_no']."'>".$getTask['order_no']."</  a></li>";
+    }
+
+    $data['forEmp'] .= '</ul>';
+    $data['forTask'] .= '</ul>';
+
+
+    echo json_encode($data);
+}
+
 ?>

@@ -63,7 +63,7 @@ require 'action/login.php';
                     >Login</button>
                 </div>
                 <div class="d-flex flex-column justify-content-center item-content-center mt-2">
-                    <p class="text-center fw-bold">or</p>
+                    <a class="text-center fw-bold my-2" href="?forgot">Forgot password?</a>
                     <p class="text-center fw-bold">No account yet? Click <a href="?signup">here</a> to sign up!</p>
                 </div>
             </form>

@@ -12,6 +12,8 @@ if(isset($_GET['signup'])){
     include __DIR__ . '/pages/verify.php';
 }else if(isset($_GET['forgot'])){
     include __DIR__ . '/pages/forgotPassword.php';
+}else if(isset($_GET['reset'])){
+    include __DIR__ . '/pages/resetPassword.php';
 }else{
     include __DIR__ . '/pages/404.php';
 }

@@ -25,12 +25,18 @@
                                            join location as c on a.location_id = c.location_id 
                                            where a.batch_id = '$batchId'";
                     $getLocation = $conn->query($allLocation);
+                    $nn = 1;
                     if($getLocation->num_rows > 0){
                         while($location = $getLocation->fetch_assoc()){
-
+                            if($nn == 1){
+                                $statss = "success";
+                            }else{
+                                $statss = "primary";
+                            }
+                            $nn++;
                             ?>
                                  <div class="col-xl-3 col-xxl-3 col-sm-6">
-                                    <div class="card bg-success invoice-card">
+                                    <div class="card bg-<?php echo $statss ?> invoice-card">
                                         <div class="card-body d-flex">
                                             <div class="icon me-3">
                                                 <svg  width="33px" height="32px">

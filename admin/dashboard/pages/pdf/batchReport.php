@@ -14,7 +14,9 @@ while($allT = $getT->fetch_assoc()){
         $countz = $countT['taskC'];
     }
 }
-$print_date = date("M. d, Y");
+date_default_timezone_set('Asia/Manila');
+
+$print_date = date("M. d, Y H:i");
 class PDF extends FPDF{
 				
     function Footer(){
@@ -27,15 +29,28 @@ class PDF extends FPDF{
 }
 
 $pdf = new PDF('l','mm','A3');
-$pdf->SetMargins(5, 17, 20, true);
+if($countz > 6){
+    $pdf->SetMargins(5, 17, 20, true);
+}elseif($countz == 6 ){
+    $pdf->SetMargins(20, 17, 20, true);
+}elseif($countz == 5){
+    $pdf->SetMargins(35, 17, 20, true);
+}
+elseif($countz > 2 && $countz < 5){
+    $pdf->SetMargins(40, 17, 20, true);
+}else{
+    $pdf->SetMargins(65, 17, 20, true);
+}
 $pdf->AliasNbPages('{pages}');
-//$pdf->AliasNbPages('{$print_date}');
+// $pdf->AliasNbPages('{$print_date}');
 $pdf->AddPage();
 
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(170,5,"",0,0,"C");
-$pdf->Cell(0,5,"DAILY STATUS",0,1,"L");
-$pdf->Cell(160,5,"",0,1,"C");
+$pdf->Cell(0,5,"DAILY STATUS",0,1,"C");
+$pdf->Cell(0,5,"",0,1,"C");
+$pdf->SetFont('Arial','',14);
+$pdf->Cell(0,5,"{$print_date}",0,1,"L");
+$pdf->Cell(160,1,"",0,1,"C");
 
 $pdf->SetFont('Arial','B',15); 
 $pdf->cell(27,6, 'Order No',1,0);
@@ -46,11 +61,11 @@ $pdf->cell(30,6, 'Read Date',1,0);
 $pdf->cell(30,6, 'Due Date',1,0);
 $pdf->cell(30,6, 'Issue Vent',1,0);
 $pdf->cell(15,6, 'Days',1,0);
-for($i = 1; $i <= $countz; ++$i){
+for($i = 1; $i <= $countz   ; ++$i){
     $pdf->cell(20,6, "{$i}",1,0,"C");
    
 }
-$pdf->cell(50,6, 'Employee',1,1);
+$pdf->cell(60,6, 'Employee',1,1);
 
 //get all task
 $allTask = "SELECT a.order_no as orderNo,
@@ -96,7 +111,7 @@ for($i = 0; $i < $countz; ++$i){
     }
 }
 
-$pdf->cell(50,6, "{$result['operator']}",1,1);
+$pdf->cell(60,6, "{$result['operator']}",1,1);
 
 }
 $pdf->Output();

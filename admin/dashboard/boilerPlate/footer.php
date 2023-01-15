@@ -82,6 +82,16 @@
                         success : function(data){
                         }
                     });
+
+                        document.addEventListener('DOMContentLoaded', (event) => {    
+                            document.getElementById("showNotif").click( function(){
+                                var audio = new Audio("../../img/audio.wav");
+                                audio.play();
+                            });
+
+                            
+                            });
+
                 } 
 				
 			});

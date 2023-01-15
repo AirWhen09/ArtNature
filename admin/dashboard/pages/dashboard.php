@@ -19,6 +19,14 @@
 						?>
 					</select> -->
 					<div class="col-sm-8">
+						<div class="input-group search-area mb-4">
+							<input type="text" id="searchDashboard" class="form-control" placeholder="Search here...">
+							<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+						</div>
+						<div class="d-flex flex-column mb-2">
+							<div id="forEmployee" class="d-none"></div>
+							<div id="forTask" class="d-none"></div>
+						</div>
 						<div id="task" class="row ">
 						<!-- <div id="task" class="row ">
 							<div class="invoice-card-row mb-3 mx-1">
@@ -290,6 +298,49 @@
 										?>
 									</div>
 								</div>
+
+								<div>
+									<h3>Top Performing Employee</h3>
+									<div class="card">
+										<div class="container">	
+											<table class="table table-responsive-lg" id="myTable1">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>First Name</th>
+														<th>Last Name</th>
+														<th>Early Task</th>
+													</tr>
+												</thead>
+												<tbody> 
+
+													<?php
+													$no = 0;
+													$selTopEmp = "SELECT a.first_name as first_name,
+																		a.last_name as last_name,
+																		COUNT(b.order_no) as early 
+																	from users as a 
+																	join tasks as b on a.user_id = b.user_id
+																	where b.status = 'tstts8'
+																	group by a.user_id order by early limit 5";
+													$resultEarly = $conn->query($selTopEmp);
+													while($result = $resultEarly->fetch_assoc()){
+														$no++;
+														?>
+														<tr>
+															<td><?php echo $no ?></td>
+															<td><?php echo $result['first_name'] ?></td>
+															<td><?php echo $result['last_name'] ?></td>
+															<td><?php echo $result['early'] ?></td>
+														</tr>
+														<?php
+													}
+													?>
+												</tbody>
+											</table>
+										</div>	
+									</div>
+								</div>
 								<?php
 								
 							}
@@ -342,6 +393,29 @@
 		<!-- <script src="js/dashboard/dashboard-1.js"></script> -->
 
 		<script>
+			$("#searchDashboard").on("keyup", function(){
+				let textValue = $(this).val();
+				if(textValue != ''){
+					$.ajax({
+                        url   : 'action/ajax/dashboard.php',
+                        type  : 'POST',
+                        dataType: "json",
+                        data  : {text : textValue},
+                        success : function(data){
+							document.getElementById("forEmployee").classList.remove("d-none");
+							document.getElementById("forTask").classList.remove("d-none");
+							$("#forEmployee").html(data.forEmp);
+							$("#forTask").html(data.forTask);
+					
+                        }
+                    });
+				}else{
+					document.getElementById("forEmployee").classList.add("d-none");
+							document.getElementById("forTask").classList.add("d-none");
+				}
+				
+			});
+
 			
 
 (function($) {

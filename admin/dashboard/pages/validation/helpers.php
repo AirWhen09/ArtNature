@@ -101,7 +101,12 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
           <script>
 
               document.addEventListener('DOMContentLoaded', (event) => {    
-                  document.getElementById("showNotif").click();
+                  document.getElementById("showNotif").click( function(){
+                    var audio = new Audio("../../img/audio.wav");
+                    audio.play();
+                  });
+
+                
                 });
 
           </script>
@@ -112,13 +117,17 @@ while($lapsed = $selAllTasks3->fetch_assoc()){
   }
 }
 
-$selectStat = $conn->query("SELECT status from users where user_id = '$isLoginUserId'")->fetch_assoc();
+$selectStat = $conn->query("SELECT status, user_role from users where user_id = '$isLoginUserId'")->fetch_assoc();
 if($selectStat['status'] == 'ustts5'){
   ?>
           <script>
 
               document.addEventListener('DOMContentLoaded', (event) => {    
-                  document.getElementById("showNotif2").click();
+                document.getElementById("showNotif2").click();
+                document.addEventListener('click', function(){
+                  var audio = document.getElementById('notification');
+                    audio.play();
+                });
                 });
 
           </script>
@@ -128,12 +137,17 @@ if($selectStat['status'] == 'ustts5'){
           <script>
 
               document.addEventListener('DOMContentLoaded', (event) => {    
-                  document.getElementById("showNotif3").click();
+                document.getElementById("showNotif3").click( function(){
+                    var audio = new Audio("../../img/audio.wav");
+                    audio.play();
+                  });
                 });
 
           </script>
         <?php
 }
+
+
 
 //check task batch
 while($taskBatch = $selAllTaskBatch->fetch_assoc()){
@@ -143,10 +157,42 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
   }elseif($taskBatch['status'] != 'bstts5' && $taskBatch['progress'] > 0 && $taskBatch['progress'] < 100){
     $update = $conn->query("UPDATE task_batch set status = 'bstts2' where batch_id = '$orderNo'");
   }
+
+  if($selectStat['user_role'] === "ur1"){
+    $selAllTask = $conn->query("SELECT * from tasks where batch = '$orderNo'");
+    $countDamage = 0;
+    while($task = $selAllTask->fetch_assoc()){
+      if($task['status'] === "tstts6"){
+        $countDamage++;
+      }
+
+      if($countDamage > 4){
+        ?>
+            <script>
+  
+                document.addEventListener('DOMContentLoaded', (event) => {    
+                  document.getElementById("showNotif4").click( function(){
+                    alert("hi");
+                      document.getElementById("staticBackdrop4Label").innerHTML("<h2 class='text-center'>asdada<?php echo $taskBatch['name']?></h2>");
+                      var audio = new Audio("../../img/audio.wav");
+                      audio.play();
+                    });
+                  });
+  
+            </script>
+          <?php
+      }
+    }
+
+    
+  }
+
 }
 
 
 ?>
+	
+
 <!-- Button trigger modal -->
 <button type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="showNotif">
   
@@ -161,6 +207,10 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="col-5 mx-auto">
+            <img src="../../img/warning.png" class="img-fluid " alt="">
+          </div>
+
         <h1>YOU DIDNT FINISH THE TASK THAT THE ADMIN ASSIGNED TO YOU ON THE EXPECTED DAY, PLEASE CONTACT THE ADMIN</h1>
       </div>
     </div>
@@ -179,8 +229,12 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdrop2Label">WARNING!</h5>
       </div>
-      <div class="modal-body">
-        <h1 class="text-center">Your Account is Locked!!</h1>
+      <div class="modal-body ">
+        <div class="col-5 mx-auto">
+          <img src="../../img/warning.png" class="img-fluid " alt="">
+        </div>
+
+        <h1 class="text-center">Your Account is Locked!!</h1>	<audio id="notification" src="../../../img/audio.wav"></audio>
       </div>
       <div class="modal-footer">
           <form action="action/logout.php" method="post">
@@ -205,6 +259,10 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
         <h5 class="modal-title" id="staticBackdrop3Label">WARNING!</h5>
       </div>
       <div class="modal-body">
+        <div class="col-5 mx-auto">
+          <img src="../../img/warning.png" class="img-fluid " alt="">
+        </div>
+
         <h1 class="text-center">Please wait while admin approves your account.</h1>
       </div>
       <div class="modal-footer">
@@ -215,6 +273,34 @@ while($taskBatch = $selAllTaskBatch->fetch_assoc()){
     </div>
   </div>
 </div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop4" id="showNotif4">
+  
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop3Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">WARNING!</h5>
+      </div>
+      <div class="modal-body">
+        <div class="col-5 mx-auto">
+          <img src="../../img/warning.png" class="img-fluid " alt="">
+        </div>
+
+        <h2 class="text-center" id="staticBackdrop4Label">KAMO NALANG KAAG NOTIF MESSAGE</h2>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="logout">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

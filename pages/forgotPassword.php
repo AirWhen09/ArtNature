@@ -12,17 +12,39 @@ if (isset($_POST["email"])) {
     if ($result->num_rows > 0) {
         // Email exists, generate a reset password token and send it to the user's email
         $token = bin2hex(random_bytes(16));
-        $stmt = $conn->prepare("UPDATE users SET reset_token=? WHERE email=?");
+        $stmt = $conn->prepare("UPDATE users SET token=? WHERE email=?");
         $stmt->bind_param("ss", $token, $email);
         $stmt->execute();
         // Send the reset password email to the user
-        $to = $email;
-        $subject = "Reset Password";
-        $message = "Click the link below to reset your password:\n\n";
-        $message .= "http://www.example.com/resetpassword.php?token=" . $token;
-        $headers = "From: noreply@example.com\r\n";
-        mail($to, $subject, $message, $headers);
-        echo "A reset password email has been sent to your email address. Please follow the instructions in the email to reset your password.";
+        $body = "";
+        $receiver = $email;
+        $subject = "Reset Password ";
+        $sender = "ARTNATURE";
+            
+        $body .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                        <html xmlns="http://www.w3.org/1999/xhtml">
+                        <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        </head>
+                        <body>
+                    <p>Click the link below to reset your password: '.$token.'
+
+                    Thanks,
+                    The Artnature Admin
+        </body>
+        </html>';
+
+        $headers = "" .
+                "Reply-To:" . $sender . "\r\n" .
+                "X-Mailer: PHP/" . phpversion();
+        $headers .= 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";    
+        $headers .= 'From: ' . $sender . "\r\n";
+        if(mail($receiver, $subject, $body, $headers)){
+         echo "A reset password email has been sent to your email address. Please follow the instructions in the email to reset your password.";
+        }else{
+        echo "Sorry, failed while sending mail!";
+        }
     } else {
         // Email does not exist
         echo "<script>alert('Sorry, we could not find an account with that email address')</script>";
